@@ -151,10 +151,37 @@ class SelfRelease {
   String get label => tag.isNotEmpty && (tag[0] == 'v' || tag[0] == 'V') ? tag.substring(1) : tag;
 
   /// The package this build can install: the release's first APK, or null when
-  /// it carries none (a release of notes only). This fork publishes one APK per
-  /// release; should one ever carry several, GitHub lists them in upload order
-  /// and the first is used.
+  /// it carries none (a release of notes only).
   SelfReleaseAsset? get apk => assets.firstOrNull;
+
+  /// Which asset names belong to which ABI. [abi] is the running APK's
+  /// `nativeLibraryDir` name: `arm64`, `arm`, `x86_64` or `x86`.
+  static const abiTokens = <String, List<String>>{
+    'arm64': ['arm64-v8a', 'arm64', 'aarch64'],
+    'arm': ['armeabi-v7a', 'armv7', 'armeabi'],
+    'x86_64': ['x86_64', 'x64'],
+    'x86': ['x86'],
+  };
+
+  /// The package for [abi]: an asset whose name names that ABI, else a universal
+  /// one (no ABI token in its name), else the first APK. A one-APK release is
+  /// returned as is, so publishing several per-ABI builds changes nothing for
+  /// the single-APK case.
+  SelfReleaseAsset? apkFor(String? abi) {
+    if (assets.isEmpty) return null;
+    if (assets.length == 1) return assets.first;
+    final tokens = abiTokens[abi] ?? const <String>[];
+    for (final asset in assets) {
+      final name = asset.name.toLowerCase();
+      if (tokens.any(name.contains)) return asset;
+    }
+    final all = abiTokens.values.expand((tokens) => tokens);
+    for (final asset in assets) {
+      final name = asset.name.toLowerCase();
+      if (!all.any(name.contains)) return asset;
+    }
+    return assets.first;
+  }
 
   /// Where [asset] is downloaded from: its own URL, or the canonical one built
   /// from [tag] and its name when the answer didn't carry one.

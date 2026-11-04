@@ -75,15 +75,21 @@ class SelfUpdateController extends Notifier<SelfUpdateState> {
 
   /// Starts the confirmed update of [release]'s [asset]. A no-op while another
   /// run is in flight (the sheet's button is disabled then).
-  Future<void> start(SelfRelease release, SelfReleaseAsset asset) async {
+  Future<void> start(SelfRelease release, SelfReleaseAsset? asset) async {
     if (state.busy) return;
+    final installer = ref.read(selfUpdateInstallerProvider);
+    final chosen = asset ?? await installer.resolveAsset(release);
+    if (chosen == null) {
+      state = const SelfUpdateState(phase: SelfUpdatePhase.failed, failure: SelfUpdateFailure.install);
+      return;
+    }
     final run = ++_run;
     bool owns() => ref.mounted && run == _run;
     final cancel = _cancel = CancelToken();
-    state = SelfUpdateState(phase: SelfUpdatePhase.downloading, total: asset.size);
-    final outcome = await ref.read(selfUpdateInstallerProvider).install(
+    state = SelfUpdateState(phase: SelfUpdatePhase.downloading, total: chosen.size);
+    final outcome = await installer.install(
       release: release,
-      asset: asset,
+      asset: chosen,
       cancel: cancel,
       onProgress: (progress) {
         if (!owns()) return;

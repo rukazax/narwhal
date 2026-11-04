@@ -134,6 +134,9 @@ abstract interface class ApkInstallPlatform {
   /// Free bytes where the package is downloaded; null when unknown.
   Future<int?> freeBytes();
 
+  /// The ABI this APK was built for (`arm64`, `x86_64`, …); null when unknown.
+  Future<String?> abi();
+
   /// Hands the APK at [path] to the system installer.
   Future<ApkInstallStart> start(String path);
 }
@@ -154,6 +157,12 @@ class ChannelApkInstallPlatform implements ApkInstallPlatform {
   Future<int?> freeBytes() async {
     final info = await channel.invokeMethod<Map<Object?, Object?>>('info');
     return (info?['freeBytes'] as num?)?.toInt();
+  }
+
+  @override
+  Future<String?> abi() async {
+    final info = await channel.invokeMethod<Map<Object?, Object?>>('info');
+    return info?['abi'] as String?;
   }
 
   @override
@@ -182,8 +191,12 @@ class SelfUpdateInstaller {
   final Sha256Hasher hasher;
   final int maxBytes;
 
+  /// The package to install on this device: the release asset that names the
+  /// running ABI, else a universal asset, else the first one.
+  Future<SelfReleaseAsset?> resolveAsset(SelfRelease release) async =>
+      release.apkFor(await platform.abi()) ?? release.apk;
+
   /// Downloads [asset] of [release] and hands it to the installer.
-  ///
   /// [onProgress] is called as bytes arrive (and once with 0 before the
   /// first); [onVerifying] when the file is complete and is being hashed.
   /// [cancel] stops the download and leaves the partial file for the next try.

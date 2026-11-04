@@ -62,6 +62,12 @@ class FakePlatform implements ApkInstallPlatform {
   @override
   Future<int?> freeBytes() async => free;
 
+  /// The running build's ABI; `arm64` matches the published APK name.
+  String? abiName = 'arm64';
+
+  @override
+  Future<String?> abi() async => abiName;
+
   @override
   Future<ApkInstallStart> start(String path) async {
     starts.add(path);
@@ -319,6 +325,9 @@ class _BrokenPlatform implements ApkInstallPlatform {
 
   @override
   Future<int?> freeBytes() async => throw MissingPluginException('no dsh/update');
+
+  @override
+  Future<String?> abi() async => throw MissingPluginException('no dsh/update');
 
   @override
   Future<ApkInstallStart> start(String path) async => throw MissingPluginException('no dsh/update');
