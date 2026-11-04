@@ -163,6 +163,6 @@ node --test runtime/tests/*.test.mjs
 
 **Товарные знаки.** «DeepSeek» и логотип DeepSeek принадлежат DeepSeek. Narwhal — неофициальный проект, не аффилирован с DeepSeek и не представляет её. Название и графика Narwhal — этого fork, а не upstream.
 
-Сборка и поддержка — [rukazax](https://github.com/rukazax) (Константин Александрович Ерёмин, Москва). Ошибки и предложения — в [Issues](https://github.com/rukazax/narwhal/issues); уязвимости — приватно, по [SECURITY.en.md](SECURITY.en.md).
+Сборка и поддержка — [rukazax](https://github.com/rukazax) (Константин Александрович Ерёмин, Москва). Ошибки и предложения — в [Issues](https://github.com/rukazax/narwhal/issues); уязвимости — приватно, по [SECURITY.md](SECURITY.md).
 
 <sub>Сборка: <b>RUKAZAX</b> · Narwhal неофициальный, используйте на свой риск.</sub>

@@ -164,5 +164,4 @@ The original's mascots and brand art (Deepy, the whale girl, the tail animation,
 **Trademarks.** "DeepSeek" and the DeepSeek logo belong to DeepSeek. Narwhal is unofficial, not affiliated with DeepSeek and does not represent it. The Narwhal name and artwork belong to this fork, not to upstream.
 
 Built and maintained by [rukazax](https://github.com/rukazax) (Konstantin Aleksandrovich Yeryomin, Moscow). Bugs and ideas go to [Issues](https://github.com/rukazax/narwhal/issues); report vulnerabilities privately as described in [SECURITY.en.md](SECURITY.en.md).
-
 <sub>Build: <b>RUKAZAX</b> · Narwhal is unofficial — use it at your own risk.</sub>
