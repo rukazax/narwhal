@@ -32,6 +32,7 @@ import java.io.File
 import java.time.ZoneId
 import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
 
 /**
@@ -135,6 +136,7 @@ class PhoneControl private constructor(private val app: Context) : PhoneEnv, Con
     @Volatile private var lastStatus: Map<String, Any?>? = null
     @Volatile private var keptTask = 0L
     private var screenReceiver: BroadcastReceiver? = null
+    private var pendingTick: ScheduledFuture<*>? = null
     private val sinks = CopyOnWriteArraySet<(Map<String, Any?>) -> Unit>()
     val background: BackgroundControl = BackgroundControl.get(app)
 
@@ -146,7 +148,7 @@ class PhoneControl private constructor(private val app: Context) : PhoneEnv, Con
         background.onStatusChanged = { emitStatus() }
         (app as? Application)?.let { AppVisibility.register(it) }
         tasks.addListener { onTask(it) }
-        ticker.scheduleWithFixedDelay({ tick() }, 2, 2, TimeUnit.SECONDS)
+        scheduleTick()
         // The app's start: a force stop took the accessibility service out of the settings.
         ticker.execute(::keep)
     }
@@ -350,6 +352,8 @@ class PhoneControl private constructor(private val app: Context) : PhoneEnv, Con
         DshService.updateNotification(app)
         LiveActivity.refresh(app)
         emitStatus()
+        // A task starting or ending changes how soon the tick is worth running.
+        scheduleTick()
     }
 
     private fun setStatusLine(text: String?) {
@@ -532,7 +536,27 @@ class PhoneControl private constructor(private val app: Context) : PhoneEnv, Con
         main.post { sinks.forEach { runCatching { it(s) } } }
     }
 
-    /** Every 2 s: end idle tasks; 自动恢复无障碍; push status changes we can't observe (accessibility connecting). */
+    /** The tick re-arms itself: with a task it runs every 2 s, idle it drops to 15 s or a minute. */
+    private fun scheduleTick() {
+        pendingTick?.cancel(false)
+        val delay = PhoneTickPlan.intervalMs(
+            on = isEnabled(),
+            taskActive = tasks.snapshot().active || tasks.isStopped(),
+            keeperPending = isEnabled() && !PhoneA11yService.isConnected(),
+        )
+        pendingTick = ticker.schedule({ runTick() }, delay, TimeUnit.MILLISECONDS)
+    }
+
+    private fun runTick() {
+        try {
+            tick()
+        } catch (_: Exception) {
+        } finally {
+            if (!ticker.isShutdown) scheduleTick()
+        }
+    }
+
+    /** Every tick: end idle tasks; 自动恢复无障碍; push status changes we can't observe (accessibility connecting). */
     private fun tick() {
         try {
             tasks.expireIdle()

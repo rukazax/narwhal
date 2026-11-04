@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/l10n.dart';
+import '../../remote/qr/host_qr.dart';
 import '../../remote/relay/relay_backend.dart';
 import '../../runtime/local_footprint.dart';
 import '../../runtime/runtime_state.dart';
@@ -20,6 +21,8 @@ import '../theme/app_icons.dart';
 import '../theme/theme.dart';
 import '../web/web_view_page.dart';
 import 'host_key_dialog.dart';
+import 'host_qr_add.dart';
+import 'host_qr_scan_page.dart';
 import 'host_status.dart';
 import 'link_progress.dart';
 import 'network_details_sheet.dart';
@@ -82,6 +85,20 @@ class RemoteScreen extends ConsumerWidget {
     if (nothingHere && ref.read(activeHostProvider).isLocal) await _use(context, ref, HostRef.ssh(saved.id));
   }
 
+  /// Scan a host QR code; the scanner returns the parsed host and this page
+  /// confirms, saves and connects it like any other host.
+  Future<void> _scanQr(BuildContext context, WidgetRef ref) async {
+    final payload = await Navigator.of(context).push<HostQrPayload>(
+      MaterialPageRoute(builder: (_) => const HostQrScanPage()),
+    );
+    if (payload == null || !context.mounted) return;
+    final host = await addHostFromQr(context, ref, payload);
+    if (host == null || !context.mounted) return;
+    // The new host is the one to use now, as after the manual form: switching
+    // to it takes the chat and the session list with it, and closes this page.
+    await _use(context, ref, host);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
@@ -92,7 +109,15 @@ class RemoteScreen extends ConsumerWidget {
     return AppPage.list(
       title: l10n.commonRemoteHost,
       subtitle: Text(l10n.remoteHostsIntro),
-      actions: const [AskAiButton(AskAiTopic.remote)],
+      actions: [
+        GlassIconButton(
+          key: const ValueKey('remote-scan-qr'),
+          icon: AppIcons.qrCode,
+          tooltip: l10n.remoteScanQr,
+          onPressed: () => unawaited(_scanQr(context, ref)),
+        ),
+        const AskAiButton(AskAiTopic.remote),
+      ],
       children: [
         _ActiveCard(active: active),
         _RelaySection(onUse: (h) => _use(context, ref, h)),
@@ -100,6 +125,13 @@ class RemoteScreen extends ConsumerWidget {
           title: l10n.remoteSshHosts,
           footer: Text(l10n.remoteSshRequirements),
           children: [
+            SettingsTile(
+              icon: AppIcons.qrCode,
+              tinted: false,
+              title: l10n.remoteScanQr,
+              subtitle: l10n.remoteScanQrSubtitle,
+              onTap: () => unawaited(_scanQr(context, ref)),
+            ),
             for (final h in ssh)
               _SshRow(
                 config: h,

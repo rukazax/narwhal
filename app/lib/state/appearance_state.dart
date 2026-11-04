@@ -10,7 +10,7 @@ import '../ui/theme/accent.dart';
 
 /// 配色从哪来。
 enum AccentSource {
-  /// 六套预设之一([AppearanceSettings.presetId])。
+  /// 八套预设之一([AppearanceSettings.presetId])。
   preset,
 
   /// 用户挑的颜色([AppearanceSettings.customColor]),过对比度守卫。
@@ -39,8 +39,8 @@ class AppearanceSettings {
   final int customColor;
   final bool loaded;
 
-  /// 自定义色的初值:一抹灰调的苔绿(色相 140°),第一次打开时和六套预设
-  /// 都不撞。
+  /// 自定义色的初值:一抹灰调的苔绿(色相 140°),第一次打开时和八套预设
+  /// 都还分得开(预设的绿更亮、更饱和)。
   static const defaultCustom = 0xFF5F7A55;
 
   AppearanceSettings copyWith({AccentSource? source, String? presetId, int? customColor, bool? loaded}) =>

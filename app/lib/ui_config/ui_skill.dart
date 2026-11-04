@@ -28,7 +28,6 @@ import '../state/hosts_state.dart';
 import 'ui_config_state.dart';
 
 const uiSkillName = 'dsh-go-ui';
-const uiSkillAssetDir = 'assets/skills/dsh-go-ui/';
 
 /// The second skill the app ships: teaches a host's agent to write a small
 /// local native plugin (sdk/plugin-kit/skill, built into

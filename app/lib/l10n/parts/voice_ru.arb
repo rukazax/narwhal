@@ -33,7 +33,6 @@
   "voiceModelWaiting": "Доступно после запуска движка",
   "voiceModelUnsupported": "В этом движке нет голосовой модели",
   "voiceModelAbsent": "Не скачана",
-  "voiceModelDownloading": "Загрузка",
   "voiceModelPreparing": "Проверка и загрузка",
   "voiceModelReady": "Готова",
   "voiceModelFailed": "Ошибка загрузки",

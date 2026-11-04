@@ -483,22 +483,6 @@
   "activityUsageContextFull": "上下文将满，发送 /compact 可压缩",
   "activitySpanZero": "0 秒",
   "activitySpanTiny": "<0.1 秒",
-  "activityTokensTenThousands": "{value} 万",
-  "@activityTokensTenThousands": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
-  "activityTokensHundredMillions": "{value} 亿",
-  "@activityTokensHundredMillions": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
   "activityUsageContextSemantics": "上下文已用 {percent}，查看用量",
   "@activityUsageContextSemantics": {
     "placeholders": {
@@ -1409,26 +1393,7 @@
       }
     }
   },
-  "botsUpdateRequired": "DS Bot 需要更新",
   "botsInstall": "安装 DS Bot",
-  "botsUpdateForPhone": "新版才能在手机上用",
-  "botsInstallDescription": "一组长期在线的 Bot，各有记忆和分工",
-  "botsInstallOnHost": "在{host}上装好后就能用",
-  "@botsInstallOnHost": {
-    "placeholders": {
-      "host": {
-        "type": "String"
-      }
-    }
-  },
-  "botsRunsOnHost": "在{host}上运行",
-  "@botsRunsOnHost": {
-    "placeholders": {
-      "host": {
-        "type": "String"
-      }
-    }
-  },
   "botsInstalling": "正在安装",
   "botsMemory": "记忆",
   "botsEditMemory": "编辑记忆",
@@ -1655,8 +1620,6 @@
   "botsPetChange": "换宠物",
   "botsPetHideHour": "藏起来 1 小时",
   "botsPetSettings": "宠物设置",
-  "botsPetDeepy": "Deepy 小鲸鱼",
-  "botsPetWhaleGirl": "鲸娘",
   "botsPetNone": "不显示",
   "botsPets": "宠物",
   "botsPetSource": "来自 DSH-TUI",
@@ -1922,25 +1885,12 @@
   "catalogAutomationSection": "自动化",
   "catalogSchedules": "自动化任务",
   "catalogSchedulesSummary": "定时与周期任务",
-  "catalogAgentModelsSection": "Agent 与模型",
   "catalogPermission": "权限",
   "catalogPermissionSummary": "执行前是否确认",
-  "catalogAgentPresets": "Agent 预设",
-  "catalogAgentPresetsSummary": "新对话的工作方式",
   "catalogModels": "模型",
   "catalogModelsSummary": "订阅与自定义渠道",
-  "catalogSubagentSettings": "子代理设置",
-  "catalogSubagentSettingsSummary": "层数、并行与模型",
-  "catalogAgentLoop": "Agent 循环",
-  "catalogAgentLoopSummary": "工具并行上限",
-  "catalogShellSettings": "命令执行",
-  "catalogShellSettingsSummary": "超时与输出上限",
-  "catalogWebSearch": "联网搜索",
-  "catalogWebSearchSummary": "搜索服务与预算",
   "catalogPlugins": "插件",
   "catalogPluginsSummary": "已安装与插件市场",
-  "catalogPluginInventory": "插件清单",
-  "catalogPluginInventorySummary": "已加载的全部插件",
   "catalogCordisSummary": "插件创建的动态面板",
   "catalogAgentTeam": "智能体团队",
   "catalogAgentTeamSummary": "成员、任务板与消息",
@@ -1956,24 +1906,13 @@
   "catalogBotSummary": "Bot 团队与群聊",
   "catalogShareProfile": "分享配置",
   "catalogShareProfileSummary": "插件、设置与技能",
-  "catalogHostsSettingsSection": "主机与设置",
   "catalogSearch": "搜索对话",
   "catalogSearchSummary": "按标题和正文查找",
-  "catalogNotifications": "通知",
-  "catalogNotificationsSummary": "完成与待确认提醒",
   "catalogWorkspaces": "工作区",
   "catalogWorkspacesSummary": "添加与切换目录",
-  "catalogGeneral": "通用设置",
-  "catalogGeneralSummary": "显示、发送与日志上传",
-  "catalogAccount": "账号与余额",
-  "catalogAccountSummary": "登录、余额与充值",
   "catalogRemoteSummary": "连接电脑或服务器",
   "catalogPhoneControl": "手机操控",
   "catalogPhoneControlSummary": "看屏幕、帮你点按",
-  "catalogEngine": "本机引擎",
-  "catalogEngineSummary": "本机引擎状态与日志",
-  "catalogDiagnostics": "诊断",
-  "catalogDiagnosticsSummary": "导出诊断包",
   "catalogWebSummary": "DSH 官方界面",
   "catalogPluginPanel": "插件面板",
   "catalogHostPluginMissing": "这台主机没有这个插件",
@@ -2270,14 +2209,8 @@
   "chatVoiceMicrophoneFailed": "没能打开麦克风",
   "chatVoicePermissionOff": "麦克风权限已关闭",
   "chatVoicePermissionNeeded": "需要麦克风权限才能语音输入",
-  "chatVoiceUnavailable": "这台手机没有可用的语音识别",
   "chatVoiceNotHeard": "没有听清，再说一次",
   "chatVoiceTranscriptionFailed": "没能转写这段语音",
-  "chatVoiceNetworkFailed": "网络不太好，没能识别",
-  "chatVoiceLanguageUnsupported": "暂不支持这种语言",
-  "chatVoiceMicrophoneBusy": "麦克风正被占用",
-  "chatVoiceBusy": "语音识别正忙，稍后再试",
-  "chatVoiceRecognitionFailed": "语音识别出错了",
   "chatListening": "正在聆听",
   "chatTranscribing": "正在转写",
   "chatCancelVoiceInput": "取消语音输入",
@@ -4503,27 +4436,20 @@
   "hubSettingsRestartNow": "立即重启",
   "hubSettingsInterface": "界面",
   "hubSettingsChat": "对话",
-  "hubSettingsAutoCommands": "自动执行命令",
   "hubSettingsPhoneFiles": "访问手机文件",
   "hubSettingsPhoneFilesHint": "AI 可读写手机存储",
   "hubSettingsVisualReplies": "可视化回复",
   "hubSettingsVisualRepliesHint": "图表、对比卡和可点的选项",
   "hubSettingsPhoneControl": "手机操控",
-  "hubSettingsPhoneControlHint": "看屏幕、帮你点按",
   "hubSettingsPreferences": "个人偏好",
   "hubSettingsAppearance": "外观",
   "hubSettingsChatTextSize": "对话字号",
   "hubSettingsCollapseSteps": "完成后收起过程",
-  "hubSettingsCollapseStepsHint": "思考与工具调用收成一行",
-  "hubSettingsWebPhoneLayout": "网页版手机布局",
   "hubSettingsWebPhoneLayoutHint": "为手机屏幕重排网页版",
-  "hubSettingsEngineExtensions": "引擎与扩展",
   "hubSettingsEngine": "本机引擎",
   "hubSettingsProviders": "模型",
-  "hubSettingsEngineSettings": "引擎参数",
   "hubSettingsShareConfig": "分享配置",
   "hubSettingsAllFeatures": "全部功能",
-  "hubSettingsAbout": "关于",
   "hubSettingsCommunity": "社区",
   "hubSettingsLicenses": "开源许可",
   "hubSettingsAccount": "DeepSeek 账号",
@@ -4779,7 +4705,6 @@
       }
     }
   },
-  "hubValueNoHosts": "未添加",
   "hubValuePlugins": "{count} 个",
   "@hubValuePlugins": {
     "placeholders": {
@@ -5073,14 +4998,6 @@
   "mediaOpenElsewhere": "在其他应用中打开",
   "mediaShowInFiles": "在文件中显示",
   "mediaGenerating": "生成中",
-  "mediaGeneratingProgress": "生成中 · {progress}",
-  "@mediaGeneratingProgress": {
-    "placeholders": {
-      "progress": {
-        "type": "String"
-      }
-    }
-  },
   "mediaCancelled": "已取消",
   "mediaNotGenerated": "未生成",
   "mediaPartial": "{done} / {total} 张",
@@ -5713,7 +5630,9 @@
   "phoneAccentDaiqing": "黛青",
   "phoneAccentDusk": "暮紫",
   "phoneAccentTurquoise": "松石",
+  "phoneAccentGreen": "蕨绿",
   "phoneAccentAmber": "琥珀",
+  "phoneAccentOrange": "橘橙",
   "phoneAccentGraphite": "石墨",
   "phoneAccentCustom": "自定义",
   "phoneEngineInstallPercent": "正在安装 · {percent}%",
@@ -6681,11 +6600,9 @@
   "pluginsIconChanged": "桌面图标已选择，回到桌面后更新",
   "pluginsIconChangeFailed": "没能更换，稍后再试",
   "pluginsTheme": "主题",
-  "pluginsAppearance": "外观",
   "pluginsColors": "配色",
   "pluginsFeatureIcons": "功能图标",
   "pluginsAppIcon": "桌面图标",
-  "pluginsPet": "宠物",
   "pluginsCustomColor": "自定义",
   "pluginsColorLabel": "配色：{label}",
   "@pluginsColorLabel": {
@@ -7201,14 +7118,6 @@
     }
   },
   "plugslotsPanelOffline": "连不上插件",
-  "plugslotsIssueTooMany": "最多 {max} 个，其余不显示",
-  "@plugslotsIssueTooMany": {
-    "placeholders": {
-      "max": {
-        "type": "int"
-      }
-    }
-  },
   "plugslotsIssueTrimmed": "超过 {max} 字，已截断",
   "@plugslotsIssueTrimmed": {
     "placeholders": {
@@ -7217,16 +7126,7 @@
       }
     }
   },
-  "plugslotsIssueNeedsApp": "需要 DSH Go {version} 或更新版本",
-  "@plugslotsIssueNeedsApp": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "plugslotsIssueNewerProtocol": "需要更新 App",
-  "plugslotsIssueUnknownIcon": "不认识的图标，已换成默认图标",
   "plugslotsIssueUnknownEffect": "不支持的效果「{name}」",
   "@plugslotsIssueUnknownEffect": {
     "placeholders": {
@@ -7246,25 +7146,8 @@
     }
   },
   "plugslotsIssueThrottled": "提示太频繁，已略过",
-  "plugslotsIssueInvoke": "调用失败：{message}",
-  "@plugslotsIssueInvoke": {
-    "placeholders": {
-      "message": {
-        "type": "String"
-      }
-    }
-  },
-  "plugslotsIssueStream": "数据出错：{message}",
-  "@plugslotsIssueStream": {
-    "placeholders": {
-      "message": {
-        "type": "String"
-      }
-    }
-  },
   "plugslotsIssueMissing": "缺少必填项",
   "plugslotsIssueDuplicate": "id 重复，已略过",
-  "plugslotsIssueNoPlacement": "没有可放的位置",
   "plugslotsWantsMessage": "「{plugin}」要读取这条回复",
   "@plugslotsWantsMessage": {
     "placeholders": {
@@ -8563,6 +8446,41 @@
   "remoteNetworkFallbackPathUnverified": "尚未确认 WebRTC 路径类型",
   "remoteNetworkSnapshotHint": "显示最近一次确认的路径与延迟，刷新可重新检测。",
   "remoteNetworkObservedAt": "最近观测",
+  "remoteScanQr": "扫描二维码",
+  "remoteScanQrSubtitle": "用电脑上的二维码添加主机",
+  "remoteScanQrHint": "把相机对准主机二维码",
+  "remoteScanQrTorch": "手电筒",
+  "remoteScanQrCameraDenied": "没有相机权限。请在 Android 设置里允许 Narwhal 使用相机。",
+  "remoteScanQrCameraUnavailable": "这台设备没有可用的相机。",
+  "remoteScanQrCameraFailed": "打不开相机。",
+  "remoteScanQrCameraRetry": "重试",
+  "remoteScanQrPrivacy": "相机只用于扫描主机二维码。画面不会保存，也不会上传。",
+  "remoteScanQrHowTitle": "如何获得二维码",
+  "remoteScanQrHowBody": "二维码由要连接的电脑生成：在任意二维码生成器里，把 ssh://用户@地址:22 这样的地址，或下面的 JSON 编成二维码。",
+  "remoteScanQrPaste": "粘贴二维码链接",
+  "remoteScanQrPasteHelp": "相机不可用，或二维码只存在于聊天和文件里时使用。",
+  "remoteScanQrPasteTitle": "粘贴二维码链接",
+  "remoteScanQrPasteHint": "主机地址或二维码里的 JSON",
+  "remoteScanQrPasteCheck": "检查",
+  "remoteScanQrPasteClipboard": "从剪贴板粘贴",
+  "remoteScanQrClipboardEmpty": "剪贴板里没有文字。",
+  "remoteQrErrEmpty": "二维码是空的。换一个再试。",
+  "remoteQrErrTooLong": "二维码太长，不像主机地址。",
+  "remoteQrErrOtherApp": "这不是 Narwhal 的主机二维码。请扫描为连接主机生成的二维码。",
+  "remoteQrErrVersion": "这个二维码来自更新的版本。请更新 Narwhal。",
+  "remoteQrErrTransport": "这个二维码走本地网络连接，而 Narwhal 通过 SSH 连接。请生成 ssh:// 地址的二维码。",
+  "remoteQrErrNoAddress": "二维码里没有主机地址。",
+  "remoteQrErrInvalidAddress": "二维码里的主机地址不正确。",
+  "remoteQrErrNoUser": "二维码里没有用户名。请写成 用户@主机。",
+  "remoteQrErrPort": "二维码里的端口不对（1–65535）。",
+  "remoteQrConfirmTitle": "添加主机？",
+  "remoteQrConfirmName": "名称",
+  "remoteQrConfirmAddress": "地址",
+  "remoteQrConfirmPassword": "密码",
+  "remoteQrConfirmPasswordIncluded": "二维码里带有密码，会保存到手机的加密存储",
+  "remoteQrConfirmPasswordMissing": "二维码里没有密码，请在主机设置里填写",
+  "remoteQrConfirmPrivacy": "密码不会显示，也不会发送：它只留在这台手机上。",
+  "remoteQrConfirmAdd": "添加并连接",
   "riskDontShowAgain": "不再提示",
   "riskAskAi": "不确定？问 AI",
   "riskConfirmAlwaysAction": "始终免确认",
@@ -8576,7 +8494,6 @@
   "riskPetOverlayAction": "去设置",
   "askAiTooltip": "问 AI",
   "askAiHelpTitle": "使用帮助",
-  "askAiHelpSubtitle": "不懂的地方，问 AI",
   "askAiAboutApp": "关于 DSH Go App：{question}",
   "@askAiAboutApp": {
     "placeholders": {
@@ -8658,7 +8575,6 @@
   "searchKwAgentPresets": "预设,模式,工作方式",
   "searchKwUiMode": "原生,网页,网页模式,界面,切换界面",
   "searchKwLanguage": "中文,英文,简体,English",
-  "searchKwAutoCommands": "别问我,不要确认,自动允许,完全权限,免确认",
   "searchKwPhoneFiles": "存储,文件,相册,下载,手机存储",
   "searchKwVisualReplies": "图表,卡片,可视化,选项",
   "searchKwTextSize": "字号,字体,文字大小,大字,字体大小",
@@ -9120,7 +9036,9 @@
   "shellAccentDaiqing": "黛青",
   "shellAccentDusk": "暮紫",
   "shellAccentTurquoise": "松石",
+  "shellAccentGreen": "蕨绿",
   "shellAccentAmber": "琥珀",
+  "shellAccentOrange": "橘橙",
   "shellAccentGraphite": "石墨",
   "shellHideTurnFooter": "回合脚注",
   "shellHideTokenCount": "token 数",
@@ -10396,6 +10314,29 @@
   "upstreamUpdatesOpenRelease": "打开发布页",
   "upstreamUpdatesClose": "关闭",
   "upstreamUpdatesNoAnswer": "无法检查 dsh-go 更新，请稍后再试。",
+  "upstreamUpdatesSection": "原版 dsh-go",
+  "selfUpdatesTitle": "Narwhal 更新",
+  "selfUpdatesCurrent": "当前版本 {version}",
+  "@selfUpdatesCurrent": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdatesChecking": "检查中…",
+  "selfUpdatesAvailable": "有新版本 {version}",
+  "@selfUpdatesAvailable": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdatesFailed": "无法检查",
+  "selfUpdatesCheck": "检查",
+  "selfUpdatesRetry": "重试",
+  "selfUpdatesNoAnswer": "无法检查 Narwhal 更新，请稍后再试。",
   "usageStatsTitle": "发送匿名使用统计",
   "usageStatsSection": "改进 DSH Go",
   "usageStatsFooter": "只含使用次数、版本和手机品牌，不含对话、文件和账号。",
@@ -11777,7 +11718,6 @@
   "voiceModelWaiting": "引擎启动后可以下载",
   "voiceModelUnsupported": "当前引擎不支持语音模型",
   "voiceModelAbsent": "未下载",
-  "voiceModelDownloading": "下载中",
   "voiceModelPreparing": "正在校验和加载",
   "voiceModelReady": "已就绪",
   "voiceModelFailed": "下载失败",

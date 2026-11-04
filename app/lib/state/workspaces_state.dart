@@ -385,9 +385,6 @@ final selectedWorkspaceProvider = Provider<Workspace?>((ref) {
   return ref.watch(workspacesProvider).byId(selected);
 });
 
-/// Id of [selectedWorkspaceProvider], for `session/create`.
-final selectedWorkspaceIdProvider = Provider<String?>((ref) => ref.watch(selectedWorkspaceProvider)?.workspaceId);
-
 /// Whether the drawer should wait before listing: a workspace is selected but
 /// the host's registry hasn't arrived yet (avoids flashing every conversation).
 final workspaceFilterPendingProvider = Provider<bool>((ref) {

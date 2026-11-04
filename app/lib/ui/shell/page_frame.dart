@@ -67,7 +67,7 @@ class AppPage extends StatefulWidget {
   static const contentWidth = AppSpace.readingWidth;
 
   /// Space on each side of the centred column in a window [width] wide; at
-  /// least [inset], the side inset of a phone on its side ([sideInsetOf]).
+  /// least [inset], the side inset of a phone on its side ([sideInsetFor]).
   static double sideFor(double width, {double inset = 0}) =>
       math.max(inset, (width - contentWidth) / 2).floorToDouble();
 

@@ -1,7 +1,8 @@
-// Every palette (the six presets, custom picks across the hue circle, odd
+// Every palette (the eight presets, custom picks across the hue circle, odd
 // picks) keeps the contrast rules of docs/design/polish-guide.md §1.1, in
 // light and dark. Mist stays byte-identical to the original Mist Glass tokens.
 
+import 'package:dsh_app/l10n/l10n.dart';
 import 'package:dsh_app/ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -63,10 +64,44 @@ void main() {
 
   test('presets: unique ids and names, mist first', () {
     expect(AppAccent.presets.first, AppAccent.mist);
-    expect(AppAccent.presets.map((p) => p.id).toSet(), hasLength(6));
-    expect(AppAccent.presets.map((p) => p.label), ['雾蓝', '黛青', '暮紫', '松石', '琥珀', '石墨']);
+    expect(AppAccent.presets.map((p) => p.id).toSet(), hasLength(8));
+    expect(AppAccent.presets.map((p) => p.label), ['雾蓝', '黛青', '暮紫', '松石', '蕨绿', '琥珀', '橘橙', '石墨']);
     expect(AppAccent.preset('nope'), AppAccent.mist);
     expect(AppAccent.preset('amber'), AppAccent.amber);
+    expect(AppAccent.preset('orange'), AppAccent.orange);
+    expect(AppAccent.preset('green'), AppAccent.green);
+    // `test/ui_config/schema_sync_test.dart` keeps this list, the ui.json
+    // schema enum and `UiSchema.accentPresets` in the same order.
+  });
+
+  test('every preset id names itself in zh, en and ru', () {
+    addTearDown(() => AppLocale.use(AppLocale.zhCN));
+    const names = {
+      'zh': ['雾蓝', '黛青', '暮紫', '松石', '蕨绿', '琥珀', '橘橙', '石墨'],
+      'en': ['Mist', 'Teal', 'Dusk', 'Aqua', 'Fern', 'Amber', 'Tangerine', 'Slate'],
+      'ru': ['Туман', 'Бирюзовый', 'Сумерки', 'Аква', 'Зелень', 'Янтарь', 'Мандарин', 'Графит'],
+    };
+    for (final locale in AppLocale.supported) {
+      AppLocale.use(locale);
+      final expected = names[locale.languageCode]!;
+      expect(AppAccent.presets.map((p) => p.label), expected, reason: locale.languageCode);
+      // A missing switch case would fall back to 「自定义」 / 「Custom」.
+      expect(AppAccent.presets.map((p) => p.label), isNot(contains(appL10n.phoneAccentCustom)));
+    }
+  });
+
+  test('the accent-on-container guard holds for every preset, light and dark', () {
+    for (final accent in AppAccent.presets) {
+      for (final dark in [false, true]) {
+        final theme = dark ? buildDarkTheme(accent: accent) : buildLightTheme(accent: accent);
+        final scheme = theme.colorScheme;
+        expect(
+          contrastRatio(scheme.primary, scheme.primaryContainer),
+          greaterThanOrEqualTo(AppAccent.minOnContainer),
+          reason: '${accent.id} ${dark ? 'dark' : 'light'}: primary on primaryContainer',
+        );
+      }
+    }
   });
 
   for (final accent in _palettes) {
@@ -87,6 +122,11 @@ void main() {
         }
         expect(contrastRatio(scheme.onPrimary, scheme.primary), greaterThanOrEqualTo(4.5));
         expect(contrastRatio(scheme.onPrimaryContainer, scheme.primaryContainer), greaterThanOrEqualTo(7));
+        expect(
+          contrastRatio(scheme.primary, scheme.primaryContainer),
+          greaterThanOrEqualTo(4.5),
+          reason: 'primary on primaryContainer',
+        );
         // Text tiers keep their steps on the page whatever the tint.
         for (final g in [s.backdropTop, s.backdropBottom, card]) {
           expect(contrastRatio(scheme.onSurface, g), greaterThanOrEqualTo(10), reason: 'onSurface on $g');
@@ -154,5 +194,16 @@ void main() {
     expect(ratio, greaterThanOrEqualTo(4.5));
     expect(ratio, lessThan(4.8));
     expect(Oklch.fromColor(fixed).h, closeTo(90, 4));
+    // A container pulls the seed further: what reads on the page may not read
+    // on the (lighter) container, so the search keeps going.
+    const container = Color(0xFFE4ECFF);
+    final held = AppAccent.guard(
+      const Oklch(0.54, 0.082, 70),
+      brightness: Brightness.light,
+      surface: DshPalette.mistHighest,
+      onAccent: const Color(0xFFFFFFFF),
+      container: container,
+    );
+    expect(contrastRatio(held, container), greaterThanOrEqualTo(4.5));
   });
 }

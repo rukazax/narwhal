@@ -40,6 +40,14 @@ GREY = (160, 170, 190, 255)     # #A0AABA
 THREAD = (150, 170, 250, 255)   # #96AAFA
 WHITE = (255, 255, 255, 255)
 CLEAR = (0, 0, 0, 0)
+BG = (233, 239, 255, 255)       # #E9EFFF, the launcher tile behind the Narwhal
+
+
+def composite(image, color):
+    """[image] over a solid tile: launcher icons need a background, not alpha."""
+    out = Image.new('RGBA', image.size, color)
+    out.alpha_composite(image)
+    return out
 
 # S1 parameters, mirrored from make_narwhal_s1.build(): the accepted drawing.
 TUSK_LEN = 0.205
@@ -243,9 +251,9 @@ def main():
     densities = {'mdpi': 1, 'hdpi': 1.5, 'xhdpi': 2, 'xxhdpi': 3, 'xxxhdpi': 4}
     styles = ['', '_frost', '_ink', '_night']
 
-    foreground_fraction = safe_fraction()
+    foreground_fraction = 0.80
     print(f'art box {BBOX}, aspect {ASPECT:.4f}')
-    print(f'legacy 0.80 | round 0.80 | foreground {foreground_fraction:.12f} | notification 0.90')
+    print(f'legacy 0.94 on #E9EFFF | round 0.94 | foreground {foreground_fraction:.2f} | notification 0.90')
     width = foreground_fraction * 108
     height = width / ASPECT
     print(f'launcher grid (108): left {54 - width / 2:.12f} top {54 - height / 2:.12f} '
@@ -256,7 +264,8 @@ def main():
         folder = os.path.join(res, f'mipmap-{density}')
         os.makedirs(folder, exist_ok=True)
 
-        legacy = render(round(48 * dpr), 0.80)
+        legacy = render(round(48 * dpr), 0.94)
+        legacy = composite(legacy, BG)
         for style in styles:
             legacy.save(os.path.join(folder, f'ic_launcher{style}.png'))
             legacy.save(os.path.join(folder, f'ic_launcher{style}_round.png'))

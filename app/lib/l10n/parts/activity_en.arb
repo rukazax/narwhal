@@ -332,8 +332,6 @@
   "activityUsageContextFull": "Context nearly full. Send /compact to compact it",
   "activitySpanZero": "0 sec",
   "activitySpanTiny": "<0.1 sec",
-  "activityTokensTenThousands": "{value}K",
-  "activityTokensHundredMillions": "{value}M",
   "activityUsageContextSemantics": "Context {percent} used, view usage",
   "activityUsageSystemTokens": "System {tokens}",
   "activityUsageToolTokens": "Tools {tokens}",

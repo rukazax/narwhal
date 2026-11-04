@@ -52,6 +52,3 @@ const uiConfigIcons = <String, IconData>{
   'wallet': AppIcons.balance,
   'palette': AppIcons.theme,
 };
-
-/// The glyph for a validated icon name.
-IconData uiConfigIcon(String name) => uiConfigIcons[name] ?? AppIcons.running;

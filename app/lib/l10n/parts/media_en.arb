@@ -27,14 +27,6 @@
   "mediaOpenElsewhere": "Open in another app",
   "mediaShowInFiles": "Show in files",
   "mediaGenerating": "Generating",
-  "mediaGeneratingProgress": "Generating · {progress}",
-  "@mediaGeneratingProgress": {
-    "placeholders": {
-      "progress": {
-        "type": "String"
-      }
-    }
-  },
   "mediaCancelled": "Cancelled",
   "mediaNotGenerated": "Not created",
   "mediaPartial": "{done} of {total}",

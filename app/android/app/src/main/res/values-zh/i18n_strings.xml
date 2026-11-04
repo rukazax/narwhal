@@ -63,8 +63,6 @@
     <string name="overlay_channel">手机操控确认</string>
     <string name="overlay_channel_description">DSH 操作手机时请你确认的提示（允许 / 拒绝 / 停止）</string>
     <string name="overlay_stopped">已停止</string>
-    <string name="overlay_paused">已暂停 · 点「继续」后 DSH 接着做</string>
-    <string name="overlay_pause">暂停</string>
     <string name="overlay_resume_description">继续让 DSH 操作</string>
     <string name="overlay_pause_description">暂停 DSH 的操作</string>
     <string name="overlay_steer_hint">插话：告诉 DSH 换个做法…</string>
@@ -138,8 +136,6 @@
     <string name="pet_ask_not_heard">没听清</string>
     <string name="pet_ask_voice_missing">先在 App 里下载语音模型</string>
     <string name="pet_ask_voice_off">语音要本机引擎在运行</string>
-    <string name="pet_ask_mic_permission">先在 App 里允许使用麦克风</string>
-    <string name="pet_ask_mic_failed">麦克风打不开</string>
     <string name="pet_go_answer">去回答</string>
     <string name="pet_go_review">去看看</string>
     <string name="pet_answer_failed">没成功，去 App 里处理</string>

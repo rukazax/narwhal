@@ -26,17 +26,6 @@ class ProviderHealthView {
   final String label;
 }
 
-/// The list row's second line: what it is when it works, what is wrong when
-/// it does not.
-String providerSummary(CustomProvider provider, ProviderHealth health) {
-  if (health != ProviderHealth.ready) return ProviderHealthView.of(health).label;
-  final count = provider.models.length;
-  return [
-    if (provider.api case final api?) protocolLabel(api) else appL10n.engineProviderConfiguredInWeb,
-    if (count > 0) appL10n.engineProviderModels(count),
-  ].join(' · ');
-}
-
 /// A model row's second line: its id when it has a name, then what it can do
 /// (「上下文 256K · 识图 · 思考」). Empty when there is nothing to say.
 String modelSummary(BuildContext context, ProviderModelSpec model, {ModelDefaults defaults = const ModelDefaults()}) {

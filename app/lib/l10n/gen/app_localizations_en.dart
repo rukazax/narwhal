@@ -1285,16 +1285,6 @@ class L10nEn extends L10n {
   String get activitySpanTiny => '<0.1 sec';
 
   @override
-  String activityTokensTenThousands(String value) {
-    return '${value}K';
-  }
-
-  @override
-  String activityTokensHundredMillions(String value) {
-    return '${value}M';
-  }
-
-  @override
   String activityUsageContextSemantics(String percent) {
     return 'Context $percent used, view usage';
   }
@@ -2249,26 +2239,7 @@ class L10nEn extends L10n {
   }
 
   @override
-  String get botsUpdateRequired => 'DS Bot needs an update';
-
-  @override
   String get botsInstall => 'Install DS Bot';
-
-  @override
-  String get botsUpdateForPhone => 'Update to use it on your phone';
-
-  @override
-  String get botsInstallDescription => 'Always-on bots, each with its own memory and role';
-
-  @override
-  String botsInstallOnHost(String host) {
-    return 'Install on $host to get started';
-  }
-
-  @override
-  String botsRunsOnHost(String host) {
-    return 'Runs on $host';
-  }
 
   @override
   String get botsInstalling => 'Installing';
@@ -2696,12 +2667,6 @@ class L10nEn extends L10n {
   String get botsPetSettings => 'Pet settings';
 
   @override
-  String get botsPetDeepy => 'Deepy';
-
-  @override
-  String get botsPetWhaleGirl => 'Whale girl';
-
-  @override
   String get botsPetNone => 'None';
 
   @override
@@ -3110,19 +3075,10 @@ class L10nEn extends L10n {
   String get catalogSchedulesSummary => 'Scheduled and recurring tasks';
 
   @override
-  String get catalogAgentModelsSection => 'Agents and models';
-
-  @override
   String get catalogPermission => 'Permissions';
 
   @override
   String get catalogPermissionSummary => 'Choose when to ask for approval';
-
-  @override
-  String get catalogAgentPresets => 'Agent presets';
-
-  @override
-  String get catalogAgentPresetsSummary => 'How new chats work';
 
   @override
   String get catalogModels => 'Models';
@@ -3131,40 +3087,10 @@ class L10nEn extends L10n {
   String get catalogModelsSummary => 'Subscriptions and custom providers';
 
   @override
-  String get catalogSubagentSettings => 'Subagent settings';
-
-  @override
-  String get catalogSubagentSettingsSummary => 'Depth, parallelism and models';
-
-  @override
-  String get catalogAgentLoop => 'Agent loop';
-
-  @override
-  String get catalogAgentLoopSummary => 'Parallel tool call limit';
-
-  @override
-  String get catalogShellSettings => 'Command execution';
-
-  @override
-  String get catalogShellSettingsSummary => 'Timeouts and output limits';
-
-  @override
-  String get catalogWebSearch => 'Web search';
-
-  @override
-  String get catalogWebSearchSummary => 'Search service and budget';
-
-  @override
   String get catalogPlugins => 'Plugins';
 
   @override
   String get catalogPluginsSummary => 'Installed plugins and markets';
-
-  @override
-  String get catalogPluginInventory => 'Plugin inventory';
-
-  @override
-  String get catalogPluginInventorySummary => 'All loaded plugins';
 
   @override
   String get catalogCordisSummary => 'Dynamic panels from plugins';
@@ -3212,37 +3138,16 @@ class L10nEn extends L10n {
   String get catalogShareProfileSummary => 'Plugins, settings and skills';
 
   @override
-  String get catalogHostsSettingsSection => 'Hosts and settings';
-
-  @override
   String get catalogSearch => 'Search chats';
 
   @override
   String get catalogSearchSummary => 'Find by title or content';
 
   @override
-  String get catalogNotifications => 'Notifications';
-
-  @override
-  String get catalogNotificationsSummary => 'Completion and approval alerts';
-
-  @override
   String get catalogWorkspaces => 'Workspaces';
 
   @override
   String get catalogWorkspacesSummary => 'Add and switch folders';
-
-  @override
-  String get catalogGeneral => 'General';
-
-  @override
-  String get catalogGeneralSummary => 'Display, sending and log uploads';
-
-  @override
-  String get catalogAccount => 'Account';
-
-  @override
-  String get catalogAccountSummary => 'Sign in, balance and top-ups';
 
   @override
   String get catalogRemoteSummary => 'Connect to a computer or server';
@@ -3252,18 +3157,6 @@ class L10nEn extends L10n {
 
   @override
   String get catalogPhoneControlSummary => 'See your screen and tap for you';
-
-  @override
-  String get catalogEngine => 'Local engine';
-
-  @override
-  String get catalogEngineSummary => 'Engine status and logs on this phone';
-
-  @override
-  String get catalogDiagnostics => 'Diagnostics';
-
-  @override
-  String get catalogDiagnosticsSummary => 'Export diagnostics bundle';
 
   @override
   String get catalogWebSummary => 'Official DSH interface';
@@ -3828,28 +3721,10 @@ class L10nEn extends L10n {
   String get chatVoicePermissionNeeded => 'Voice input needs microphone access';
 
   @override
-  String get chatVoiceUnavailable => 'Speech recognition isn’t available on this phone';
-
-  @override
   String get chatVoiceNotHeard => 'Didn’t catch that. Try again.';
 
   @override
   String get chatVoiceTranscriptionFailed => 'Couldn’t transcribe this recording';
-
-  @override
-  String get chatVoiceNetworkFailed => 'Couldn’t transcribe. Check your connection.';
-
-  @override
-  String get chatVoiceLanguageUnsupported => 'This language isn’t supported yet';
-
-  @override
-  String get chatVoiceMicrophoneBusy => 'Microphone is in use';
-
-  @override
-  String get chatVoiceBusy => 'Speech recognition is busy. Try again later.';
-
-  @override
-  String get chatVoiceRecognitionFailed => 'Speech recognition failed';
 
   @override
   String get chatListening => 'Listening';
@@ -7400,9 +7275,6 @@ class L10nEn extends L10n {
   String get hubSettingsChat => 'Chat';
 
   @override
-  String get hubSettingsAutoCommands => 'Auto-run commands';
-
-  @override
   String get hubSettingsPhoneFiles => 'Access phone files';
 
   @override
@@ -7418,9 +7290,6 @@ class L10nEn extends L10n {
   String get hubSettingsPhoneControl => 'Phone control';
 
   @override
-  String get hubSettingsPhoneControlHint => 'See your screen and tap for you';
-
-  @override
   String get hubSettingsPreferences => 'Personal preferences';
 
   @override
@@ -7433,16 +7302,7 @@ class L10nEn extends L10n {
   String get hubSettingsCollapseSteps => 'Collapse steps when done';
 
   @override
-  String get hubSettingsCollapseStepsHint => 'Fold thinking and tool calls into one line';
-
-  @override
-  String get hubSettingsWebPhoneLayout => 'Web phone layout';
-
-  @override
   String get hubSettingsWebPhoneLayoutHint => 'Adapt DSH Web to phone screens';
-
-  @override
-  String get hubSettingsEngineExtensions => 'Engine and extensions';
 
   @override
   String get hubSettingsEngine => 'Local engine';
@@ -7451,16 +7311,10 @@ class L10nEn extends L10n {
   String get hubSettingsProviders => 'Models';
 
   @override
-  String get hubSettingsEngineSettings => 'Engine parameters';
-
-  @override
   String get hubSettingsShareConfig => 'Share configuration';
 
   @override
   String get hubSettingsAllFeatures => 'All features';
-
-  @override
-  String get hubSettingsAbout => 'About';
 
   @override
   String get hubSettingsCommunity => 'Community';
@@ -7815,9 +7669,6 @@ class L10nEn extends L10n {
     String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count hosts', one: '1 host');
     return '$_temp0';
   }
-
-  @override
-  String get hubValueNoHosts => 'None';
 
   @override
   String hubValuePlugins(int count) {
@@ -8364,11 +8215,6 @@ class L10nEn extends L10n {
 
   @override
   String get mediaGenerating => 'Generating';
-
-  @override
-  String mediaGeneratingProgress(String progress) {
-    return 'Generating · $progress';
-  }
 
   @override
   String get mediaCancelled => 'Cancelled';
@@ -10026,7 +9872,13 @@ class L10nEn extends L10n {
   String get phoneAccentTurquoise => 'Aqua';
 
   @override
+  String get phoneAccentGreen => 'Fern';
+
+  @override
   String get phoneAccentAmber => 'Amber';
+
+  @override
+  String get phoneAccentOrange => 'Tangerine';
 
   @override
   String get phoneAccentGraphite => 'Slate';
@@ -11521,9 +11373,6 @@ class L10nEn extends L10n {
   String get pluginsTheme => 'Theme';
 
   @override
-  String get pluginsAppearance => 'Appearance';
-
-  @override
   String get pluginsColors => 'Colors';
 
   @override
@@ -11531,9 +11380,6 @@ class L10nEn extends L10n {
 
   @override
   String get pluginsAppIcon => 'App icon';
-
-  @override
-  String get pluginsPet => 'Pet';
 
   @override
   String get pluginsCustomColor => 'Custom';
@@ -12272,25 +12118,12 @@ class L10nEn extends L10n {
   String get plugslotsPanelOffline => 'Can\'t reach the plugin';
 
   @override
-  String plugslotsIssueTooMany(int max) {
-    return 'Up to $max; the rest are hidden';
-  }
-
-  @override
   String plugslotsIssueTrimmed(int max) {
     return 'Over $max characters; shortened';
   }
 
   @override
-  String plugslotsIssueNeedsApp(String version) {
-    return 'Needs DSH Go $version or later';
-  }
-
-  @override
   String get plugslotsIssueNewerProtocol => 'Needs a newer app';
-
-  @override
-  String get plugslotsIssueUnknownIcon => 'Unknown icon; using the default';
 
   @override
   String plugslotsIssueUnknownEffect(String name) {
@@ -12312,23 +12145,10 @@ class L10nEn extends L10n {
   String get plugslotsIssueThrottled => 'Notices too frequent; skipped';
 
   @override
-  String plugslotsIssueInvoke(String message) {
-    return 'Call failed: $message';
-  }
-
-  @override
-  String plugslotsIssueStream(String message) {
-    return 'Data failed: $message';
-  }
-
-  @override
   String get plugslotsIssueMissing => 'Missing a required field';
 
   @override
   String get plugslotsIssueDuplicate => 'Duplicate id; skipped';
-
-  @override
-  String get plugslotsIssueNoPlacement => 'Nowhere to show it';
 
   @override
   String plugslotsWantsMessage(String plugin) {
@@ -14180,6 +14000,115 @@ class L10nEn extends L10n {
   String get remoteNetworkObservedAt => 'Last checked';
 
   @override
+  String get remoteScanQr => 'Scan QR code';
+
+  @override
+  String get remoteScanQrSubtitle => 'Add a host from a QR code on your computer';
+
+  @override
+  String get remoteScanQrHint => 'Point the camera at the host QR code';
+
+  @override
+  String get remoteScanQrTorch => 'Flashlight';
+
+  @override
+  String get remoteScanQrCameraDenied => 'No camera access. Allow the camera for Narwhal in Android settings.';
+
+  @override
+  String get remoteScanQrCameraUnavailable => 'No camera is available on this device.';
+
+  @override
+  String get remoteScanQrCameraFailed => 'Couldn’t open the camera.';
+
+  @override
+  String get remoteScanQrCameraRetry => 'Try again';
+
+  @override
+  String get remoteScanQrPrivacy =>
+      'The camera is used only to scan the host QR code. Frames are not saved or uploaded.';
+
+  @override
+  String get remoteScanQrHowTitle => 'How to get the QR code';
+
+  @override
+  String get remoteScanQrHowBody =>
+      'The computer you connect to makes the code: in any QR generator, encode an address like ssh://user@host:22, or the JSON below.';
+
+  @override
+  String get remoteScanQrPaste => 'Paste QR link';
+
+  @override
+  String get remoteScanQrPasteHelp => 'For when the camera is unavailable, or the code is only in a chat or a file.';
+
+  @override
+  String get remoteScanQrPasteTitle => 'Paste QR link';
+
+  @override
+  String get remoteScanQrPasteHint => 'Host address or the JSON from the QR code';
+
+  @override
+  String get remoteScanQrPasteCheck => 'Check';
+
+  @override
+  String get remoteScanQrPasteClipboard => 'Paste from clipboard';
+
+  @override
+  String get remoteScanQrClipboardEmpty => 'There is no text on the clipboard.';
+
+  @override
+  String get remoteQrErrEmpty => 'The QR code is empty. Try another one.';
+
+  @override
+  String get remoteQrErrTooLong => 'The QR code is too long to be a host address.';
+
+  @override
+  String get remoteQrErrOtherApp => 'This isn’t a Narwhal host QR code. Scan a code made for connecting to a host.';
+
+  @override
+  String get remoteQrErrVersion => 'This QR code was made by a newer version. Update Narwhal.';
+
+  @override
+  String get remoteQrErrTransport =>
+      'This QR code is for a local-network connection, while Narwhal connects over SSH. Make a QR code with an ssh:// address.';
+
+  @override
+  String get remoteQrErrNoAddress => 'The QR code has no host address.';
+
+  @override
+  String get remoteQrErrInvalidAddress => 'The host address in the QR code is not valid.';
+
+  @override
+  String get remoteQrErrNoUser => 'The QR code has no user name. Write it as user@host.';
+
+  @override
+  String get remoteQrErrPort => 'The QR code’s port is invalid (1–65535).';
+
+  @override
+  String get remoteQrConfirmTitle => 'Add this host?';
+
+  @override
+  String get remoteQrConfirmName => 'Name';
+
+  @override
+  String get remoteQrConfirmAddress => 'Address';
+
+  @override
+  String get remoteQrConfirmPassword => 'Password';
+
+  @override
+  String get remoteQrConfirmPasswordIncluded =>
+      'Included in the QR code; it will be saved in the phone’s secure storage';
+
+  @override
+  String get remoteQrConfirmPasswordMissing => 'Not in the QR code — enter it in the host settings';
+
+  @override
+  String get remoteQrConfirmPrivacy => 'The password is never shown or sent: it stays on this phone.';
+
+  @override
+  String get remoteQrConfirmAdd => 'Add and connect';
+
+  @override
   String get riskDontShowAgain => 'Don’t show again';
 
   @override
@@ -14219,9 +14148,6 @@ class L10nEn extends L10n {
 
   @override
   String get askAiHelpTitle => 'Help';
-
-  @override
-  String get askAiHelpSubtitle => 'Ask AI about anything here';
 
   @override
   String askAiAboutApp(String question) {
@@ -14394,9 +14320,6 @@ class L10nEn extends L10n {
 
   @override
   String get searchKwLanguage => 'chinese,english,locale';
-
-  @override
-  String get searchKwAutoCommands => 'don\'t ask,auto approve,full access,no confirmation';
 
   @override
   String get searchKwPhoneFiles => 'storage,files,downloads,photos';
@@ -15249,7 +15172,13 @@ class L10nEn extends L10n {
   String get shellAccentTurquoise => 'Aqua';
 
   @override
+  String get shellAccentGreen => 'Fern';
+
+  @override
   String get shellAccentAmber => 'Amber';
+
+  @override
+  String get shellAccentOrange => 'Tangerine';
 
   @override
   String get shellAccentGraphite => 'Slate';
@@ -17337,6 +17266,37 @@ class L10nEn extends L10n {
   String get upstreamUpdatesNoAnswer => 'Couldn\'t check dsh-go updates. Try again later.';
 
   @override
+  String get upstreamUpdatesSection => 'The original dsh-go';
+
+  @override
+  String get selfUpdatesTitle => 'Narwhal updates';
+
+  @override
+  String selfUpdatesCurrent(String version) {
+    return 'Installed $version';
+  }
+
+  @override
+  String get selfUpdatesChecking => 'Checking…';
+
+  @override
+  String selfUpdatesAvailable(String version) {
+    return '$version is available';
+  }
+
+  @override
+  String get selfUpdatesFailed => 'Couldn\'t check';
+
+  @override
+  String get selfUpdatesCheck => 'Check';
+
+  @override
+  String get selfUpdatesRetry => 'Retry';
+
+  @override
+  String get selfUpdatesNoAnswer => 'Couldn\'t check Narwhal updates. Try again later.';
+
+  @override
   String get usageStatsTitle => 'Send anonymous usage stats';
 
   @override
@@ -18864,9 +18824,6 @@ class L10nEn extends L10n {
 
   @override
   String get voiceModelAbsent => 'Not downloaded';
-
-  @override
-  String get voiceModelDownloading => 'Downloading';
 
   @override
   String get voiceModelPreparing => 'Checking and loading';

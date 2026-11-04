@@ -64,7 +64,7 @@ case "$flavor" in
 esac
 for arg in "${extra[@]}"; do
   case "$arg" in
-    --build-number* | --build-name* | --flavor* | --target-platform*)
+    --build-number* | --build-name* | --flavor* | --target-platform* | --obfuscate* | --split-debug-info*)
       die "$arg is set by this script; use its own options" ;;
     --split-per-abi) die "--split-per-abi adds an ABI offset to versionCode; flavors already split by ABI" ;;
   esac
@@ -114,6 +114,12 @@ for f in "${flavors[@]}"; do
   # the original APK. Override with DSH_SELF_UPDATE=1 or an extra --dart-define.
   cmd+=("--dart-define=DSH_SELF_UPDATE=${DSH_SELF_UPDATE:-false}")
   cmd+=("--dart-define=UPSTREAM_BASE_VERSION=${UPSTREAM_BASE_VERSION:-1.0.9}")
+  # Release AOT: obfuscated symbol names plus a symbol table that stays outside
+  # the APK cut libapp.so by ~12% (27.8 MB vs 31.7 MB). Keep build/symbols/<flavor>
+  # to symbolicate AOT crash traces (flutter symbolize -i <symbols>).
+  if [[ $mode == release ]]; then
+    cmd+=(--obfuscate "--split-debug-info=$APP/build/symbols/$f")
+  fi
   cmd+=("${extra[@]}")
   commands+=("$(printf '%q ' "${cmd[@]}")")
 done

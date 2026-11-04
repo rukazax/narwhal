@@ -2595,18 +2595,6 @@ abstract class L10n {
   /// **'<0.1 秒'**
   String get activitySpanTiny;
 
-  /// No description provided for @activityTokensTenThousands.
-  ///
-  /// In zh, this message translates to:
-  /// **'{value} 万'**
-  String activityTokensTenThousands(String value);
-
-  /// No description provided for @activityTokensHundredMillions.
-  ///
-  /// In zh, this message translates to:
-  /// **'{value} 亿'**
-  String activityTokensHundredMillions(String value);
-
   /// No description provided for @activityUsageContextSemantics.
   ///
   /// In zh, this message translates to:
@@ -3921,41 +3909,11 @@ abstract class L10n {
   /// **'{count} 位成员'**
   String botsMemberCount(int count);
 
-  /// No description provided for @botsUpdateRequired.
-  ///
-  /// In zh, this message translates to:
-  /// **'DS Bot 需要更新'**
-  String get botsUpdateRequired;
-
   /// No description provided for @botsInstall.
   ///
   /// In zh, this message translates to:
   /// **'安装 DS Bot'**
   String get botsInstall;
-
-  /// No description provided for @botsUpdateForPhone.
-  ///
-  /// In zh, this message translates to:
-  /// **'新版才能在手机上用'**
-  String get botsUpdateForPhone;
-
-  /// No description provided for @botsInstallDescription.
-  ///
-  /// In zh, this message translates to:
-  /// **'一组长期在线的 Bot，各有记忆和分工'**
-  String get botsInstallDescription;
-
-  /// No description provided for @botsInstallOnHost.
-  ///
-  /// In zh, this message translates to:
-  /// **'在{host}上装好后就能用'**
-  String botsInstallOnHost(String host);
-
-  /// No description provided for @botsRunsOnHost.
-  ///
-  /// In zh, this message translates to:
-  /// **'在{host}上运行'**
-  String botsRunsOnHost(String host);
 
   /// No description provided for @botsInstalling.
   ///
@@ -4688,18 +4646,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'宠物设置'**
   String get botsPetSettings;
-
-  /// No description provided for @botsPetDeepy.
-  ///
-  /// In zh, this message translates to:
-  /// **'Deepy 小鲸鱼'**
-  String get botsPetDeepy;
-
-  /// No description provided for @botsPetWhaleGirl.
-  ///
-  /// In zh, this message translates to:
-  /// **'鲸娘'**
-  String get botsPetWhaleGirl;
 
   /// No description provided for @botsPetNone.
   ///
@@ -5439,12 +5385,6 @@ abstract class L10n {
   /// **'定时与周期任务'**
   String get catalogSchedulesSummary;
 
-  /// No description provided for @catalogAgentModelsSection.
-  ///
-  /// In zh, this message translates to:
-  /// **'Agent 与模型'**
-  String get catalogAgentModelsSection;
-
   /// No description provided for @catalogPermission.
   ///
   /// In zh, this message translates to:
@@ -5456,18 +5396,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'执行前是否确认'**
   String get catalogPermissionSummary;
-
-  /// No description provided for @catalogAgentPresets.
-  ///
-  /// In zh, this message translates to:
-  /// **'Agent 预设'**
-  String get catalogAgentPresets;
-
-  /// No description provided for @catalogAgentPresetsSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'新对话的工作方式'**
-  String get catalogAgentPresetsSummary;
 
   /// No description provided for @catalogModels.
   ///
@@ -5481,54 +5409,6 @@ abstract class L10n {
   /// **'订阅与自定义渠道'**
   String get catalogModelsSummary;
 
-  /// No description provided for @catalogSubagentSettings.
-  ///
-  /// In zh, this message translates to:
-  /// **'子代理设置'**
-  String get catalogSubagentSettings;
-
-  /// No description provided for @catalogSubagentSettingsSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'层数、并行与模型'**
-  String get catalogSubagentSettingsSummary;
-
-  /// No description provided for @catalogAgentLoop.
-  ///
-  /// In zh, this message translates to:
-  /// **'Agent 循环'**
-  String get catalogAgentLoop;
-
-  /// No description provided for @catalogAgentLoopSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'工具并行上限'**
-  String get catalogAgentLoopSummary;
-
-  /// No description provided for @catalogShellSettings.
-  ///
-  /// In zh, this message translates to:
-  /// **'命令执行'**
-  String get catalogShellSettings;
-
-  /// No description provided for @catalogShellSettingsSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'超时与输出上限'**
-  String get catalogShellSettingsSummary;
-
-  /// No description provided for @catalogWebSearch.
-  ///
-  /// In zh, this message translates to:
-  /// **'联网搜索'**
-  String get catalogWebSearch;
-
-  /// No description provided for @catalogWebSearchSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'搜索服务与预算'**
-  String get catalogWebSearchSummary;
-
   /// No description provided for @catalogPlugins.
   ///
   /// In zh, this message translates to:
@@ -5540,18 +5420,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'已安装与插件市场'**
   String get catalogPluginsSummary;
-
-  /// No description provided for @catalogPluginInventory.
-  ///
-  /// In zh, this message translates to:
-  /// **'插件清单'**
-  String get catalogPluginInventory;
-
-  /// No description provided for @catalogPluginInventorySummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'已加载的全部插件'**
-  String get catalogPluginInventorySummary;
 
   /// No description provided for @catalogCordisSummary.
   ///
@@ -5643,12 +5511,6 @@ abstract class L10n {
   /// **'插件、设置与技能'**
   String get catalogShareProfileSummary;
 
-  /// No description provided for @catalogHostsSettingsSection.
-  ///
-  /// In zh, this message translates to:
-  /// **'主机与设置'**
-  String get catalogHostsSettingsSection;
-
   /// No description provided for @catalogSearch.
   ///
   /// In zh, this message translates to:
@@ -5661,18 +5523,6 @@ abstract class L10n {
   /// **'按标题和正文查找'**
   String get catalogSearchSummary;
 
-  /// No description provided for @catalogNotifications.
-  ///
-  /// In zh, this message translates to:
-  /// **'通知'**
-  String get catalogNotifications;
-
-  /// No description provided for @catalogNotificationsSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'完成与待确认提醒'**
-  String get catalogNotificationsSummary;
-
   /// No description provided for @catalogWorkspaces.
   ///
   /// In zh, this message translates to:
@@ -5684,30 +5534,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'添加与切换目录'**
   String get catalogWorkspacesSummary;
-
-  /// No description provided for @catalogGeneral.
-  ///
-  /// In zh, this message translates to:
-  /// **'通用设置'**
-  String get catalogGeneral;
-
-  /// No description provided for @catalogGeneralSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'显示、发送与日志上传'**
-  String get catalogGeneralSummary;
-
-  /// No description provided for @catalogAccount.
-  ///
-  /// In zh, this message translates to:
-  /// **'账号与余额'**
-  String get catalogAccount;
-
-  /// No description provided for @catalogAccountSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'登录、余额与充值'**
-  String get catalogAccountSummary;
 
   /// No description provided for @catalogRemoteSummary.
   ///
@@ -5726,30 +5552,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'看屏幕、帮你点按'**
   String get catalogPhoneControlSummary;
-
-  /// No description provided for @catalogEngine.
-  ///
-  /// In zh, this message translates to:
-  /// **'本机引擎'**
-  String get catalogEngine;
-
-  /// No description provided for @catalogEngineSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'本机引擎状态与日志'**
-  String get catalogEngineSummary;
-
-  /// No description provided for @catalogDiagnostics.
-  ///
-  /// In zh, this message translates to:
-  /// **'诊断'**
-  String get catalogDiagnostics;
-
-  /// No description provided for @catalogDiagnosticsSummary.
-  ///
-  /// In zh, this message translates to:
-  /// **'导出诊断包'**
-  String get catalogDiagnosticsSummary;
 
   /// No description provided for @catalogWebSummary.
   ///
@@ -6717,12 +6519,6 @@ abstract class L10n {
   /// **'需要麦克风权限才能语音输入'**
   String get chatVoicePermissionNeeded;
 
-  /// No description provided for @chatVoiceUnavailable.
-  ///
-  /// In zh, this message translates to:
-  /// **'这台手机没有可用的语音识别'**
-  String get chatVoiceUnavailable;
-
   /// No description provided for @chatVoiceNotHeard.
   ///
   /// In zh, this message translates to:
@@ -6734,36 +6530,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'没能转写这段语音'**
   String get chatVoiceTranscriptionFailed;
-
-  /// No description provided for @chatVoiceNetworkFailed.
-  ///
-  /// In zh, this message translates to:
-  /// **'网络不太好，没能识别'**
-  String get chatVoiceNetworkFailed;
-
-  /// No description provided for @chatVoiceLanguageUnsupported.
-  ///
-  /// In zh, this message translates to:
-  /// **'暂不支持这种语言'**
-  String get chatVoiceLanguageUnsupported;
-
-  /// No description provided for @chatVoiceMicrophoneBusy.
-  ///
-  /// In zh, this message translates to:
-  /// **'麦克风正被占用'**
-  String get chatVoiceMicrophoneBusy;
-
-  /// No description provided for @chatVoiceBusy.
-  ///
-  /// In zh, this message translates to:
-  /// **'语音识别正忙，稍后再试'**
-  String get chatVoiceBusy;
-
-  /// No description provided for @chatVoiceRecognitionFailed.
-  ///
-  /// In zh, this message translates to:
-  /// **'语音识别出错了'**
-  String get chatVoiceRecognitionFailed;
 
   /// No description provided for @chatListening.
   ///
@@ -12855,12 +12621,6 @@ abstract class L10n {
   /// **'对话'**
   String get hubSettingsChat;
 
-  /// No description provided for @hubSettingsAutoCommands.
-  ///
-  /// In zh, this message translates to:
-  /// **'自动执行命令'**
-  String get hubSettingsAutoCommands;
-
   /// No description provided for @hubSettingsPhoneFiles.
   ///
   /// In zh, this message translates to:
@@ -12891,12 +12651,6 @@ abstract class L10n {
   /// **'手机操控'**
   String get hubSettingsPhoneControl;
 
-  /// No description provided for @hubSettingsPhoneControlHint.
-  ///
-  /// In zh, this message translates to:
-  /// **'看屏幕、帮你点按'**
-  String get hubSettingsPhoneControlHint;
-
   /// No description provided for @hubSettingsPreferences.
   ///
   /// In zh, this message translates to:
@@ -12921,29 +12675,11 @@ abstract class L10n {
   /// **'完成后收起过程'**
   String get hubSettingsCollapseSteps;
 
-  /// No description provided for @hubSettingsCollapseStepsHint.
-  ///
-  /// In zh, this message translates to:
-  /// **'思考与工具调用收成一行'**
-  String get hubSettingsCollapseStepsHint;
-
-  /// No description provided for @hubSettingsWebPhoneLayout.
-  ///
-  /// In zh, this message translates to:
-  /// **'网页版手机布局'**
-  String get hubSettingsWebPhoneLayout;
-
   /// No description provided for @hubSettingsWebPhoneLayoutHint.
   ///
   /// In zh, this message translates to:
   /// **'为手机屏幕重排网页版'**
   String get hubSettingsWebPhoneLayoutHint;
-
-  /// No description provided for @hubSettingsEngineExtensions.
-  ///
-  /// In zh, this message translates to:
-  /// **'引擎与扩展'**
-  String get hubSettingsEngineExtensions;
 
   /// No description provided for @hubSettingsEngine.
   ///
@@ -12957,12 +12693,6 @@ abstract class L10n {
   /// **'模型'**
   String get hubSettingsProviders;
 
-  /// No description provided for @hubSettingsEngineSettings.
-  ///
-  /// In zh, this message translates to:
-  /// **'引擎参数'**
-  String get hubSettingsEngineSettings;
-
   /// No description provided for @hubSettingsShareConfig.
   ///
   /// In zh, this message translates to:
@@ -12974,12 +12704,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'全部功能'**
   String get hubSettingsAllFeatures;
-
-  /// No description provided for @hubSettingsAbout.
-  ///
-  /// In zh, this message translates to:
-  /// **'关于'**
-  String get hubSettingsAbout;
 
   /// No description provided for @hubSettingsCommunity.
   ///
@@ -13538,12 +13262,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'{count} 台'**
   String hubValueHosts(int count);
-
-  /// No description provided for @hubValueNoHosts.
-  ///
-  /// In zh, this message translates to:
-  /// **'未添加'**
-  String get hubValueNoHosts;
 
   /// No description provided for @hubValuePlugins.
   ///
@@ -14528,12 +14246,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'生成中'**
   String get mediaGenerating;
-
-  /// No description provided for @mediaGeneratingProgress.
-  ///
-  /// In zh, this message translates to:
-  /// **'生成中 · {progress}'**
-  String mediaGeneratingProgress(String progress);
 
   /// No description provided for @mediaCancelled.
   ///
@@ -17685,11 +17397,23 @@ abstract class L10n {
   /// **'松石'**
   String get phoneAccentTurquoise;
 
+  /// No description provided for @phoneAccentGreen.
+  ///
+  /// In zh, this message translates to:
+  /// **'蕨绿'**
+  String get phoneAccentGreen;
+
   /// No description provided for @phoneAccentAmber.
   ///
   /// In zh, this message translates to:
   /// **'琥珀'**
   String get phoneAccentAmber;
+
+  /// No description provided for @phoneAccentOrange.
+  ///
+  /// In zh, this message translates to:
+  /// **'橘橙'**
+  String get phoneAccentOrange;
 
   /// No description provided for @phoneAccentGraphite.
   ///
@@ -20211,12 +19935,6 @@ abstract class L10n {
   /// **'主题'**
   String get pluginsTheme;
 
-  /// No description provided for @pluginsAppearance.
-  ///
-  /// In zh, this message translates to:
-  /// **'外观'**
-  String get pluginsAppearance;
-
   /// No description provided for @pluginsColors.
   ///
   /// In zh, this message translates to:
@@ -20234,12 +19952,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'桌面图标'**
   String get pluginsAppIcon;
-
-  /// No description provided for @pluginsPet.
-  ///
-  /// In zh, this message translates to:
-  /// **'宠物'**
-  String get pluginsPet;
 
   /// No description provided for @pluginsCustomColor.
   ///
@@ -21459,35 +21171,17 @@ abstract class L10n {
   /// **'连不上插件'**
   String get plugslotsPanelOffline;
 
-  /// No description provided for @plugslotsIssueTooMany.
-  ///
-  /// In zh, this message translates to:
-  /// **'最多 {max} 个，其余不显示'**
-  String plugslotsIssueTooMany(int max);
-
   /// No description provided for @plugslotsIssueTrimmed.
   ///
   /// In zh, this message translates to:
   /// **'超过 {max} 字，已截断'**
   String plugslotsIssueTrimmed(int max);
 
-  /// No description provided for @plugslotsIssueNeedsApp.
-  ///
-  /// In zh, this message translates to:
-  /// **'需要 DSH Go {version} 或更新版本'**
-  String plugslotsIssueNeedsApp(String version);
-
   /// No description provided for @plugslotsIssueNewerProtocol.
   ///
   /// In zh, this message translates to:
   /// **'需要更新 App'**
   String get plugslotsIssueNewerProtocol;
-
-  /// No description provided for @plugslotsIssueUnknownIcon.
-  ///
-  /// In zh, this message translates to:
-  /// **'不认识的图标，已换成默认图标'**
-  String get plugslotsIssueUnknownIcon;
 
   /// No description provided for @plugslotsIssueUnknownEffect.
   ///
@@ -21519,18 +21213,6 @@ abstract class L10n {
   /// **'提示太频繁，已略过'**
   String get plugslotsIssueThrottled;
 
-  /// No description provided for @plugslotsIssueInvoke.
-  ///
-  /// In zh, this message translates to:
-  /// **'调用失败：{message}'**
-  String plugslotsIssueInvoke(String message);
-
-  /// No description provided for @plugslotsIssueStream.
-  ///
-  /// In zh, this message translates to:
-  /// **'数据出错：{message}'**
-  String plugslotsIssueStream(String message);
-
   /// No description provided for @plugslotsIssueMissing.
   ///
   /// In zh, this message translates to:
@@ -21542,12 +21224,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'id 重复，已略过'**
   String get plugslotsIssueDuplicate;
-
-  /// No description provided for @plugslotsIssueNoPlacement.
-  ///
-  /// In zh, this message translates to:
-  /// **'没有可放的位置'**
-  String get plugslotsIssueNoPlacement;
 
   /// No description provided for @plugslotsWantsMessage.
   ///
@@ -24633,6 +24309,216 @@ abstract class L10n {
   /// **'最近观测'**
   String get remoteNetworkObservedAt;
 
+  /// No description provided for @remoteScanQr.
+  ///
+  /// In zh, this message translates to:
+  /// **'扫描二维码'**
+  String get remoteScanQr;
+
+  /// No description provided for @remoteScanQrSubtitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'用电脑上的二维码添加主机'**
+  String get remoteScanQrSubtitle;
+
+  /// No description provided for @remoteScanQrHint.
+  ///
+  /// In zh, this message translates to:
+  /// **'把相机对准主机二维码'**
+  String get remoteScanQrHint;
+
+  /// No description provided for @remoteScanQrTorch.
+  ///
+  /// In zh, this message translates to:
+  /// **'手电筒'**
+  String get remoteScanQrTorch;
+
+  /// No description provided for @remoteScanQrCameraDenied.
+  ///
+  /// In zh, this message translates to:
+  /// **'没有相机权限。请在 Android 设置里允许 Narwhal 使用相机。'**
+  String get remoteScanQrCameraDenied;
+
+  /// No description provided for @remoteScanQrCameraUnavailable.
+  ///
+  /// In zh, this message translates to:
+  /// **'这台设备没有可用的相机。'**
+  String get remoteScanQrCameraUnavailable;
+
+  /// No description provided for @remoteScanQrCameraFailed.
+  ///
+  /// In zh, this message translates to:
+  /// **'打不开相机。'**
+  String get remoteScanQrCameraFailed;
+
+  /// No description provided for @remoteScanQrCameraRetry.
+  ///
+  /// In zh, this message translates to:
+  /// **'重试'**
+  String get remoteScanQrCameraRetry;
+
+  /// No description provided for @remoteScanQrPrivacy.
+  ///
+  /// In zh, this message translates to:
+  /// **'相机只用于扫描主机二维码。画面不会保存，也不会上传。'**
+  String get remoteScanQrPrivacy;
+
+  /// No description provided for @remoteScanQrHowTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'如何获得二维码'**
+  String get remoteScanQrHowTitle;
+
+  /// No description provided for @remoteScanQrHowBody.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码由要连接的电脑生成：在任意二维码生成器里，把 ssh://用户@地址:22 这样的地址，或下面的 JSON 编成二维码。'**
+  String get remoteScanQrHowBody;
+
+  /// No description provided for @remoteScanQrPaste.
+  ///
+  /// In zh, this message translates to:
+  /// **'粘贴二维码链接'**
+  String get remoteScanQrPaste;
+
+  /// No description provided for @remoteScanQrPasteHelp.
+  ///
+  /// In zh, this message translates to:
+  /// **'相机不可用，或二维码只存在于聊天和文件里时使用。'**
+  String get remoteScanQrPasteHelp;
+
+  /// No description provided for @remoteScanQrPasteTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'粘贴二维码链接'**
+  String get remoteScanQrPasteTitle;
+
+  /// No description provided for @remoteScanQrPasteHint.
+  ///
+  /// In zh, this message translates to:
+  /// **'主机地址或二维码里的 JSON'**
+  String get remoteScanQrPasteHint;
+
+  /// No description provided for @remoteScanQrPasteCheck.
+  ///
+  /// In zh, this message translates to:
+  /// **'检查'**
+  String get remoteScanQrPasteCheck;
+
+  /// No description provided for @remoteScanQrPasteClipboard.
+  ///
+  /// In zh, this message translates to:
+  /// **'从剪贴板粘贴'**
+  String get remoteScanQrPasteClipboard;
+
+  /// No description provided for @remoteScanQrClipboardEmpty.
+  ///
+  /// In zh, this message translates to:
+  /// **'剪贴板里没有文字。'**
+  String get remoteScanQrClipboardEmpty;
+
+  /// No description provided for @remoteQrErrEmpty.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码是空的。换一个再试。'**
+  String get remoteQrErrEmpty;
+
+  /// No description provided for @remoteQrErrTooLong.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码太长，不像主机地址。'**
+  String get remoteQrErrTooLong;
+
+  /// No description provided for @remoteQrErrOtherApp.
+  ///
+  /// In zh, this message translates to:
+  /// **'这不是 Narwhal 的主机二维码。请扫描为连接主机生成的二维码。'**
+  String get remoteQrErrOtherApp;
+
+  /// No description provided for @remoteQrErrVersion.
+  ///
+  /// In zh, this message translates to:
+  /// **'这个二维码来自更新的版本。请更新 Narwhal。'**
+  String get remoteQrErrVersion;
+
+  /// No description provided for @remoteQrErrTransport.
+  ///
+  /// In zh, this message translates to:
+  /// **'这个二维码走本地网络连接，而 Narwhal 通过 SSH 连接。请生成 ssh:// 地址的二维码。'**
+  String get remoteQrErrTransport;
+
+  /// No description provided for @remoteQrErrNoAddress.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码里没有主机地址。'**
+  String get remoteQrErrNoAddress;
+
+  /// No description provided for @remoteQrErrInvalidAddress.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码里的主机地址不正确。'**
+  String get remoteQrErrInvalidAddress;
+
+  /// No description provided for @remoteQrErrNoUser.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码里没有用户名。请写成 用户@主机。'**
+  String get remoteQrErrNoUser;
+
+  /// No description provided for @remoteQrErrPort.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码里的端口不对（1–65535）。'**
+  String get remoteQrErrPort;
+
+  /// No description provided for @remoteQrConfirmTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'添加主机？'**
+  String get remoteQrConfirmTitle;
+
+  /// No description provided for @remoteQrConfirmName.
+  ///
+  /// In zh, this message translates to:
+  /// **'名称'**
+  String get remoteQrConfirmName;
+
+  /// No description provided for @remoteQrConfirmAddress.
+  ///
+  /// In zh, this message translates to:
+  /// **'地址'**
+  String get remoteQrConfirmAddress;
+
+  /// No description provided for @remoteQrConfirmPassword.
+  ///
+  /// In zh, this message translates to:
+  /// **'密码'**
+  String get remoteQrConfirmPassword;
+
+  /// No description provided for @remoteQrConfirmPasswordIncluded.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码里带有密码，会保存到手机的加密存储'**
+  String get remoteQrConfirmPasswordIncluded;
+
+  /// No description provided for @remoteQrConfirmPasswordMissing.
+  ///
+  /// In zh, this message translates to:
+  /// **'二维码里没有密码，请在主机设置里填写'**
+  String get remoteQrConfirmPasswordMissing;
+
+  /// No description provided for @remoteQrConfirmPrivacy.
+  ///
+  /// In zh, this message translates to:
+  /// **'密码不会显示，也不会发送：它只留在这台手机上。'**
+  String get remoteQrConfirmPrivacy;
+
+  /// No description provided for @remoteQrConfirmAdd.
+  ///
+  /// In zh, this message translates to:
+  /// **'添加并连接'**
+  String get remoteQrConfirmAdd;
+
   /// No description provided for @riskDontShowAgain.
   ///
   /// In zh, this message translates to:
@@ -24710,12 +24596,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'使用帮助'**
   String get askAiHelpTitle;
-
-  /// No description provided for @askAiHelpSubtitle.
-  ///
-  /// In zh, this message translates to:
-  /// **'不懂的地方，问 AI'**
-  String get askAiHelpSubtitle;
 
   /// No description provided for @askAiAboutApp.
   ///
@@ -25034,12 +24914,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'中文,英文,简体,English'**
   String get searchKwLanguage;
-
-  /// No description provided for @searchKwAutoCommands.
-  ///
-  /// In zh, this message translates to:
-  /// **'别问我,不要确认,自动允许,完全权限,免确认'**
-  String get searchKwAutoCommands;
 
   /// No description provided for @searchKwPhoneFiles.
   ///
@@ -26475,11 +26349,23 @@ abstract class L10n {
   /// **'松石'**
   String get shellAccentTurquoise;
 
+  /// No description provided for @shellAccentGreen.
+  ///
+  /// In zh, this message translates to:
+  /// **'蕨绿'**
+  String get shellAccentGreen;
+
   /// No description provided for @shellAccentAmber.
   ///
   /// In zh, this message translates to:
   /// **'琥珀'**
   String get shellAccentAmber;
+
+  /// No description provided for @shellAccentOrange.
+  ///
+  /// In zh, this message translates to:
+  /// **'橘橙'**
+  String get shellAccentOrange;
 
   /// No description provided for @shellAccentGraphite.
   ///
@@ -30051,6 +29937,60 @@ abstract class L10n {
   /// **'无法检查 dsh-go 更新，请稍后再试。'**
   String get upstreamUpdatesNoAnswer;
 
+  /// No description provided for @upstreamUpdatesSection.
+  ///
+  /// In zh, this message translates to:
+  /// **'原版 dsh-go'**
+  String get upstreamUpdatesSection;
+
+  /// No description provided for @selfUpdatesTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'Narwhal 更新'**
+  String get selfUpdatesTitle;
+
+  /// No description provided for @selfUpdatesCurrent.
+  ///
+  /// In zh, this message translates to:
+  /// **'当前版本 {version}'**
+  String selfUpdatesCurrent(String version);
+
+  /// No description provided for @selfUpdatesChecking.
+  ///
+  /// In zh, this message translates to:
+  /// **'检查中…'**
+  String get selfUpdatesChecking;
+
+  /// No description provided for @selfUpdatesAvailable.
+  ///
+  /// In zh, this message translates to:
+  /// **'有新版本 {version}'**
+  String selfUpdatesAvailable(String version);
+
+  /// No description provided for @selfUpdatesFailed.
+  ///
+  /// In zh, this message translates to:
+  /// **'无法检查'**
+  String get selfUpdatesFailed;
+
+  /// No description provided for @selfUpdatesCheck.
+  ///
+  /// In zh, this message translates to:
+  /// **'检查'**
+  String get selfUpdatesCheck;
+
+  /// No description provided for @selfUpdatesRetry.
+  ///
+  /// In zh, this message translates to:
+  /// **'重试'**
+  String get selfUpdatesRetry;
+
+  /// No description provided for @selfUpdatesNoAnswer.
+  ///
+  /// In zh, this message translates to:
+  /// **'无法检查 Narwhal 更新，请稍后再试。'**
+  String get selfUpdatesNoAnswer;
+
   /// No description provided for @usageStatsTitle.
   ///
   /// In zh, this message translates to:
@@ -32360,12 +32300,6 @@ abstract class L10n {
   /// In zh, this message translates to:
   /// **'未下载'**
   String get voiceModelAbsent;
-
-  /// No description provided for @voiceModelDownloading.
-  ///
-  /// In zh, this message translates to:
-  /// **'下载中'**
-  String get voiceModelDownloading;
 
   /// No description provided for @voiceModelPreparing.
   ///

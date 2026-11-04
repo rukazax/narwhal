@@ -78,7 +78,7 @@ abstract final class UiSchema {
   static const themeModes = ['system', 'light', 'dark'];
 
   /// `AppAccent.presets` ids (lib/ui/theme/accent.dart).
-  static const accentPresets = ['mist', 'daiqing', 'dusk', 'turquoise', 'amber', 'graphite'];
+  static const accentPresets = ['mist', 'daiqing', 'dusk', 'turquoise', 'green', 'amber', 'orange', 'graphite'];
   static const petPositions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 
   // ── shortcuts ──────────────────────────────────────────────────────────

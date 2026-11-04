@@ -404,10 +404,3 @@ final uiSeatOverridesProvider = Provider<SeatOverrides>((ref) {
 final uiHiddenProvider = Provider.family<bool, UiHideItem>(
   (ref, item) => ref.watch(uiOverridesProvider.select((o) => o.hides(item))),
 );
-
-// ── Skill auto-install hook ─────────────────────────────────────────────────
-
-/// True while the on-device engine is running (the skill installer's cue).
-final uiLocalEngineRunningProvider = Provider<bool>(
-  (ref) => ref.watch(localRuntimeProvider.select((s) => s.status.phase == RuntimePhase.running)),
-);

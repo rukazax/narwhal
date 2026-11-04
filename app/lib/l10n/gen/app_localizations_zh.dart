@@ -1279,16 +1279,6 @@ class L10nZh extends L10n {
   String get activitySpanTiny => '<0.1 秒';
 
   @override
-  String activityTokensTenThousands(String value) {
-    return '$value 万';
-  }
-
-  @override
-  String activityTokensHundredMillions(String value) {
-    return '$value 亿';
-  }
-
-  @override
   String activityUsageContextSemantics(String percent) {
     return '上下文已用 $percent，查看用量';
   }
@@ -2128,26 +2118,7 @@ class L10nZh extends L10n {
   }
 
   @override
-  String get botsUpdateRequired => 'DS Bot 需要更新';
-
-  @override
   String get botsInstall => '安装 DS Bot';
-
-  @override
-  String get botsUpdateForPhone => '新版才能在手机上用';
-
-  @override
-  String get botsInstallDescription => '一组长期在线的 Bot，各有记忆和分工';
-
-  @override
-  String botsInstallOnHost(String host) {
-    return '在$host上装好后就能用';
-  }
-
-  @override
-  String botsRunsOnHost(String host) {
-    return '在$host上运行';
-  }
 
   @override
   String get botsInstalling => '正在安装';
@@ -2542,12 +2513,6 @@ class L10nZh extends L10n {
 
   @override
   String get botsPetSettings => '宠物设置';
-
-  @override
-  String get botsPetDeepy => 'Deepy 小鲸鱼';
-
-  @override
-  String get botsPetWhaleGirl => '鲸娘';
 
   @override
   String get botsPetNone => '不显示';
@@ -2957,19 +2922,10 @@ class L10nZh extends L10n {
   String get catalogSchedulesSummary => '定时与周期任务';
 
   @override
-  String get catalogAgentModelsSection => 'Agent 与模型';
-
-  @override
   String get catalogPermission => '权限';
 
   @override
   String get catalogPermissionSummary => '执行前是否确认';
-
-  @override
-  String get catalogAgentPresets => 'Agent 预设';
-
-  @override
-  String get catalogAgentPresetsSummary => '新对话的工作方式';
 
   @override
   String get catalogModels => '模型';
@@ -2978,40 +2934,10 @@ class L10nZh extends L10n {
   String get catalogModelsSummary => '订阅与自定义渠道';
 
   @override
-  String get catalogSubagentSettings => '子代理设置';
-
-  @override
-  String get catalogSubagentSettingsSummary => '层数、并行与模型';
-
-  @override
-  String get catalogAgentLoop => 'Agent 循环';
-
-  @override
-  String get catalogAgentLoopSummary => '工具并行上限';
-
-  @override
-  String get catalogShellSettings => '命令执行';
-
-  @override
-  String get catalogShellSettingsSummary => '超时与输出上限';
-
-  @override
-  String get catalogWebSearch => '联网搜索';
-
-  @override
-  String get catalogWebSearchSummary => '搜索服务与预算';
-
-  @override
   String get catalogPlugins => '插件';
 
   @override
   String get catalogPluginsSummary => '已安装与插件市场';
-
-  @override
-  String get catalogPluginInventory => '插件清单';
-
-  @override
-  String get catalogPluginInventorySummary => '已加载的全部插件';
 
   @override
   String get catalogCordisSummary => '插件创建的动态面板';
@@ -3059,37 +2985,16 @@ class L10nZh extends L10n {
   String get catalogShareProfileSummary => '插件、设置与技能';
 
   @override
-  String get catalogHostsSettingsSection => '主机与设置';
-
-  @override
   String get catalogSearch => '搜索对话';
 
   @override
   String get catalogSearchSummary => '按标题和正文查找';
 
   @override
-  String get catalogNotifications => '通知';
-
-  @override
-  String get catalogNotificationsSummary => '完成与待确认提醒';
-
-  @override
   String get catalogWorkspaces => '工作区';
 
   @override
   String get catalogWorkspacesSummary => '添加与切换目录';
-
-  @override
-  String get catalogGeneral => '通用设置';
-
-  @override
-  String get catalogGeneralSummary => '显示、发送与日志上传';
-
-  @override
-  String get catalogAccount => '账号与余额';
-
-  @override
-  String get catalogAccountSummary => '登录、余额与充值';
 
   @override
   String get catalogRemoteSummary => '连接电脑或服务器';
@@ -3099,18 +3004,6 @@ class L10nZh extends L10n {
 
   @override
   String get catalogPhoneControlSummary => '看屏幕、帮你点按';
-
-  @override
-  String get catalogEngine => '本机引擎';
-
-  @override
-  String get catalogEngineSummary => '本机引擎状态与日志';
-
-  @override
-  String get catalogDiagnostics => '诊断';
-
-  @override
-  String get catalogDiagnosticsSummary => '导出诊断包';
 
   @override
   String get catalogWebSummary => 'DSH 官方界面';
@@ -3632,28 +3525,10 @@ class L10nZh extends L10n {
   String get chatVoicePermissionNeeded => '需要麦克风权限才能语音输入';
 
   @override
-  String get chatVoiceUnavailable => '这台手机没有可用的语音识别';
-
-  @override
   String get chatVoiceNotHeard => '没有听清，再说一次';
 
   @override
   String get chatVoiceTranscriptionFailed => '没能转写这段语音';
-
-  @override
-  String get chatVoiceNetworkFailed => '网络不太好，没能识别';
-
-  @override
-  String get chatVoiceLanguageUnsupported => '暂不支持这种语言';
-
-  @override
-  String get chatVoiceMicrophoneBusy => '麦克风正被占用';
-
-  @override
-  String get chatVoiceBusy => '语音识别正忙，稍后再试';
-
-  @override
-  String get chatVoiceRecognitionFailed => '语音识别出错了';
 
   @override
   String get chatListening => '正在聆听';
@@ -7007,9 +6882,6 @@ class L10nZh extends L10n {
   String get hubSettingsChat => '对话';
 
   @override
-  String get hubSettingsAutoCommands => '自动执行命令';
-
-  @override
   String get hubSettingsPhoneFiles => '访问手机文件';
 
   @override
@@ -7025,9 +6897,6 @@ class L10nZh extends L10n {
   String get hubSettingsPhoneControl => '手机操控';
 
   @override
-  String get hubSettingsPhoneControlHint => '看屏幕、帮你点按';
-
-  @override
   String get hubSettingsPreferences => '个人偏好';
 
   @override
@@ -7040,16 +6909,7 @@ class L10nZh extends L10n {
   String get hubSettingsCollapseSteps => '完成后收起过程';
 
   @override
-  String get hubSettingsCollapseStepsHint => '思考与工具调用收成一行';
-
-  @override
-  String get hubSettingsWebPhoneLayout => '网页版手机布局';
-
-  @override
   String get hubSettingsWebPhoneLayoutHint => '为手机屏幕重排网页版';
-
-  @override
-  String get hubSettingsEngineExtensions => '引擎与扩展';
 
   @override
   String get hubSettingsEngine => '本机引擎';
@@ -7058,16 +6918,10 @@ class L10nZh extends L10n {
   String get hubSettingsProviders => '模型';
 
   @override
-  String get hubSettingsEngineSettings => '引擎参数';
-
-  @override
   String get hubSettingsShareConfig => '分享配置';
 
   @override
   String get hubSettingsAllFeatures => '全部功能';
-
-  @override
-  String get hubSettingsAbout => '关于';
 
   @override
   String get hubSettingsCommunity => '社区';
@@ -7389,9 +7243,6 @@ class L10nZh extends L10n {
   String hubValueHosts(int count) {
     return '$count 台';
   }
-
-  @override
-  String get hubValueNoHosts => '未添加';
 
   @override
   String hubValuePlugins(int count) {
@@ -7921,11 +7772,6 @@ class L10nZh extends L10n {
 
   @override
   String get mediaGenerating => '生成中';
-
-  @override
-  String mediaGeneratingProgress(String progress) {
-    return '生成中 · $progress';
-  }
 
   @override
   String get mediaCancelled => '已取消';
@@ -9531,7 +9377,13 @@ class L10nZh extends L10n {
   String get phoneAccentTurquoise => '松石';
 
   @override
+  String get phoneAccentGreen => '蕨绿';
+
+  @override
   String get phoneAccentAmber => '琥珀';
+
+  @override
+  String get phoneAccentOrange => '橘橙';
 
   @override
   String get phoneAccentGraphite => '石墨';
@@ -10963,9 +10815,6 @@ class L10nZh extends L10n {
   String get pluginsTheme => '主题';
 
   @override
-  String get pluginsAppearance => '外观';
-
-  @override
   String get pluginsColors => '配色';
 
   @override
@@ -10973,9 +10822,6 @@ class L10nZh extends L10n {
 
   @override
   String get pluginsAppIcon => '桌面图标';
-
-  @override
-  String get pluginsPet => '宠物';
 
   @override
   String get pluginsCustomColor => '自定义';
@@ -11672,25 +11518,12 @@ class L10nZh extends L10n {
   String get plugslotsPanelOffline => '连不上插件';
 
   @override
-  String plugslotsIssueTooMany(int max) {
-    return '最多 $max 个，其余不显示';
-  }
-
-  @override
   String plugslotsIssueTrimmed(int max) {
     return '超过 $max 字，已截断';
   }
 
   @override
-  String plugslotsIssueNeedsApp(String version) {
-    return '需要 DSH Go $version 或更新版本';
-  }
-
-  @override
   String get plugslotsIssueNewerProtocol => '需要更新 App';
-
-  @override
-  String get plugslotsIssueUnknownIcon => '不认识的图标，已换成默认图标';
 
   @override
   String plugslotsIssueUnknownEffect(String name) {
@@ -11712,23 +11545,10 @@ class L10nZh extends L10n {
   String get plugslotsIssueThrottled => '提示太频繁，已略过';
 
   @override
-  String plugslotsIssueInvoke(String message) {
-    return '调用失败：$message';
-  }
-
-  @override
-  String plugslotsIssueStream(String message) {
-    return '数据出错：$message';
-  }
-
-  @override
   String get plugslotsIssueMissing => '缺少必填项';
 
   @override
   String get plugslotsIssueDuplicate => 'id 重复，已略过';
-
-  @override
-  String get plugslotsIssueNoPlacement => '没有可放的位置';
 
   @override
   String plugslotsWantsMessage(String plugin) {
@@ -13479,6 +13299,111 @@ class L10nZh extends L10n {
   String get remoteNetworkObservedAt => '最近观测';
 
   @override
+  String get remoteScanQr => '扫描二维码';
+
+  @override
+  String get remoteScanQrSubtitle => '用电脑上的二维码添加主机';
+
+  @override
+  String get remoteScanQrHint => '把相机对准主机二维码';
+
+  @override
+  String get remoteScanQrTorch => '手电筒';
+
+  @override
+  String get remoteScanQrCameraDenied => '没有相机权限。请在 Android 设置里允许 Narwhal 使用相机。';
+
+  @override
+  String get remoteScanQrCameraUnavailable => '这台设备没有可用的相机。';
+
+  @override
+  String get remoteScanQrCameraFailed => '打不开相机。';
+
+  @override
+  String get remoteScanQrCameraRetry => '重试';
+
+  @override
+  String get remoteScanQrPrivacy => '相机只用于扫描主机二维码。画面不会保存，也不会上传。';
+
+  @override
+  String get remoteScanQrHowTitle => '如何获得二维码';
+
+  @override
+  String get remoteScanQrHowBody => '二维码由要连接的电脑生成：在任意二维码生成器里，把 ssh://用户@地址:22 这样的地址，或下面的 JSON 编成二维码。';
+
+  @override
+  String get remoteScanQrPaste => '粘贴二维码链接';
+
+  @override
+  String get remoteScanQrPasteHelp => '相机不可用，或二维码只存在于聊天和文件里时使用。';
+
+  @override
+  String get remoteScanQrPasteTitle => '粘贴二维码链接';
+
+  @override
+  String get remoteScanQrPasteHint => '主机地址或二维码里的 JSON';
+
+  @override
+  String get remoteScanQrPasteCheck => '检查';
+
+  @override
+  String get remoteScanQrPasteClipboard => '从剪贴板粘贴';
+
+  @override
+  String get remoteScanQrClipboardEmpty => '剪贴板里没有文字。';
+
+  @override
+  String get remoteQrErrEmpty => '二维码是空的。换一个再试。';
+
+  @override
+  String get remoteQrErrTooLong => '二维码太长，不像主机地址。';
+
+  @override
+  String get remoteQrErrOtherApp => '这不是 Narwhal 的主机二维码。请扫描为连接主机生成的二维码。';
+
+  @override
+  String get remoteQrErrVersion => '这个二维码来自更新的版本。请更新 Narwhal。';
+
+  @override
+  String get remoteQrErrTransport => '这个二维码走本地网络连接，而 Narwhal 通过 SSH 连接。请生成 ssh:// 地址的二维码。';
+
+  @override
+  String get remoteQrErrNoAddress => '二维码里没有主机地址。';
+
+  @override
+  String get remoteQrErrInvalidAddress => '二维码里的主机地址不正确。';
+
+  @override
+  String get remoteQrErrNoUser => '二维码里没有用户名。请写成 用户@主机。';
+
+  @override
+  String get remoteQrErrPort => '二维码里的端口不对（1–65535）。';
+
+  @override
+  String get remoteQrConfirmTitle => '添加主机？';
+
+  @override
+  String get remoteQrConfirmName => '名称';
+
+  @override
+  String get remoteQrConfirmAddress => '地址';
+
+  @override
+  String get remoteQrConfirmPassword => '密码';
+
+  @override
+  String get remoteQrConfirmPasswordIncluded => '二维码里带有密码，会保存到手机的加密存储';
+
+  @override
+  String get remoteQrConfirmPasswordMissing => '二维码里没有密码，请在主机设置里填写';
+
+  @override
+  String get remoteQrConfirmPrivacy => '密码不会显示，也不会发送：它只留在这台手机上。';
+
+  @override
+  String get remoteQrConfirmAdd => '添加并连接';
+
+  @override
   String get riskDontShowAgain => '不再提示';
 
   @override
@@ -13516,9 +13441,6 @@ class L10nZh extends L10n {
 
   @override
   String get askAiHelpTitle => '使用帮助';
-
-  @override
-  String get askAiHelpSubtitle => '不懂的地方，问 AI';
 
   @override
   String askAiAboutApp(String question) {
@@ -13686,9 +13608,6 @@ class L10nZh extends L10n {
 
   @override
   String get searchKwLanguage => '中文,英文,简体,English';
-
-  @override
-  String get searchKwAutoCommands => '别问我,不要确认,自动允许,完全权限,免确认';
 
   @override
   String get searchKwPhoneFiles => '存储,文件,相册,下载,手机存储';
@@ -14469,7 +14388,13 @@ class L10nZh extends L10n {
   String get shellAccentTurquoise => '松石';
 
   @override
+  String get shellAccentGreen => '蕨绿';
+
+  @override
   String get shellAccentAmber => '琥珀';
+
+  @override
+  String get shellAccentOrange => '橘橙';
 
   @override
   String get shellAccentGraphite => '石墨';
@@ -16440,6 +16365,37 @@ class L10nZh extends L10n {
   String get upstreamUpdatesNoAnswer => '无法检查 dsh-go 更新，请稍后再试。';
 
   @override
+  String get upstreamUpdatesSection => '原版 dsh-go';
+
+  @override
+  String get selfUpdatesTitle => 'Narwhal 更新';
+
+  @override
+  String selfUpdatesCurrent(String version) {
+    return '当前版本 $version';
+  }
+
+  @override
+  String get selfUpdatesChecking => '检查中…';
+
+  @override
+  String selfUpdatesAvailable(String version) {
+    return '有新版本 $version';
+  }
+
+  @override
+  String get selfUpdatesFailed => '无法检查';
+
+  @override
+  String get selfUpdatesCheck => '检查';
+
+  @override
+  String get selfUpdatesRetry => '重试';
+
+  @override
+  String get selfUpdatesNoAnswer => '无法检查 Narwhal 更新，请稍后再试。';
+
+  @override
   String get usageStatsTitle => '发送匿名使用统计';
 
   @override
@@ -17854,9 +17810,6 @@ class L10nZh extends L10n {
 
   @override
   String get voiceModelAbsent => '未下载';
-
-  @override
-  String get voiceModelDownloading => '下载中';
 
   @override
   String get voiceModelPreparing => '正在校验和加载';

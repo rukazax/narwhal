@@ -1,4 +1,4 @@
-// 设置 › 主题: light / dark, the palette (six presets,
+// 设置 › 主题: light / dark, the palette (eight presets,
 // a custom hue, the wallpaper), the feature tile style, the launcher icon (and a
 // picture shortcut) and the launch screen.
 //
@@ -462,13 +462,13 @@ class _PhonePainter extends CustomPainter {
 
 // ── 配色 ─────────────────────────────────────────────────────────────────
 
-/// 一排色点:六套预设 + 自定义(色轮)。色点画的是守卫之后、当前明暗下的
-/// 主色;选中的外面一圈同色环,下面是名字。[custom] 为 false 时只有六套
+/// 一排色点:八套预设 + 自定义(色轮)。色点画的是守卫之后、当前明暗下的
+/// 主色;选中的外面一圈同色环,下面是名字。[custom] 为 false 时只有八套
 /// 预设(首次启动的外观页)。
 class PalettePicker extends ConsumerWidget {
   const PalettePicker({super.key, this.custom = true});
 
-  /// The seventh slot, a hue wheel for a colour of one's own.
+  /// The ninth slot, a hue wheel for a colour of one's own.
   final bool custom;
 
   /// How tall the row is at this text size. It lays out with a
@@ -480,8 +480,13 @@ class PalettePicker extends ConsumerWidget {
     return 2 * PickerGrid.inset + disc + 2 * (ringGap + ringWidth) + PickerGrid.labelGap + line;
   }
 
-  /// Swatch disc, its ring, and the widest a slot (disc + name) gets.
+  /// Swatch disc (its largest: nine slots shrink it on a narrow card), ring,
+  /// and the widest a slot (disc + name) gets.
   static const disc = 30.0;
+
+  /// The smallest the disc may get before a name stops reading: at nine
+  /// slots a 320-wide card still fits a 19.4 disc with 16 on each side.
+  static const minDisc = 18.0;
   static const ringGap = 2.5;
   static const ringWidth = 2.0;
   static const slot = 52.0;
@@ -497,6 +502,7 @@ class PalettePicker extends ConsumerWidget {
     final items = [
       for (final p in AppAccent.presets)
         _Swatch(
+          disc: disc,
           label: p.label,
           selected: chosen(p),
           color: p.seedFor(brightness),
@@ -504,6 +510,7 @@ class PalettePicker extends ConsumerWidget {
         ),
       if (custom)
         _Swatch(
+          disc: disc,
           label: l10n.pluginsCustomColor,
           selected: appearance.source == AccentSource.custom,
           color: customAccent.seedFor(brightness),
@@ -512,18 +519,21 @@ class PalettePicker extends ConsumerWidget {
         ),
     ];
     // Rings 16 from the card's edges, centres evenly spaced; each slot is as
-    // wide as the spacing allows (up to [slot]) so the names have room.
+    // wide as the spacing allows (up to [slot]) so the names have room. The
+    // disc gives way on a narrow card instead of the row running off it:
+    // eight presets and the wheel are 9 slots, and 9 × (30 + 9) + 32 is
+    // wider than a 390 card lets it be.
     return LayoutBuilder(
       builder: (context, constraints) {
-        const ringSide = disc + 2 * (ringGap + ringWidth);
-        final step = (constraints.maxWidth - 2 * PickerGrid.inset - ringSide) / (items.length - 1);
+        final count = items.length;
+        final room = (constraints.maxWidth - 2 * PickerGrid.inset) / count;
+        final discSize = math.max(minDisc, math.min(disc, room - 2 * (ringGap + ringWidth)));
+        final ringSide = discSize + 2 * (ringGap + ringWidth);
+        final step = (constraints.maxWidth - 2 * PickerGrid.inset - ringSide) / (count - 1);
         final width = math.max(ringSide, math.min(slot, step));
-        // 16 from the card's edges while the slots leave room for it; on a
-        // 320-wide window (7 × 39 + 2 × 16 is wider than the card) they close
-        // in to the edge instead of the row running off it.
         final side = math.max(
           0.0,
-          math.min(PickerGrid.inset - (width - ringSide) / 2, (constraints.maxWidth - items.length * width) / 2),
+          math.min(PickerGrid.inset - (width - ringSide) / 2, (constraints.maxWidth - count * width) / 2),
         );
         return Padding(
           padding: EdgeInsets.fromLTRB(side, PickerGrid.inset, side, PickerGrid.inset),
@@ -540,6 +550,7 @@ class PalettePicker extends ConsumerWidget {
 
 class _Swatch extends StatelessWidget {
   const _Swatch({
+    required this.disc,
     required this.label,
     required this.selected,
     required this.color,
@@ -552,6 +563,10 @@ class _Swatch extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
 
+  /// The disc's diameter: [PalettePicker.disc] unless a narrow card made the
+  /// row shrink the slots.
+  final double disc;
+
   /// The custom slot: a hue wheel around the chosen colour.
   final bool wheel;
 
@@ -561,7 +576,7 @@ class _Swatch extends StatelessWidget {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
     final quick = AppMotion.of(context, AppMotion.quick);
-    const size = PalettePicker.disc + 2 * (PalettePicker.ringGap + PalettePicker.ringWidth);
+    final size = disc + 2 * (PalettePicker.ringGap + PalettePicker.ringWidth);
     return Semantics(
       button: true,
       selected: selected,
@@ -580,6 +595,7 @@ class _Swatch extends StatelessWidget {
                 curve: AppMotion.std,
                 builder: (context, t, _) => CustomPaint(
                   painter: _SwatchPainter(
+                    disc: disc,
                     color: color,
                     ring: t,
                     wheel: wheel ? _wheelColors(theme.brightness) : null,
@@ -619,7 +635,17 @@ List<Color> _wheelColors(Brightness brightness) => _wheels[brightness] ??= [
 final _wheels = <Brightness, List<Color>>{};
 
 class _SwatchPainter extends CustomPainter {
-  _SwatchPainter({required this.color, required this.ring, required this.hole, required this.edge, this.wheel});
+  _SwatchPainter({
+    required this.disc,
+    required this.color,
+    required this.ring,
+    required this.hole,
+    required this.edge,
+    this.wheel,
+  });
+
+  /// The disc's diameter (see [_Swatch.disc]).
+  final double disc;
 
   final Color color;
 
@@ -632,7 +658,7 @@ class _SwatchPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final c = size.center(Offset.zero);
-    const r = PalettePicker.disc / 2;
+    final r = disc / 2;
     if (ring > 0) {
       canvas.drawCircle(
         c,
@@ -664,7 +690,12 @@ class _SwatchPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_SwatchPainter old) =>
-      old.color != color || old.ring != ring || old.hole != hole || old.edge != edge || old.wheel != wheel;
+      old.disc != disc ||
+      old.color != color ||
+      old.ring != ring ||
+      old.hole != hole ||
+      old.edge != edge ||
+      old.wheel != wheel;
 }
 
 /// A small filled circle (the hub row's value, the wallpaper row).

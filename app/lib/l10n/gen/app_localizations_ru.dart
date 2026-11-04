@@ -1293,16 +1293,6 @@ class L10nRu extends L10n {
   String get activitySpanTiny => '<0,1 с';
 
   @override
-  String activityTokensTenThousands(String value) {
-    return '${value}K';
-  }
-
-  @override
-  String activityTokensHundredMillions(String value) {
-    return '${value}M';
-  }
-
-  @override
   String activityUsageContextSemantics(String percent) {
     return 'Использовано контекста: $percent, открыть использование';
   }
@@ -2408,26 +2398,7 @@ class L10nRu extends L10n {
   }
 
   @override
-  String get botsUpdateRequired => 'DS Bot требует обновления';
-
-  @override
   String get botsInstall => 'Установить DS Bot';
-
-  @override
-  String get botsUpdateForPhone => 'Обновите, чтобы пользоваться на телефоне';
-
-  @override
-  String get botsInstallDescription => 'Постоянно работающие боты, у каждого своя память и роль';
-
-  @override
-  String botsInstallOnHost(String host) {
-    return 'Установите на $host, чтобы начать';
-  }
-
-  @override
-  String botsRunsOnHost(String host) {
-    return 'Работает на $host';
-  }
 
   @override
   String get botsInstalling => 'Установка';
@@ -2864,12 +2835,6 @@ class L10nRu extends L10n {
   String get botsPetSettings => 'Настройки питомца';
 
   @override
-  String get botsPetDeepy => 'Deepy';
-
-  @override
-  String get botsPetWhaleGirl => 'Девочка-кит';
-
-  @override
   String get botsPetNone => 'Нет';
 
   @override
@@ -3279,19 +3244,10 @@ class L10nRu extends L10n {
   String get catalogSchedulesSummary => 'Задачи по расписанию и повторяющиеся';
 
   @override
-  String get catalogAgentModelsSection => 'Агенты и модели';
-
-  @override
   String get catalogPermission => 'Разрешения';
 
   @override
   String get catalogPermissionSummary => 'Когда запрашивать подтверждение';
-
-  @override
-  String get catalogAgentPresets => 'Пресеты агентов';
-
-  @override
-  String get catalogAgentPresetsSummary => 'Как работают новые чаты';
 
   @override
   String get catalogModels => 'Модели';
@@ -3300,40 +3256,10 @@ class L10nRu extends L10n {
   String get catalogModelsSummary => 'Подписки и свои провайдеры';
 
   @override
-  String get catalogSubagentSettings => 'Настройки субагентов';
-
-  @override
-  String get catalogSubagentSettingsSummary => 'Глубина, параллельность и модели';
-
-  @override
-  String get catalogAgentLoop => 'Цикл агента';
-
-  @override
-  String get catalogAgentLoopSummary => 'Лимит параллельных вызовов инструментов';
-
-  @override
-  String get catalogShellSettings => 'Выполнение команд';
-
-  @override
-  String get catalogShellSettingsSummary => 'Тайм-ауты и лимиты вывода';
-
-  @override
-  String get catalogWebSearch => 'Веб-поиск';
-
-  @override
-  String get catalogWebSearchSummary => 'Сервис поиска и бюджет';
-
-  @override
   String get catalogPlugins => 'Плагины';
 
   @override
   String get catalogPluginsSummary => 'Установленные плагины и магазины';
-
-  @override
-  String get catalogPluginInventory => 'Список плагинов';
-
-  @override
-  String get catalogPluginInventorySummary => 'Все загруженные плагины';
 
   @override
   String get catalogCordisSummary => 'Динамические панели от плагинов';
@@ -3381,37 +3307,16 @@ class L10nRu extends L10n {
   String get catalogShareProfileSummary => 'Плагины, настройки и навыки';
 
   @override
-  String get catalogHostsSettingsSection => 'Хосты и настройки';
-
-  @override
   String get catalogSearch => 'Поиск по чатам';
 
   @override
   String get catalogSearchSummary => 'По названию или содержимому';
 
   @override
-  String get catalogNotifications => 'Уведомления';
-
-  @override
-  String get catalogNotificationsSummary => 'Оповещения о завершении и подтверждениях';
-
-  @override
   String get catalogWorkspaces => 'Рабочие папки';
 
   @override
   String get catalogWorkspacesSummary => 'Добавление и переключение папок';
-
-  @override
-  String get catalogGeneral => 'Общие';
-
-  @override
-  String get catalogGeneralSummary => 'Отображение, отправка и выгрузка журналов';
-
-  @override
-  String get catalogAccount => 'Аккаунт';
-
-  @override
-  String get catalogAccountSummary => 'Вход, баланс и пополнение';
 
   @override
   String get catalogRemoteSummary => 'Подключение к компьютеру или серверу';
@@ -3421,18 +3326,6 @@ class L10nRu extends L10n {
 
   @override
   String get catalogPhoneControlSummary => 'Видит экран и нажимает за вас';
-
-  @override
-  String get catalogEngine => 'Локальный движок';
-
-  @override
-  String get catalogEngineSummary => 'Состояние движка и журналы на телефоне';
-
-  @override
-  String get catalogDiagnostics => 'Диагностика';
-
-  @override
-  String get catalogDiagnosticsSummary => 'Экспорт пакета диагностики';
 
   @override
   String get catalogWebSummary => 'Официальный интерфейс DSH';
@@ -4051,28 +3944,10 @@ class L10nRu extends L10n {
   String get chatVoicePermissionNeeded => 'Для голосового ввода нужен доступ к микрофону';
 
   @override
-  String get chatVoiceUnavailable => 'Распознавание речи недоступно на этом телефоне';
-
-  @override
   String get chatVoiceNotHeard => 'Не расслышал. Попробуйте ещё раз.';
 
   @override
   String get chatVoiceTranscriptionFailed => 'Не удалось распознать эту запись';
-
-  @override
-  String get chatVoiceNetworkFailed => 'Не удалось распознать. Проверьте подключение.';
-
-  @override
-  String get chatVoiceLanguageUnsupported => 'Этот язык пока не поддерживается';
-
-  @override
-  String get chatVoiceMicrophoneBusy => 'Микрофон занят';
-
-  @override
-  String get chatVoiceBusy => 'Распознавание речи занято. Попробуйте позже.';
-
-  @override
-  String get chatVoiceRecognitionFailed => 'Не удалось распознать речь';
 
   @override
   String get chatListening => 'Слушаю';
@@ -7865,9 +7740,6 @@ class L10nRu extends L10n {
   String get hubSettingsChat => 'Чат';
 
   @override
-  String get hubSettingsAutoCommands => 'Автозапуск команд';
-
-  @override
   String get hubSettingsPhoneFiles => 'Доступ к файлам телефона';
 
   @override
@@ -7883,9 +7755,6 @@ class L10nRu extends L10n {
   String get hubSettingsPhoneControl => 'Управление телефоном';
 
   @override
-  String get hubSettingsPhoneControlHint => 'Видит экран и нажимает за вас';
-
-  @override
   String get hubSettingsPreferences => 'Личные предпочтения';
 
   @override
@@ -7898,16 +7767,7 @@ class L10nRu extends L10n {
   String get hubSettingsCollapseSteps => 'Сворачивать шаги после завершения';
 
   @override
-  String get hubSettingsCollapseStepsHint => 'Складывать размышления и вызовы инструментов в одну строку';
-
-  @override
-  String get hubSettingsWebPhoneLayout => 'Мобильная вёрстка веб-версии';
-
-  @override
   String get hubSettingsWebPhoneLayoutHint => 'Подгонять DSH Web под экран телефона';
-
-  @override
-  String get hubSettingsEngineExtensions => 'Движок и плагины';
 
   @override
   String get hubSettingsEngine => 'Локальный движок';
@@ -7916,16 +7776,10 @@ class L10nRu extends L10n {
   String get hubSettingsProviders => 'Модели';
 
   @override
-  String get hubSettingsEngineSettings => 'Настройки движка';
-
-  @override
   String get hubSettingsShareConfig => 'Поделиться конфигурацией';
 
   @override
   String get hubSettingsAllFeatures => 'Все функции';
-
-  @override
-  String get hubSettingsAbout => 'О приложении';
 
   @override
   String get hubSettingsCommunity => 'Сообщество';
@@ -8319,9 +8173,6 @@ class L10nRu extends L10n {
     );
     return '$_temp0';
   }
-
-  @override
-  String get hubValueNoHosts => 'Нет';
 
   @override
   String hubValuePlugins(int count) {
@@ -8880,11 +8731,6 @@ class L10nRu extends L10n {
 
   @override
   String get mediaGenerating => 'Создание';
-
-  @override
-  String mediaGeneratingProgress(String progress) {
-    return 'Создание · $progress';
-  }
 
   @override
   String get mediaCancelled => 'Отменено';
@@ -10560,7 +10406,13 @@ class L10nRu extends L10n {
   String get phoneAccentTurquoise => 'Аква';
 
   @override
+  String get phoneAccentGreen => 'Зелень';
+
+  @override
   String get phoneAccentAmber => 'Янтарь';
+
+  @override
+  String get phoneAccentOrange => 'Мандарин';
 
   @override
   String get phoneAccentGraphite => 'Графит';
@@ -12136,9 +11988,6 @@ class L10nRu extends L10n {
   String get pluginsTheme => 'Тема';
 
   @override
-  String get pluginsAppearance => 'Оформление';
-
-  @override
   String get pluginsColors => 'Цвета';
 
   @override
@@ -12146,9 +11995,6 @@ class L10nRu extends L10n {
 
   @override
   String get pluginsAppIcon => 'Иконка приложения';
-
-  @override
-  String get pluginsPet => 'Питомец';
 
   @override
   String get pluginsCustomColor => 'Свой';
@@ -12947,25 +12793,12 @@ class L10nRu extends L10n {
   String get plugslotsPanelOffline => 'Плагин недоступен';
 
   @override
-  String plugslotsIssueTooMany(int max) {
-    return 'До $max; остальные скрыты';
-  }
-
-  @override
   String plugslotsIssueTrimmed(int max) {
     return 'Больше $max символов; сокращено';
   }
 
   @override
-  String plugslotsIssueNeedsApp(String version) {
-    return 'Требуется DSH Go $version или новее';
-  }
-
-  @override
   String get plugslotsIssueNewerProtocol => 'Нужна более новая версия приложения';
-
-  @override
-  String get plugslotsIssueUnknownIcon => 'Неизвестная иконка; используется стандартная';
 
   @override
   String plugslotsIssueUnknownEffect(String name) {
@@ -12987,23 +12820,10 @@ class L10nRu extends L10n {
   String get plugslotsIssueThrottled => 'Уведомления слишком частые; пропущено';
 
   @override
-  String plugslotsIssueInvoke(String message) {
-    return 'Вызов не удался: $message';
-  }
-
-  @override
-  String plugslotsIssueStream(String message) {
-    return 'Данные не получены: $message';
-  }
-
-  @override
   String get plugslotsIssueMissing => 'Не хватает обязательного поля';
 
   @override
   String get plugslotsIssueDuplicate => 'Повторяющийся id; пропущено';
-
-  @override
-  String get plugslotsIssueNoPlacement => 'Негде показать';
 
   @override
   String plugslotsWantsMessage(String plugin) {
@@ -14985,6 +14805,114 @@ class L10nRu extends L10n {
   String get remoteNetworkObservedAt => 'Последняя проверка';
 
   @override
+  String get remoteScanQr => 'Сканировать QR';
+
+  @override
+  String get remoteScanQrSubtitle => 'Добавить хост по QR-коду с компьютера';
+
+  @override
+  String get remoteScanQrHint => 'Наведите камеру на QR-код хоста';
+
+  @override
+  String get remoteScanQrTorch => 'Фонарик';
+
+  @override
+  String get remoteScanQrCameraDenied => 'Нет доступа к камере. Разрешите камеру для Narwhal в настройках Android.';
+
+  @override
+  String get remoteScanQrCameraUnavailable => 'На этом устройстве нет доступной камеры.';
+
+  @override
+  String get remoteScanQrCameraFailed => 'Не удалось открыть камеру.';
+
+  @override
+  String get remoteScanQrCameraRetry => 'Повторить';
+
+  @override
+  String get remoteScanQrPrivacy =>
+      'Камера используется только для сканирования QR-кода хоста. Кадры не сохраняются и никуда не отправляются.';
+
+  @override
+  String get remoteScanQrHowTitle => 'Как получить QR-код';
+
+  @override
+  String get remoteScanQrHowBody =>
+      'QR-код создаёт компьютер, к которому вы подключаетесь: в любом генераторе QR закодируйте адрес вида ssh://пользователь@адрес:22 или JSON ниже.';
+
+  @override
+  String get remoteScanQrPaste => 'Вставить QR-ссылку';
+
+  @override
+  String get remoteScanQrPasteHelp => 'Если камера недоступна или QR-код есть только в чате или файле.';
+
+  @override
+  String get remoteScanQrPasteTitle => 'Вставить QR-ссылку';
+
+  @override
+  String get remoteScanQrPasteHint => 'Адрес хоста или JSON из QR-кода';
+
+  @override
+  String get remoteScanQrPasteCheck => 'Проверить';
+
+  @override
+  String get remoteScanQrPasteClipboard => 'Вставить из буфера';
+
+  @override
+  String get remoteScanQrClipboardEmpty => 'В буфере обмена нет текста.';
+
+  @override
+  String get remoteQrErrEmpty => 'QR-код пустой. Попробуйте другой.';
+
+  @override
+  String get remoteQrErrTooLong => 'QR-код слишком длинный для адреса хоста.';
+
+  @override
+  String get remoteQrErrOtherApp => 'Это не QR-код хоста Narwhal. Отсканируйте код, созданный для подключения к хосту.';
+
+  @override
+  String get remoteQrErrVersion => 'Этот QR-код создан более новой версией. Обновите Narwhal.';
+
+  @override
+  String get remoteQrErrTransport =>
+      'Этот QR-код для подключения по локальной сети, а Narwhal подключается по SSH. Создайте QR-код с адресом ssh://.';
+
+  @override
+  String get remoteQrErrNoAddress => 'В QR-коде нет адреса хоста.';
+
+  @override
+  String get remoteQrErrInvalidAddress => 'Адрес хоста в QR-коде некорректный.';
+
+  @override
+  String get remoteQrErrNoUser => 'В QR-коде нет имени пользователя. Запишите его как пользователь@хост.';
+
+  @override
+  String get remoteQrErrPort => 'Неверный порт в QR-коде (1–65535).';
+
+  @override
+  String get remoteQrConfirmTitle => 'Добавить хост?';
+
+  @override
+  String get remoteQrConfirmName => 'Имя';
+
+  @override
+  String get remoteQrConfirmAddress => 'Адрес';
+
+  @override
+  String get remoteQrConfirmPassword => 'Пароль';
+
+  @override
+  String get remoteQrConfirmPasswordIncluded => 'Есть в QR-коде — сохранится в защищённом хранилище телефона';
+
+  @override
+  String get remoteQrConfirmPasswordMissing => 'В QR-коде нет пароля — введите его в настройках хоста';
+
+  @override
+  String get remoteQrConfirmPrivacy => 'Пароль не показывается и не отправляется: он остаётся на этом телефоне.';
+
+  @override
+  String get remoteQrConfirmAdd => 'Добавить и подключиться';
+
+  @override
   String get riskDontShowAgain => 'Больше не показывать';
 
   @override
@@ -15024,9 +14952,6 @@ class L10nRu extends L10n {
 
   @override
   String get askAiHelpTitle => 'Справка';
-
-  @override
-  String get askAiHelpSubtitle => 'Спросите ИИ о чём угодно здесь';
 
   @override
   String askAiAboutApp(String question) {
@@ -15199,9 +15124,6 @@ class L10nRu extends L10n {
 
   @override
   String get searchKwLanguage => 'китайский,английский,язык';
-
-  @override
-  String get searchKwAutoCommands => 'не спрашивать,автоподтверждение,полный доступ,без подтверждения';
 
   @override
   String get searchKwPhoneFiles => 'хранилище,файлы,загрузки,фото';
@@ -16098,7 +16020,13 @@ class L10nRu extends L10n {
   String get shellAccentTurquoise => 'Аквамарин';
 
   @override
+  String get shellAccentGreen => 'Зелень';
+
+  @override
   String get shellAccentAmber => 'Янтарь';
+
+  @override
+  String get shellAccentOrange => 'Мандарин';
 
   @override
   String get shellAccentGraphite => 'Графит';
@@ -18251,6 +18179,37 @@ class L10nRu extends L10n {
   String get upstreamUpdatesNoAnswer => 'Не удалось проверить обновления dsh-go. Попробуйте позже.';
 
   @override
+  String get upstreamUpdatesSection => 'Оригинал dsh-go';
+
+  @override
+  String get selfUpdatesTitle => 'Обновления Narwhal';
+
+  @override
+  String selfUpdatesCurrent(String version) {
+    return 'Текущая версия $version';
+  }
+
+  @override
+  String get selfUpdatesChecking => 'Проверка…';
+
+  @override
+  String selfUpdatesAvailable(String version) {
+    return 'Доступна $version';
+  }
+
+  @override
+  String get selfUpdatesFailed => 'Не удалось проверить';
+
+  @override
+  String get selfUpdatesCheck => 'Проверить';
+
+  @override
+  String get selfUpdatesRetry => 'Повторить';
+
+  @override
+  String get selfUpdatesNoAnswer => 'Не удалось проверить обновления Narwhal. Попробуйте позже.';
+
+  @override
   String get usageStatsTitle => 'Отправлять анонимную статистику';
 
   @override
@@ -20069,9 +20028,6 @@ class L10nRu extends L10n {
 
   @override
   String get voiceModelAbsent => 'Не скачана';
-
-  @override
-  String get voiceModelDownloading => 'Загрузка';
 
   @override
   String get voiceModelPreparing => 'Проверка и загрузка';

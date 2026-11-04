@@ -507,11 +507,6 @@ int hiddenWebOnlyCount(MarketCatalog catalog, MarketFilter filter) {
   return filterMarket(catalog, filter.copyWith(showWebOnly: true)).length - filterMarket(catalog, filter).length;
 }
 
-final marketResultsProvider = Provider<AsyncValue<List<MarketEntry>>>((ref) {
-  final filter = ref.watch(marketFilterProvider);
-  return ref.watch(marketCatalogProvider).whenData((catalog) => filterMarket(catalog, filter));
-});
-
 // ── Active host ──────────────────────────────────────────────────────────────
 
 /// What plugins can be managed on: the active host's client and what its

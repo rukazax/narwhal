@@ -111,5 +111,28 @@
   "upstreamUpdatesDialogBody": "В оригинальном приложении вышла новая версия. Установить его APK поверх этой сборки нельзя: у них разные подписи. Откройте страницу релиза, чтобы посмотреть изменения.",
   "upstreamUpdatesOpenRelease": "Открыть страницу релиза",
   "upstreamUpdatesClose": "Закрыть",
-  "upstreamUpdatesNoAnswer": "Не удалось проверить обновления dsh-go. Попробуйте позже."
+  "upstreamUpdatesNoAnswer": "Не удалось проверить обновления dsh-go. Попробуйте позже.",
+  "upstreamUpdatesSection": "Оригинал dsh-go",
+  "selfUpdatesTitle": "Обновления Narwhal",
+  "selfUpdatesCurrent": "Текущая версия {version}",
+  "@selfUpdatesCurrent": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdatesChecking": "Проверка…",
+  "selfUpdatesAvailable": "Доступна {version}",
+  "@selfUpdatesAvailable": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdatesFailed": "Не удалось проверить",
+  "selfUpdatesCheck": "Проверить",
+  "selfUpdatesRetry": "Повторить",
+  "selfUpdatesNoAnswer": "Не удалось проверить обновления Narwhal. Попробуйте позже."
 }

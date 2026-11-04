@@ -10,4 +10,6 @@
          frame uses. It isn't drawn behind an adaptive icon, and one step off the page wouldn't
          show if a system drew it anyway. -->
     <color name="launch_icon_ground">#FFEBF1FF</color>
+    <!-- Narwhal launcher tile: light brand tint behind the blue mark. -->
+    <color name="narwhal_icon_bg">#E9EFFF</color>
 </resources>

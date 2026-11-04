@@ -11,12 +11,13 @@ import '../../l10n/l10n.dart';
 import '../../state/app_info.dart';
 import '../../state/star_prompt.dart' show starLinkOpenerProvider;
 import '../../state/update_state.dart';
-import '../../update/update_config.dart' show selfUpdateEnabled;
+import '../../update/self_release.dart' show selfReleaseRowProvider;
 import '../shell/brand_mark.dart';
 import '../shell/page_frame.dart';
 import '../star/star_prompt_dialog.dart' show openStarProject;
 import '../theme/app_icons.dart';
 import '../theme/theme.dart';
+import '../update/self_release_tile.dart';
 import '../update/upstream_tile.dart';
 import '../update/update_tiles.dart';
 import 'settings_widgets.dart';
@@ -37,6 +38,9 @@ class AboutPage extends ConsumerWidget {
     final theme = Theme.of(context);
     final colors = DshColors.of(context);
     final version = installedVersionLabel(ref);
+    // A fork build reports its own releases and the original's; the original
+    // build uses its in-app updater (lib/update/self_release.dart).
+    final fork = ref.watch(selfReleaseRowProvider);
     return AppPage.list(
       title: l10n.hubAbout,
       children: [
@@ -46,7 +50,7 @@ class AboutPage extends ConsumerWidget {
               spot: Spots.version,
               value: Text(version, style: AppType.tabular(theme.textTheme.bodyMedium!)),
             ),
-            if (selfUpdateEnabled) const AppUpdateTiles() else const UpstreamUpdateTile(),
+            if (fork) const SelfReleaseTile() else const AppUpdateTiles(),
             SettingsTile(
               key: const ValueKey('settings-star'),
               spot: Spots.star,
@@ -66,6 +70,11 @@ class AboutPage extends ConsumerWidget {
             ),
           ],
         ),
+        if (fork)
+          SettingsSection(
+            title: l10n.upstreamUpdatesSection,
+            children: const [UpstreamUpdateTile()],
+          ),
         SettingsSection(
           title: l10n.hubAboutAuthor,
           children: [

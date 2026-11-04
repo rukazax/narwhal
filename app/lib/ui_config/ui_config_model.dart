@@ -103,7 +103,7 @@ final class UiHeaderCustomItem extends UiHeaderItem {
 
   final String id;
 
-  /// A name from `UiSchema.icons` (see `uiConfigIcon`).
+  /// A name from `UiSchema.icons`.
   final String icon;
   final String label;
   final UiAction action;

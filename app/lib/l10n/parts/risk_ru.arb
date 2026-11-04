@@ -12,7 +12,6 @@
   "riskPetOverlayAction": "Открыть настройки",
   "askAiTooltip": "Спросить ИИ",
   "askAiHelpTitle": "Справка",
-  "askAiHelpSubtitle": "Спросите ИИ о чём угодно здесь",
   "askAiAboutApp": "О приложении DSH Go: {question}",
   "askAiWithGuide": "О приложении DSH Go: {question}\nОтветьте по приложенному руководству.",
   "askAiNoGuide": "На этом хосте нет руководства DSH Go, поэтому ответы могут быть неточными",

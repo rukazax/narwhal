@@ -71,8 +71,6 @@
     <string name="overlay_channel">Подтверждение управления телефоном</string>
     <string name="overlay_channel_description">Подтверждайте, отклоняйте или останавливайте действия DSH на телефоне</string>
     <string name="overlay_stopped">Остановлено</string>
-    <string name="overlay_paused">Пауза · Нажмите «Продолжить», чтобы возобновить</string>
-    <string name="overlay_pause">Пауза</string>
     <string name="overlay_resume_description">Возобновить действия DSH</string>
     <string name="overlay_pause_description">Приостановить действия DSH</string>
     <string name="overlay_steer_hint">Корректировка: скажите DSH, что изменить…</string>
@@ -152,8 +150,6 @@
     <string name="pet_ask_not_heard">Не расслышал</string>
     <string name="pet_ask_voice_missing">Сначала скачайте голосовую модель в приложении</string>
     <string name="pet_ask_voice_off">Для голоса нужен запущенный движок на этом телефоне</string>
-    <string name="pet_ask_mic_permission">Сначала разрешите микрофон в приложении</string>
-    <string name="pet_ask_mic_failed">Не удалось открыть микрофон</string>
     <string name="pet_go_answer">Ответить</string>
     <string name="pet_go_review">Просмотреть</string>
     <string name="pet_answer_failed">Не отправилось. Откройте приложение</string>

@@ -66,8 +66,6 @@
     <string name="overlay_channel">Phone control approval</string>
     <string name="overlay_channel_description">Approve, decline or stop DSH’s phone actions</string>
     <string name="overlay_stopped">Stopped</string>
-    <string name="overlay_paused">Paused · Tap Continue to resume</string>
-    <string name="overlay_pause">Pause</string>
     <string name="overlay_resume_description">Resume DSH’s actions</string>
     <string name="overlay_pause_description">Pause DSH’s actions</string>
     <string name="overlay_steer_hint">Steer: tell DSH what to change…</string>
@@ -143,8 +141,6 @@
     <string name="pet_ask_not_heard">Didn’t catch that</string>
     <string name="pet_ask_voice_missing">Download the voice model in the app first</string>
     <string name="pet_ask_voice_off">Voice needs this phone’s engine running</string>
-    <string name="pet_ask_mic_permission">Allow the microphone in the app first</string>
-    <string name="pet_ask_mic_failed">Couldn’t open the microphone</string>
     <string name="pet_go_answer">Answer</string>
     <string name="pet_go_review">Review</string>
     <string name="pet_answer_failed">Didn’t go through. Open the app</string>

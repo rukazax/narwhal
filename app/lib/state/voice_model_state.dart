@@ -274,10 +274,12 @@ class VoiceModelController extends Notifier<VoiceModelState> {
   @visibleForTesting
   static Duration stall = const Duration(seconds: 60);
 
-  /// The engine notification's line changes at most once this often (two a
-  /// second, under Android's five).
+  /// The engine notification's line changes at most once this often. Each
+  /// change is a notification post the system has to draw (on the lock screen
+  /// and in the shade too), and the person reads a percentage, not frames: one
+  /// a second is as lively as an update needs to be.
   @visibleForTesting
-  static Duration noticeEvery = const Duration(milliseconds: 500);
+  static Duration noticeEvery = const Duration(milliseconds: 1000);
 
   final _events = StreamController<VoiceModelEvent>.broadcast();
   Stream<VoiceModelEvent> get events => _events.stream;
@@ -825,12 +827,24 @@ class VoiceModelController extends Notifier<VoiceModelState> {
     // sit at the same byte count for that long. Give up after a quiet minute.
     var lastBytes = -1;
     var lastMove = DateTime.now();
+    // Reads that found the byte count standing still, and ticks skipped since
+    // the last read: a download nobody is watching does not need a round trip
+    // to the engine 1.4 times a second.
+    var unchanged = 0;
+    var skipped = 0;
     _poll = Timer.periodic(pollEvery, (timer) async {
       if (busy) return;
       if (!_current(run, client)) {
         timer.cancel();
         return;
       }
+      // Backgrounded: the engine finishes the download on its own and the
+      // notification line already shows it. No read at all — returning to the
+      // app refreshes ([setForeground]) and picks the state up again.
+      if (!_foreground) return;
+      // Still standing still: read every fourth tick (~2.8 s at 700 ms), which
+      // is far inside the one-minute stall window.
+      if (unchanged > 0 && ++skipped % 4 != 0) return;
       busy = true;
       try {
         final provider = await _provider(client);
@@ -863,13 +877,18 @@ class VoiceModelController extends Notifier<VoiceModelState> {
           if (bytes != lastBytes || bytes < 0) {
             lastBytes = bytes;
             lastMove = now;
-          } else if (now.difference(lastMove) > stall) {
-            timer.cancel();
-            try {
-              await client.cancelSpeechPreparation(voiceModelProviderId, timeout: const Duration(seconds: 20));
-            } catch (_) {}
-            if (_current(run, client)) _fail(VoiceModelFailure.timeout);
-            return;
+            unchanged = 0;
+            skipped = 0;
+          } else {
+            unchanged++;
+            if (now.difference(lastMove) > stall) {
+              timer.cancel();
+              try {
+                await client.cancelSpeechPreparation(voiceModelProviderId, timeout: const Duration(seconds: 20));
+              } catch (_) {}
+              if (_current(run, client)) _fail(VoiceModelFailure.timeout);
+              return;
+            }
           }
           _show(provider, files, assets);
         }

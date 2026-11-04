@@ -107,20 +107,6 @@ final class PatchEffect extends NativeEffect {
   bool get needsTap => false;
 }
 
-/// The effect names of v1 (sent in `caps.effects`).
-const nativeEffectNames = [
-  'insert',
-  'command',
-  'open',
-  'link',
-  'toast',
-  'copy',
-  'refresh',
-  'patch',
-  'pickFile',
-  'pickImage',
-];
-
 /// Reads [effects] (each `{"type": "insert", "text": …}` or the short
 /// `{"insert": "…"}`), keeping whitelisted, well-formed ones. Problems are
 /// added to [issues] under `/effects/<i>`.

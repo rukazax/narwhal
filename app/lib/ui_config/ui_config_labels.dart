@@ -9,7 +9,9 @@ Map<String, String> get _presetNames => {
   'daiqing': appL10n.shellAccentDaiqing,
   'dusk': appL10n.shellAccentDusk,
   'turquoise': appL10n.shellAccentTurquoise,
+  'green': appL10n.shellAccentGreen,
   'amber': appL10n.shellAccentAmber,
+  'orange': appL10n.shellAccentOrange,
   'graphite': appL10n.shellAccentGraphite,
 };
 

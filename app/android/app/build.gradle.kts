@@ -79,6 +79,17 @@ android {
             // Keep the Termux binaries byte-identical to runtime/out (their hashes are in the manifest).
             keepDebugSymbols += listOf("**/libproot.so", "**/libproot-loader.so", "**/libtalloc.so", "**/libandroid-shmem.so")
         }
+        resources {
+            // Java resources are invisible to shrinkResources. libadb-android uses
+            // BouncyCastle for adb keys/certificates only, so the Picnic
+            // post-quantum parameter tables (1.2 MB) and the German PKIX reviewer
+            // messages are never read. Their classes stay; only the data goes.
+            excludes += listOf(
+                "org/bouncycastle/pqc/**",
+                "org/bouncycastle/pkix/CertPathReviewerMessages_de.properties",
+                "org/bouncycastle/x509/CertPathReviewerMessages_de.properties",
+            )
+        }
     }
 
     lint {

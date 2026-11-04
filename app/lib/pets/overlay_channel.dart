@@ -230,12 +230,6 @@ class PetOverlayChannel {
 
 final petOverlayChannelProvider = Provider<PetOverlayChannel>((ref) => PetOverlayChannel());
 
-/// 「宠物设置」 from the floating pet's menu. Whoever owns navigation listens
-/// and opens `PetSettingsPage`.
-final petOverlaySettingsRequestsProvider = StreamProvider<void>(
-  (ref) => ref.watch(petOverlayChannelProvider).settingsRequests,
-);
-
 /// The overlay's status and its switches, for the settings group and the
 /// restricted-settings guide.
 final petOverlayProvider = NotifierProvider<PetOverlayController, PetOverlayStatus>(PetOverlayController.new);

@@ -111,5 +111,28 @@
   "upstreamUpdatesDialogBody": "The original app has a newer release. Its APK can't be installed over this build: the two are signed with different keys. Open the release page to see what changed.",
   "upstreamUpdatesOpenRelease": "Open release page",
   "upstreamUpdatesClose": "Close",
-  "upstreamUpdatesNoAnswer": "Couldn't check dsh-go updates. Try again later."
+  "upstreamUpdatesNoAnswer": "Couldn't check dsh-go updates. Try again later.",
+  "upstreamUpdatesSection": "The original dsh-go",
+  "selfUpdatesTitle": "Narwhal updates",
+  "selfUpdatesCurrent": "Installed {version}",
+  "@selfUpdatesCurrent": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdatesChecking": "Checking…",
+  "selfUpdatesAvailable": "{version} is available",
+  "@selfUpdatesAvailable": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdatesFailed": "Couldn't check",
+  "selfUpdatesCheck": "Check",
+  "selfUpdatesRetry": "Retry",
+  "selfUpdatesNoAnswer": "Couldn't check Narwhal updates. Try again later."
 }

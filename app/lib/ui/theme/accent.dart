@@ -20,7 +20,7 @@ import 'palette.dart';
 /// | 角色 | 明度 L | 彩度(× 强调彩度) |
 /// |---|---|---|
 /// | seed / pressed | 0.53 / 0.47 | 1 / 0.95 |
-/// | container / onContainer | 0.93 / 0.33 | 0.26 / 0.70 |
+/// | container / onContainer | 0.943 / 0.33 | 0.26 / 0.70 |
 /// | bubble / glow | 0.918 / 0.819 | 0.29 / 0.68 |
 /// | seedDark / pressedDark | 0.764 / 0.704 | 0.76 |
 /// | onSeedDark | 0.231 | 0.39 |
@@ -28,6 +28,9 @@ import 'palette.dart';
 /// | bubbleDark / glowDark | 0.314 / 0.52 | 0.29 / 0.72 |
 ///
 /// - 浅色主色上用白字(≥ 4.5),深色主色上用同色相的深墨字(≥ 7)。
+/// - 主色对强调容器 ≥ 4.5(容器是浅色里最亮的那一档,主色落在上面也得
+///   读得清);容器因此比 0.918 的气泡再亮一档(0.943),主色暗一两档时
+///   两者都有余量。
 /// - 中性色:雾蓝那条中性色阶原样转到 [tintHue],彩度乘 [tintChroma]
 ///   (见 `NeutralTones`)。明度不动,所以各级文字的对比度不随配色变。
 /// - [haze]:页面左下角那团光,配主色的邻近色,给玻璃一点可透的颜色。
@@ -70,7 +73,9 @@ class AppAccent {
         'daiqing' => appL10n.phoneAccentDaiqing,
         'dusk' => appL10n.phoneAccentDusk,
         'turquoise' => appL10n.phoneAccentTurquoise,
+        'green' => appL10n.phoneAccentGreen,
         'amber' => appL10n.phoneAccentAmber,
+        'orange' => appL10n.phoneAccentOrange,
         'graphite' => appL10n.phoneAccentGraphite,
         _ => appL10n.phoneAccentCustom,
       };
@@ -124,7 +129,7 @@ class AppAccent {
     id: 'mist',
     seed: Color(0xFF4B67B4),
     pressed: Color(0xFF3D569D),
-    container: Color(0xFFDEE8FF),
+    container: Color(0xFFE4ECFF),
     onContainer: Color(0xFF213262),
     bubble: Color(0xFFD9E4FD),
     glow: Color(0xFFABC3FC),
@@ -147,7 +152,7 @@ class AppAccent {
     id: 'daiqing',
     seed: Color(0xFF236185),
     pressed: Color(0xFF145071),
-    container: Color(0xFFDBEAF5),
+    container: Color(0xFFE0EFFA),
     onContainer: Color(0xFF123950),
     bubble: Color(0xFFD6E7F3),
     glow: Color(0xFFA2CAE5),
@@ -169,7 +174,7 @@ class AppAccent {
     id: 'dusk',
     seed: Color(0xFF726291),
     pressed: Color(0xFF61517D),
-    container: Color(0xFFEAE5F4),
+    container: Color(0xFFEEE9F8),
     onContainer: Color(0xFF392F4C),
     bubble: Color(0xFFE6E1F1),
     glow: Color(0xFFC8BDE1),
@@ -190,9 +195,9 @@ class AppAccent {
   /// 光晕配天青。
   static const turquoise = AppAccent(
     id: 'turquoise',
-    seed: Color(0xFF34766F),
+    seed: Color(0xFF33756E),
     pressed: Color(0xFF296760),
-    container: Color(0xFFDBECE9),
+    container: Color(0xFFDFF0ED),
     onContainer: Color(0xFF123D39),
     bubble: Color(0xFFD6E8E6),
     glow: Color(0xFFA3CEC8),
@@ -209,13 +214,36 @@ class AppAccent {
     hazeDark: Color(0xFF34525E),
   );
 
-  /// 琥珀:克制的金棕(70°,彩度 0.082,L 0.54)。页面转成米白纸、深色转成
+  /// 蕨绿:清亮的草绿(148°,彩度 0.11),比松石暖、比琥珀冷,一眼分得开。
+  /// 中性色只带七成绿,页面不会发黄;光晕配薄荷青。
+  static const green = AppAccent(
+    id: 'green',
+    seed: Color(0xFF347841),
+    pressed: Color(0xFF256633),
+    container: Color(0xFFE0F2E2),
+    onContainer: Color(0xFF13401D),
+    bubble: Color(0xFFD6EAD8),
+    glow: Color(0xFFA3D2A9),
+    seedDark: Color(0xFF8EC194),
+    pressedDark: Color(0xFF7CAE82),
+    onSeedDark: Color(0xFF0E2311),
+    containerDark: Color(0xFF28452C),
+    onContainerDark: Color(0xFFD6E6D7),
+    bubbleDark: Color(0xFF263628),
+    glowDark: Color(0xFF48764F),
+    tintHue: 148,
+    tintChroma: 0.7,
+    haze: Color(0xFFB2DBD3),
+    hazeDark: Color(0xFF2B564F),
+  );
+
+  /// 琥珀:克制的金棕(70°,彩度 0.082,L 0.53)。页面转成米白纸、深色转成
   /// 暖炭,彩度只留七成半;光晕配杏粉。
   static const amber = AppAccent(
     id: 'amber',
-    seed: Color(0xFF8D6636),
+    seed: Color(0xFF896333),
     pressed: Color(0xFF7A5528),
-    container: Color(0xFFF2E6D9),
+    container: Color(0xFFF6EADD),
     onContainer: Color(0xFF483011),
     bubble: Color(0xFFEEE2D3),
     glow: Color(0xFFDCBE9D),
@@ -232,13 +260,36 @@ class AppAccent {
     hazeDark: Color(0xFF64443D),
   );
 
+  /// 橘橙:暖而饱和的橙(45°,彩度顶到 0.13),与金棕的琥珀拉开:更像熟
+  /// 透的橘子,不是蜂蜜。深色里偏杏;光晕配暖粉。
+  static const orange = AppAccent(
+    id: 'orange',
+    seed: Color(0xFFA74F21),
+    pressed: Color(0xFF913F12),
+    container: Color(0xFFFFE6DC),
+    onContainer: Color(0xFF5A2203),
+    bubble: Color(0xFFFBDDD0),
+    glow: Color(0xFFF5B294),
+    seedDark: Color(0xFFE79E7D),
+    pressedDark: Color(0xFFD38C6B),
+    onSeedDark: Color(0xFF301407),
+    containerDark: Color(0xFF5A311E),
+    onContainerDark: Color(0xFFF4DBD0),
+    bubbleDark: Color(0xFF422B21),
+    glowDark: Color(0xFF955639),
+    tintHue: 45,
+    tintChroma: 0.8,
+    haze: Color(0xFFEDC7C1),
+    hazeDark: Color(0xFF66433E),
+  );
+
   /// 石墨:中性灰。主色在浅色里近黑(L 0.30)、深色里近白(L 0.93),
   /// 中性色只留一丝冷调。像系统设置那样的黑白。
   static const graphite = AppAccent(
     id: 'graphite',
     seed: Color(0xFF2C2E32),
     pressed: Color(0xFF1D1F23),
-    container: Color(0xFFE3E6EC),
+    container: Color(0xFFE9ECF2),
     onContainer: Color(0xFF2C2E32),
     bubble: Color(0xFFE0E3E8),
     glow: Color(0xFFBBBEC3),
@@ -255,8 +306,8 @@ class AppAccent {
     hazeDark: Color(0xFF4A4D52),
   );
 
-  /// 设置页里的顺序。
-  static const presets = [mist, daiqing, dusk, turquoise, amber, graphite];
+  /// 设置页里的顺序(冷 → 暖,石墨收尾)。
+  static const presets = [mist, daiqing, dusk, turquoise, green, amber, orange, graphite];
 
   static const customId = 'custom';
   static const wallpaperId = 'wallpaper';
@@ -282,7 +333,8 @@ class AppAccent {
 
   /// 由任意一个颜色推出整套配色:取它的色相、彩度(封顶 [maxChroma])和
   /// 明度(限在 0.30–0.60,深色再提 [darkLift]),按上面那张表推出各个
-  /// 角色;浅色、深色主色各过一次 [guard],离原色最近地调到达标。
+  /// 角色;浅色、深色主色各过一次 [guard](底面、主色上的文字、强调容器
+  /// 三关),离原色最近地调到达标。
   ///
   /// 中性色转到同一色相,彩度按强调彩度折算(近灰的颜色得到近灰的页面)。
   factory AppAccent.derive(Color pick, {String id = customId, String? label}) {
@@ -305,18 +357,22 @@ class AppAccent {
     Color tone(double l, double ratio) => Oklch(l, c * ratio, h).toColor();
 
     final onSeedDark = tone(0.231, 0.39);
+    final container = tone(0.943, 0.26);
+    final containerDark = tone(0.361, 0.51);
     final lightL = o.l.clamp(0.30, 0.60);
     final seed = guard(
       Oklch(lightL, c, h),
       brightness: Brightness.light,
       surface: neutrals.mistHighest,
       onAccent: const Color(0xFFFFFFFF),
+      container: container,
     );
     final seedDark = guard(
       Oklch(math.min(0.93, lightL + darkLift), c * 0.76, h),
       brightness: Brightness.dark,
       surface: neutrals.nightHighest,
       onAccent: onSeedDark,
+      container: containerDark,
     );
     final sl = Oklch.fromColor(seed).l;
     final sdl = Oklch.fromColor(seedDark).l;
@@ -325,14 +381,14 @@ class AppAccent {
       label: label,
       seed: seed,
       pressed: tone(sl - 0.06, 0.95),
-      container: tone(0.93, 0.26),
+      container: container,
       onContainer: tone(0.33, 0.70),
       bubble: tone(0.918, 0.29),
       glow: tone(0.819, 0.68),
       seedDark: seedDark,
       pressedDark: tone(sdl - 0.06, 0.76),
       onSeedDark: onSeedDark,
-      containerDark: tone(0.361, 0.51),
+      containerDark: containerDark,
       onContainerDark: tone(0.909, 0.24),
       bubbleDark: tone(0.314, 0.29),
       glowDark: tone(0.52, 0.72),
@@ -349,15 +405,28 @@ class AppAccent {
   /// 强调色上文字的最低对比度(WCAG 1.4.3 正文)。
   static const minText = 4.5;
 
+  /// 主色落在强调容器上的最低对比度(容器上的链接、图标、选中文字)。
+  static const minOnContainer = 4.5;
+
   /// 对比度守卫:色相、彩度不动,只沿明度移动 [start],直到
   ///
-  /// - 强调色对 [surface] ≥ [minOnSurface](3:1),且
-  /// - [onAccent] 对强调色 ≥ [minText](4.5:1)。
+  /// - 强调色对 [surface] ≥ [minOnSurface](3:1),
+  /// - [onAccent] 对强调色 ≥ [minText](4.5:1),且
+  /// - 强调色对 [container] ≥ [minOnContainer](4.5:1;没给就不查)。
   ///
   /// 浅色往暗处走(白字在上),深色往亮处走(深墨字在上);已经达标就原样
   /// 返回。二分 24 步,停在离起点最近的达标明度上。
-  static Color guard(Oklch start, {required Brightness brightness, required Color surface, required Color onAccent}) {
-    bool ok(Color c) => contrastRatio(c, surface) >= minOnSurface && contrastRatio(onAccent, c) >= minText;
+  static Color guard(
+    Oklch start, {
+    required Brightness brightness,
+    required Color surface,
+    required Color onAccent,
+    Color? container,
+  }) {
+    bool ok(Color c) =>
+        contrastRatio(c, surface) >= minOnSurface &&
+        contrastRatio(onAccent, c) >= minText &&
+        (container == null || contrastRatio(c, container) >= minOnContainer);
     final first = start.toColor();
     if (ok(first)) return first;
     final dark = brightness == Brightness.dark;

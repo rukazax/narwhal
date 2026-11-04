@@ -13,7 +13,6 @@
   "mediaOpenElsewhere": "Открыть в другом приложении",
   "mediaShowInFiles": "Показать в файлах",
   "mediaGenerating": "Создание",
-  "mediaGeneratingProgress": "Создание · {progress}",
   "mediaCancelled": "Отменено",
   "mediaNotGenerated": "Не создано",
   "mediaPartial": "{done} из {total}",

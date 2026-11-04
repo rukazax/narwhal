@@ -96,6 +96,9 @@ void main() {
     expect(find.byKey(const ValueKey('remote-direct')), findsNothing);
     expect(SettingsIndex.spot('remote-direct'), isNull);
     expect(SettingsIndex.spot('remote-auto-connect'), isNotNull);
+    // The host-QR row sits above this section; scroll it into the built range.
+    await tester.drag(find.byType(CustomScrollView), const Offset(0, -900));
+    await tester.pump(const Duration(milliseconds: 300));
     expect(find.byKey(const ValueKey('remote-auto-connect')), findsOneWidget);
   });
 

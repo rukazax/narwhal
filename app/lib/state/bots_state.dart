@@ -7,15 +7,18 @@ import 'dart:convert';
 
 import 'package:dsh_client/dsh_client.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart' show AppLifecycleListener;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../l10n/l10n.dart';
 import '../ui/chat/secret_mask.dart';
+import 'app_foreground.dart' show appInForeground;
 import 'app_info.dart';
 import 'connection_state.dart';
 import 'hosts_state.dart';
 import 'notify_state.dart';
+import 'poll_backoff.dart';
 
 // ── The plugin on the active host ────────────────────────────────────────────
 
@@ -936,6 +939,14 @@ class RoomChatController extends Notifier<RoomChatState> {
   /// While a round runs and the feed is away, the page is read this often.
   static const pollEvery = Duration(seconds: 3);
 
+  /// The poll slows down to this while the page shows nothing new: a round
+  /// that keeps running with no line to add is four fifths of the requests the
+  /// fixed 3 s poll made, and every one of them is a round trip to the engine.
+  static const pollSlowest = Duration(seconds: 15);
+
+  /// The delays before the poll's next read (see [PollBackoff]).
+  late final _pollBackoff = PollBackoff(base: pollEvery, cap: pollSlowest);
+
   DsBotApi? get _api => ref.read(dsBotProvider.notifier).api;
 
   @override
@@ -948,8 +959,20 @@ class RoomChatController extends Notifier<RoomChatState> {
     final sub = hub.events.listen((event) {
       if (_current(generation)) _onEvent(event);
     });
+    // Coming back to the app: read at once instead of waiting out a delay that
+    // was set while nothing was on screen.
+    final lifecycle = AppLifecycleListener(
+      onResume: () {
+        if (!_current(generation) || !state.running) return;
+        _pollBackoff.reset();
+        _poll?.cancel();
+        _poll = null;
+        unawaited(refresh());
+      },
+    );
     ref.onDispose(() {
       _generation++;
+      lifecycle.dispose();
       _poll?.cancel();
       _poll = null;
       unawaited(sub.cancel());
@@ -992,6 +1015,7 @@ class RoomChatController extends Notifier<RoomChatState> {
       final page = await api.roomChat(roomId);
       if (!_current(generation) || load != _load) return;
       final merged = mergeNewestPage(state.items, page.items);
+      final changed = merged.items.length != state.items.length || page.running != state.running;
       state = state.copyWith(
         items: merged.items,
         cursor: merged.joined && state.items.isNotEmpty ? null : () => page.cursor,
@@ -1001,10 +1025,11 @@ class RoomChatController extends Notifier<RoomChatState> {
         error: () => null,
         pending: settlePending(state.pending, page.items),
       );
-      _armPoll(page.running);
+      _armPoll(page.running, settle: !changed);
     } catch (error) {
       if (!_current(generation) || load != _load) return;
       state = state.copyWith(loading: false, error: () => describeDsBotError(error));
+      // A failed read is not a quiet round: look again at the base delay.
       _armPoll(state.running);
     } finally {
       if (_busyGeneration == generation) {
@@ -1017,13 +1042,26 @@ class RoomChatController extends Notifier<RoomChatState> {
     }
   }
 
-  void _armPoll(bool running) {
+  void _armPoll(bool running, {bool settle = false}) {
     _poll?.cancel();
     _poll = null;
-    if (!running) return;
+    if (!running) {
+      _pollBackoff.reset();
+      return;
+    }
+    // A quiet round — a read that brought no line and did not end — is what the
+    // backoff is for. Anything else (a new line, a failed read, the round
+    // starting or ending) starts the schedule over.
+    if (!settle) _pollBackoff.reset();
     final generation = _generation;
-    _poll = Timer(pollEvery, () {
-      if (_current(generation) && !ref.read(dsBotProvider).feedConnected) unawaited(refresh());
+    _poll = Timer(_pollBackoff.take(), () {
+      if (!_current(generation) || !state.running) return;
+      if (!appInForeground()) {
+        // Backgrounded: read nothing, keep the fallback armed (and slow).
+        _armPoll(state.running, settle: true);
+        return;
+      }
+      if (!ref.read(dsBotProvider).feedConnected) unawaited(refresh());
     });
   }
 

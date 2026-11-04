@@ -255,7 +255,8 @@ void main() {
       });
 
       testWidgets('every accent', (tester) async {
-        useView(tester, 620, 500);
+        // The sheet grows with the catalog: one 52-high row per accent.
+        useView(tester, 620, 60 + _accents.length * 56);
         await tester.pumpWidget(tileApp(_AccentSheet(brightness), brightness: brightness));
         await decodeImages(tester);
         await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/tiles_accents_$mode.png'));

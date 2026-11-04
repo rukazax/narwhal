@@ -4,7 +4,7 @@
      (mipmap-*/ic_launcher_ink_foreground.png); the monochrome layer is its white silhouette for themed icons.
      All four 桌面图标 styles are one drawing, so these files differ only in the layer they name. -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@android:color/transparent" />
+    <background android:drawable="@color/narwhal_icon_bg" />
     <foreground android:drawable="@mipmap/ic_launcher_ink_foreground" />
     <monochrome android:drawable="@mipmap/ic_launcher_monochrome" />
 </adaptive-icon>

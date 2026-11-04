@@ -11,9 +11,6 @@ import 'package:flutter/widgets.dart';
 
 /// The larger of the left and right system insets: what content keeps clear
 /// of on each side.
-double sideInsetOf(BuildContext context) => sideInsetFor(MediaQuery.paddingOf(context));
-
-/// [sideInsetOf] for a known [padding].
 double sideInsetFor(EdgeInsets padding) => math.max(padding.left, padding.right);
 
 /// [media] for content [inset] in from both sides: narrower by both insets,

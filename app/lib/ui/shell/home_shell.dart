@@ -37,6 +37,7 @@ import '../settings/settings_screen.dart';
 import '../share_code/share_code_host.dart';
 import '../star/star_prompt_host.dart';
 import '../theme/theme.dart';
+import '../update/self_release_host.dart';
 import '../update/update_launch_check.dart';
 import '../wallpaper/wallpaper_backdrop.dart';
 import '../web/local_web_screen.dart';
@@ -323,6 +324,8 @@ class _HomeShellState extends ConsumerState<HomeShell> with TickerProviderStateM
                       const BackgroundNetHost(),
                       // Daily update check + install resume (draws nothing).
                       const UpdateLaunchCheck(),
+                      // The fork's own releases: once a week, at a random moment (draws nothing).
+                      const SelfReleaseHost(),
                       // The voice model chosen during setup: download, resume, ready / failed notices (draws nothing).
                       const VoiceModelHost(),
                       // 公测版: once in a while, an invitation to star the project (draws nothing).

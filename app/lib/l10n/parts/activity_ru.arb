@@ -332,8 +332,6 @@
   "activityUsageContextFull": "Контекст почти заполнен. Отправьте /compact, чтобы сжать его",
   "activitySpanZero": "0 с",
   "activitySpanTiny": "<0,1 с",
-  "activityTokensTenThousands": "{value}K",
-  "activityTokensHundredMillions": "{value}M",
   "activityUsageContextSemantics": "Использовано контекста: {percent}, открыть использование",
   "activityUsageSystemTokens": "Система {tokens}",
   "activityUsageToolTokens": "Инструменты {tokens}",
