@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Русский перевод; оригинал: values/entry_strings.xml -->
+<!-- Launcher shortcuts and the Quick Settings tile (shortcuts/, tile/). Own file so other
+     modules' string edits never collide with it. English here, Chinese in values-zh/. -->
+<resources>
+    <string name="shortcut_new_chat">Новый чат</string>
+    <string name="shortcut_voice_input">Голосовой ввод</string>
+    <string name="tile_new_chat">Новый чат</string>
+</resources>

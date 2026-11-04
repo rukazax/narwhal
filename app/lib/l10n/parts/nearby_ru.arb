@@ -1,0 +1,9 @@
+{
+  "nearbyThisChat": "Этот чат",
+  "nearbyPermissionTitle": "Разрешения для этого чата",
+  "nearbyNewChatDefault": "Новые чаты: {name}",
+  "nearbySetAsDefault": "Использовать для новых чатов",
+  "nearbyManageModels": "Управление моделями",
+  "nearbyPermissionPill": "Разрешения для этого чата: {name}",
+  "nearbyChange": "Изменить"
+}

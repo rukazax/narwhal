@@ -1,0 +1,18 @@
+{
+  "a11yRestoreTitle": "Автоматически восстанавливать спец. возможности",
+  "searchKwA11yRestore": "спец. возможности,восстановление,переподключение,автовосстановление,разрешение,ADB,Shizuku,Sui,root",
+  "a11yRestoreNeedsGrant": "Требуется авторизация",
+  "a11yRestoreNotice": "После авторизации спец. возможности будут включены снова, если их отключат в настройках системы. Чтобы прекратить управление телефоном, отключите их в DSH Go.",
+  "a11yRestoreForceStop": "После принудительной остановки откройте DSH Go, чтобы восстановить службу.",
+  "a11yRestoreGrant": "Авторизовать и включить",
+  "a11yRestoreGrantShizuku": "Выдать через Shizuku",
+  "a11yRestoreGrantShizukuPermission": "Авторизуйте Shizuku, затем выдайте",
+  "a11yRestoreGrantAdb": "Выдать через прямой ADB",
+  "a11yRestoreRootNote": "Использует авторизованное root-подключение только для этого разрешения.",
+  "a11yRestoreSetup": "Настройте Shizuku или отладку по Wi-Fi",
+  "a11yRestoreWaiting": "Разрешите запрос в Shizuku",
+  "a11yRestoreWaitingSui": "Разрешите запрос в Sui",
+  "a11yRestoreComputer": "Или подключитесь к компьютеру и выполните один раз:",
+  "a11yRestoreCopy": "Копировать команду",
+  "a11yRestoreCopied": "Команда скопирована"
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Русский перевод; оригинал: values/phone_prompt_strings.xml -->
+<resources>
+    <string name="phone_prompt_approval_title">Narwhal · Подтверждение</string>
+    <string name="phone_prompt_review_title">Narwhal · Требуется проверка</string>
+    <string name="phone_prompt_native_title">Narwhal · Управление телефоном</string>
+    <string name="phone_prompt_handoff_title">Narwhal · Ваш ход</string>
+    <string name="phone_prompt_allow_once">Разрешить один раз</string>
+    <string name="phone_prompt_allow_app">Разрешить это приложение для задачи</string>
+    <string name="phone_prompt_allow_task">Разрешить для этой задачи</string>
+    <string name="phone_prompt_reject">Отклонить</string>
+    <string name="phone_prompt_open">Открыть в приложении</string>
+    <string name="phone_prompt_later">Позже</string>
+    <string name="phone_prompt_stop">Остановить задачу</string>
+    <string name="phone_prompt_continue">Продолжить</string>
+    <string name="phone_prompt_remaining">Осталось %1$d с · без ответа действие не будет разрешено</string>
+    <string name="phone_prompt_result_channel">Результаты управления телефоном</string>
+    <string name="phone_prompt_result_title">Narwhal · Задача выполнена</string>
+    <string name="phone_prompt_result_text">Посмотреть результаты</string>
+</resources>

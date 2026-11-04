@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Русский перевод; оригинал: values/phone_a11y_strings.xml -->
+<!-- Strings of the phone-control accessibility service (phone/a11y). Own file so other
+     modules' string edits never collide with it. English here, Chinese in values-zh/. -->
+<resources>
+    <string name="phone_a11y_label">Управление телефоном DSH</string>
+    <string name="phone_a11y_description">Работает, только когда вы просите DSH что-то сделать на телефоне: служба читает текст на текущем экране (и при необходимости делает снимок экрана), затем нажимает, вводит текст и смахивает по вашей просьбе. Содержимое экрана отправляется выбранной в DSH модели DeepSeek. Пока служба работает, панель вверху экрана позволяет в любой момент приостановить, остановить или скорректировать действия; перед отправкой, оплатой или удалением DSH сначала спросит вас. DSH никогда не вводит пароли и коды подтверждения, не оплачивает за вас и не меняет системные настройки и разрешения.</string>
+    <!-- The control: ball, capsule and card (phone/a11y/OverlayBall.kt, OverlayCapsule.kt); docs/design/phone-overlay.md. -->
+    <string name="overlay_ball_running">DSH использует ваш телефон. Нажмите, чтобы развернуть, удерживайте, чтобы остановить</string>
+    <string name="overlay_ball_paused">Пауза. Нажмите, чтобы развернуть, удерживайте, чтобы остановить</string>
+    <string name="overlay_ball_waiting">DSH ждёт вас. Нажмите, чтобы развернуть</string>
+    <string name="overlay_ball_stopped">Остановлено</string>
+    <string name="overlay_collapse">Скрыть подробности</string>
+    <string name="overlay_expand">Показать подробности</string>
+    <string name="overlay_fold">Свернуть в шарик</string>
+    <string name="overlay_fold_row">Свернуть в шарик</string>
+    <string name="overlay_hold_hint">Удерживайте шарик секунду, чтобы остановить</string>
+    <string name="overlay_stop_description">Остановить действия DSH</string>
+    <string name="overlay_paused_short">Пауза</string>
+    <string name="overlay_waiting">Ждёт вас ниже</string>
+    <string name="overlay_waived">Подтверждение не требуется</string>
+    <string name="overlay_meta_separator">" · "</string>
+    <string name="overlay_unlocks_review">Проверка</string>
+    <string name="overlay_unlock_system">системные настройки</string>
+    <string name="overlay_unlock_secrets">пароли и коды</string>
+    <string name="overlay_unlock_own_app">сам Narwhal</string>
+    <string name="overlay_list_separator">", "</string>
+    <!-- The ball's screen-reader action that stops the task. -->
+    <item type="id" name="overlay_action_stop" />
+</resources>

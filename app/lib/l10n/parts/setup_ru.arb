@@ -1,0 +1,13 @@
+{
+  "setupAppearanceTitle": "Выберите оформление",
+  "setupAppearanceMessage": "Это можно изменить в любой момент в Настройках",
+  "setupLightMode": "Облегчённый режим",
+  "setupCapsulePreparing": "Подготовка среды",
+  "setupCapsuleProgress": "Среда {percent}%",
+  "setupCapsuleProgressSemantics": "Подготовка среды, готово {percent}%",
+  "setupCapsuleReady": "Среда готова",
+  "setupCapsuleFailed": "Установка не удалась",
+  "setupWaitingBody": "Продолжится само, когда будет готово",
+  "setupNotifyWhenDone": "Мы уведомим вас, когда всё будет готово",
+  "setupAwaitSignIn": "Вход в DeepSeek откроется, когда всё будет готово"
+}

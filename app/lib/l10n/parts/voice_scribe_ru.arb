@@ -1,0 +1,18 @@
+{
+  "voiceScribeReadFailed": "Не удалось прочитать настройки голоса. Повторите.",
+  "voiceScribeSavedReadFailed": "Сохранено. Обновите, чтобы увидеть актуальные настройки.",
+  "voiceScribeSaveUnconfirmed": "Не удалось подтвердить сохранение. Обновите или повторите.",
+  "voiceScribeTitle": "Настройки голоса",
+  "voiceScribePolishPrompt": "Промпт обработки",
+  "voiceScribeLanguage": "Язык распознавания",
+  "voiceScribeRefresh": "Обновить",
+  "voiceScribeHostChanged": "Подключение изменилось. Откройте заново, чтобы продолжить.",
+  "voiceScribeUnsupported": "Настройки голоса недоступны при этом подключении.",
+  "voiceScribePluginDefault": "По умолчанию",
+  "voiceScribeBuiltInPrompt": "Встроенный промпт",
+  "voiceScribeProviders": "Службы распознавания",
+  "voiceScribeKeySet": "Ключ задан",
+  "voiceScribeNoKey": "Нет ключа",
+  "voiceScribeHotwords": "Горячие слова",
+  "voiceScribeHotwordRules": "{count, plural, one{{count} правило} few{{count} правила} many{{count} правил} other{{count} правила}}"
+}

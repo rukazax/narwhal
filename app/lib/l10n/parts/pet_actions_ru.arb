@@ -1,0 +1,11 @@
+{
+  "petActionSending": "Отправка…",
+  "petActionTargetChanged": "Хост изменён. Откройте быстрый вопрос снова; текст сохранён.",
+  "petActionSendFailed": "Не удалось отправить. Текст сохранён; попробуйте снова.",
+  "petActionBusy": "Этот чат занят. Выберите «Новый чат».",
+  "petActionVoiceMissing": "Сначала скачайте офлайн-модель голоса в приложении.",
+  "petActionVoiceTitle": "Голос для быстрого вопроса",
+  "petActionVoiceReturn": "Назад к питомцу",
+  "petActionVoiceStop": "Завершить запись",
+  "petActionVoiceStart": "Записать"
+}

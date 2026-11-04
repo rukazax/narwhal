@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Русский перевод; оригинал: values/native_media_strings.xml -->
+<!-- Plugin capabilities (nativemedia/): the listening indicator and the caption's close key. -->
+<resources>
+    <string name="native_media_listening">%1$s слушает</string>
+    <string name="native_media_stop">Остановить</string>
+    <string name="native_media_close_caption">Закрыть субтитры</string>
+</resources>

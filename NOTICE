@@ -1,0 +1,55 @@
+# NOTICE
+
+## This repository is a modified fork
+
+This repository is a modified version of **DSH Go**
+(<https://github.com/ccch1mneyyy/dsh-go>), taken from commit
+`28d43f8950138b716b32f291549ddcc6aedca5df`
+("Merge pull request #446 from ccch1mneyyy/fix/native-compact-timeout").
+
+DSH Go is Copyright (C) 2026 ccch1mneyyy and the DSH Go contributors, and is
+licensed under the **GNU Affero General Public License, version 3.0** (see
+`LICENSE`). The upstream copyright and licence notices are kept in this tree;
+this file records what the fork changed, as AGPL-3.0 §5 asks.
+
+Modifications in this fork, as of **2026-11-04**:
+
+- **Russian locale.** A third interface language (`ru`) throughout the Flutter
+  UI and the Android strings, next to upstream's Chinese and English.
+- **Own app identity ("Narwhal").** The app name, launcher icon layers and brand
+  glyph are maintained by this fork instead of upstream's name and art. The
+  brand assets are not part of upstream's restricted artwork; see `ASSETS.md`
+  for what is in the tree and what is not.
+- **Upstream update checker.** A check against the upstream project's releases,
+  with its own settings row, so a fork build can tell the person that upstream
+  has shipped a new version. It is separate from the in-app self-update path.
+- **Adaptive layout fixes.** Width/height-class fixes for small phones, landscape
+  and wide windows, with responsive sweep tests.
+- **Icons.** A regenerated launcher/foreground/monochrome icon set and in-app
+  icon font, plus the shell's brand glyph generated from `app/assets/brand/`.
+- **Removed upstream mascot and brand art.** Deepy 小鲸鱼, 鲸娘, the star
+  prompt's sticker, the whale-tail activity sprites, `go.dshtui.com`'s home
+  page and the README images are downstream of upstream's reserved rights and
+  are **not** in this fork; the features that used them degrade gracefully (the
+  pet picker shows only 不显示, the activity strip and the chat empty state draw
+  no whale). `ASSETS.md` lists what was removed and why.
+- **Removed the upstream showcase site and images** (`site/home/`,
+  `docs/assets/`, the share page's upstream brand favicon) from the repository;
+  the share page now uses a neutral share glyph drawn for this fork
+  (`site/share/favicon.svg`, `site/share/apple-touch-icon.png`).
+
+Not included, and not relicensed by this fork: upstream's mascots and brand art
+(`ASSETS.md`), the third-party components listed in `THIRD_PARTY_NOTICES.md`,
+and the `sdk/` and `examples/` trees, which stay MIT.
+
+## Warranty
+
+This program is distributed in the hope that it will be useful, but **WITHOUT
+ANY WARRANTY**; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+## Source
+
+The complete corresponding source of this modified version is this repository.
+Upstream's source is at <https://github.com/ccch1mneyyy/dsh-go>.

@@ -1,0 +1,115 @@
+{
+  "updateCheck": "Проверить обновления",
+  "updateAutoCheck": "Проверять автоматически",
+  "updateAutoCheckDaily": "Раз в день",
+  "updateTileDownloading": "Скачивание",
+  "updateTileDownloadingPercent": "Скачивание {percent}%",
+  "updateTileVerifying": "Проверка",
+  "updateTileReady": "Готово к установке",
+  "updateTileInstalling": "Установка",
+  "updateTileSkipped": "Пропущено: {version}",
+  "updateTileNewVersion": "Новое: {version}",
+  "updateTileUpToDate": "Обновлено",
+  "updateTileUnavailable": "Сейчас не удаётся проверить",
+  "updateUpToDate": "У вас последняя версия",
+  "updateCheckUnavailable": "Сейчас не удаётся проверить обновления. Повторите позже.",
+  "updateDownloadInterrupted": "Скачивание прервано",
+  "updateDownloadInterruptedMessage": "Сеть отключена или слишком медленная. Повторите, чтобы продолжить.",
+  "updateDownloadUnavailable": "Ссылка для скачивания недоступна",
+  "updateDownloadUnavailableMessage": "Повторите позже или скачайте со страницы релиза.",
+  "updateChecksumFailed": "Проверка пакета не пройдена",
+  "updateChecksumFailedMessage": "Файл не совпадает с релизом и удалён. Повторите.",
+  "updateChecksumMissing": "Нет данных для проверки",
+  "updateChecksumMissingMessage": "Для безопасности скачайте и установите со страницы релиза.",
+  "updateStorageWriteFailed": "Не удалось сохранить пакет",
+  "updateStorageWriteFailedMessage": "Возможно, хранилище заполнено. Освободите место и повторите.",
+  "updateFreeSpaceRetry": "Освободите место и повторите.",
+  "updateSpaceRequired": "Нужно около {size} свободного места. Освободите место и повторите.",
+  "updateSettingsOpenFailed": "Не удалось открыть системные настройки",
+  "updateSettingsOpenFailedMessage": "Разрешите «Установка неизвестных приложений» в разделе «Настройки» → «Приложения» → DSH Go, затем вернитесь к установке.",
+  "updateInstallCancelled": "Установка отменена",
+  "updateInstallCancelledMessage": "Пакет сохранён. Установить можно в любой момент.",
+  "updateInstallUnconfirmed": "Результат установки не подтверждён",
+  "updateInstallUnconfirmedMessage": "Пакет сохранён. Проверьте системные запросы, затем повторите или откройте пакет системным установщиком.",
+  "updateSignatureMismatch": "Подписи приложений не совпадают",
+  "updateSignatureMismatchMessage": "У DSH Go на телефоне другая подпись (обычно это тестовая сборка). Удалите его перед установкой этой версии. При удалении ваши чаты, окружение Linux и настройки будут стёрты.",
+  "updateWrongPackage": "Это не пакет DSH",
+  "updateWrongPackageMessage": "Скачался не тот файл, он удалён. Повторите позже.",
+  "updateDowngradeBlocked": "Нельзя установить старую версию",
+  "updateDowngradeBlockedMessage": "DSH на телефоне новее этого пакета.",
+  "updateIncompatible": "Несовместимо с этим телефоном",
+  "updateIncompatibleMessage": "Требуемая в пакете версия Android или архитектура процессора не совпадает с вашим телефоном.",
+  "updatePackageCorrupt": "Пакет повреждён",
+  "updatePackageCorruptMessage": "Он удалён. Скачайте заново.",
+  "updateInstallBlocked": "Установка заблокирована",
+  "updateInstallBlockedMessage": "Разрешите установку в системном запросе или скачайте со страницы релиза.",
+  "updateInstallIncomplete": "Установка не завершена",
+  "updateInstallIncompleteMessage": "Повторите или скачайте со страницы релиза.",
+  "updateBrowserOpenFailed": "Не удалось открыть браузер. Откройте {host}{path} вручную.",
+  "updateUpToDateVersion": "У вас последняя версия: {version}",
+  "updateCurrentVersion": "Текущая {version}",
+  "updateNewVersionFound": "Доступна новая версия",
+  "updateReleaseNotes": "Что нового",
+  "updateNoReleaseNotes": "Для этой версии нет заметок о выпуске.",
+  "updateInstallKeepsData": "DSH Go закроется для установки. Чаты и настройки сохранятся.",
+  "updateNoCompatiblePackage": "Нет пакета для этого телефона",
+  "updateDownloading": "Скачивание",
+  "updateDownloadSource": "Через {source}",
+  "updateDownloadInBackgroundNote": "Скачивание продолжится после закрытия этого окна",
+  "updateVerifyingPackage": "Проверка пакета…",
+  "updateVerifyingPackageNote": "Проверяем, что файл совпадает с релизом",
+  "updateInstalling": "Установка…",
+  "updateConfirmInstallNote": "Подтвердите установку в системном запросе",
+  "updatePackageDownloaded": "Пакет скачан",
+  "updateReadyToInstall": "Проверено и готово к установке.",
+  "updateAllowInstall": "Разрешить DSH Go установку приложений",
+  "updateAllowInstallMessage": "Включите «Установка неизвестных приложений» в системных настройках. Установка продолжится, когда вы вернётесь.",
+  "updateOpenReleasePage": "Открыть страницу релиза",
+  "updateUpdateNow": "Обновить сейчас",
+  "updateSkipVersion": "Пропустить эту версию",
+  "updateInstallWithSystem": "Установить системным установщиком",
+  "updateSystemInstallerFailed": "Не удалось открыть системный установщик",
+  "updateStarProject": "Поставить звезду",
+  "updateCancelDownload": "Отменить скачивание",
+  "updateDownloadInBackground": "Скачивать в фоне",
+  "updateVerifying": "Проверка…",
+  "updateInstallingBusy": "Установка…",
+  "updateOpenPermissionSettings": "Включить",
+  "updateNoAbiPackage": "Для этого релиза пока нет пакета {abi}. Проверьте страницу релиза.",
+  "updateNoPackage": "Для этого релиза пока нет пакета. Проверьте страницу релиза.",
+  "updateDownloadingPercent": "Скачивание {percent}%",
+  "upstreamUpdatesTitle": "Обновления dsh-go",
+  "upstreamUpdatesAvailable": "В оригинале доступна {version}",
+  "@upstreamUpdatesAvailable": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "upstreamUpdatesCurrent": "Сборка на основе {base} · в оригинале {latest}",
+  "@upstreamUpdatesCurrent": {
+    "placeholders": {
+      "base": {
+        "type": "String"
+      },
+      "latest": {
+        "type": "String"
+      }
+    }
+  },
+  "upstreamUpdatesChecking": "Проверка…",
+  "upstreamUpdatesFailed": "Не удалось проверить",
+  "upstreamUpdatesDialogTitle": "Оригинал dsh-go {version}",
+  "@upstreamUpdatesDialogTitle": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "upstreamUpdatesDialogBody": "В оригинальном приложении вышла новая версия. Установить его APK поверх этой сборки нельзя: у них разные подписи. Откройте страницу релиза, чтобы посмотреть изменения.",
+  "upstreamUpdatesOpenRelease": "Открыть страницу релиза",
+  "upstreamUpdatesClose": "Закрыть",
+  "upstreamUpdatesNoAnswer": "Не удалось проверить обновления dsh-go. Попробуйте позже."
+}

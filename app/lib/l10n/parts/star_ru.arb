@@ -1,0 +1,9 @@
+{
+  "starPromptTitle": "{hours, plural, =0{Я составляю вам компанию в DSH Go уже полчаса~} one{Я составляю вам компанию в DSH Go уже {hours} час~} few{Я составляю вам компанию в DSH Go уже {hours} часа~} many{Я составляю вам компанию в DSH Go уже {hours} часов~} other{Я составляю вам компанию в DSH Go уже {hours} часа~}}",
+  "starPromptBody": "DSH Go бесплатен и открыт. Если он сделал ваш телефон чуть приятнее, поставьте ему звезду — для этого маленького кита это очень много значит!",
+  "starPromptPlea": "Ну пожалуйста~ Это правда важно!!",
+  "starPromptStar": "Поставить звезду на GitHub",
+  "starPromptDone": "Звезда уже стоит",
+  "starPromptLater": "Может, позже",
+  "starSettingsTitle": "Поставить DSH Go звезду на GitHub"
+}

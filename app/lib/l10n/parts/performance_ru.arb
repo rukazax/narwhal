@@ -1,0 +1,22 @@
+{
+  "performanceTitle": "Производительность",
+  "performanceAuto": "Авто",
+  "performanceFull": "Полная",
+  "performanceLight": "Лёгкая",
+  "performanceAutoHint": "Подбирать эффекты под это устройство",
+  "performanceFullHint": "Оставить размытие и анимацию",
+  "performanceLightHint": "Меньше постоянных эффектов и нагрузки",
+  "performanceChoiceHint": "Выбор питомца и движка важнее",
+  "performanceCooling": "Снижаю эффекты, пока устройство не остынет",
+  "performanceEffects": "Эффекты интерфейса",
+  "performanceBlur": "Стеклянное размытие",
+  "performanceAnimations": "Анимация интерфейса",
+  "performanceSystemMotion": "Также учитывает системную настройку «Убрать анимацию»",
+  "performanceFollowMode": "Следовать режиму производительности",
+  "performanceRemoteHint": "Подключитесь к компьютеру или серверу, чтобы снизить нагрузку на телефон",
+  "performanceRefresh": "Частота обновления",
+  "performanceRefreshMax": "Макс.",
+  "performanceRefreshSystem": "Системная",
+  "performanceRefreshHint": "Авто: максимальная при прокрутке, снижается в покое; Системная: решает система.",
+  "searchKwRefreshRate": "частота обновления высокая частота 120Hz 90Hz плавность"
+}

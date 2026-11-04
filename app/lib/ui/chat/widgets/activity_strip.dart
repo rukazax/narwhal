@@ -1,0 +1,516 @@
+// The live "what is happening now" pill above the composer while a turn runs
+// (layer 1 of the run information): live status, the model's `⏵` narration,
+// rotating copy and easter eggs (see activity_copy.dart), and the turn clock.
+
+import 'dart:async';
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../l10n/l10n.dart';
+import '../../../state/chat_state.dart';
+import '../../../state/run_pulse.dart';
+import '../../pets/pet_perch.dart';
+import '../../theme/theme.dart';
+import '../activity_copy.dart';
+import '../run_info.dart';
+import 'live_clock.dart';
+import 'whale_tail.dart';
+
+/// 生成中,输入条正上方的一颗玻璃胶囊:鲸尾(游速 = 出字速度)+ 此刻在做
+/// 什么 + 一句自述或趣味文案 + 本轮用时,有待办时右端是进度。点一下看本轮
+/// 轨迹;长按几秒内换成这一步的用时和估算速度。
+///
+/// ```
+/// ( 🐋 跑  flutter test test/auth           0:19 │ 进度 3/5 ▰▰▰▱▱ )
+/// ( 🐋 思考中  脑子在冒烟                    0:07 )
+/// ```
+///
+/// 只订阅 [runActivityOf] 的结果(值相等不重建)和 [RunPulse](换档、压缩
+/// 开始结束时才通知);走秒和文案轮换只重建文字那一段。
+class ActivityStripSlot extends ConsumerStatefulWidget {
+  const ActivityStripSlot({super.key, required this.sessionId, this.onTap, this.todoProgress = true});
+
+  final String sessionId;
+  final VoidCallback? onTap;
+
+  /// See [ActivityStrip.todoProgress].
+  final bool todoProgress;
+
+  @override
+  ConsumerState<ActivityStripSlot> createState() => _ActivityStripSlotState();
+}
+
+/// 出现时胶囊从输入条背后升起,收起时沉回去:插槽高度跟着动画走(列表的
+/// 底边距随之变化),胶囊本身始终整颗画出、不裁不淡。露在插槽外的下半截
+/// 被后画的输入条盖住,隔着它的毛玻璃只看得到一团模糊,不会和后面的消息
+/// 文字叠在一起,也没有被裁出来的硬边。
+class _ActivityStripSlotState extends ConsumerState<ActivityStripSlot> with SingleTickerProviderStateMixin {
+  late final AnimationController _rise = AnimationController(vsync: this, duration: AppMotion.standard)
+    ..addStatusListener(_onStatus);
+  // Sinking decelerates too (not the rise played backwards), in step with
+  // the reply actions and new rows that grow while it sinks.
+  late final CurvedAnimation _height = CurvedAnimation(
+    parent: _rise,
+    curve: AppMotion.std,
+    reverseCurve: AppMotion.std.flipped,
+  );
+
+  /// The last activity shown, kept on screen while the strip sinks away.
+  RunActivity? _last;
+  int _lastLevel = 1;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _rise.duration = AppMotion.of(context, AppMotion.standard);
+  }
+
+  @override
+  void dispose() {
+    _height.dispose();
+    _rise.dispose();
+    super.dispose();
+  }
+
+  void _onStatus(AnimationStatus status) {
+    if (status != AnimationStatus.dismissed) return;
+    // May fire inside build (no animations: sinking ends at once).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && _rise.isDismissed) setState(() => _last = null);
+    });
+  }
+
+  /// Starts rising / sinking right away, from build: its clock then counts
+  /// from this frame, like the reply actions and the "发送中" line that
+  /// start in didUpdateWidget, so they all move in step.
+  void _drive(bool visible) {
+    final status = _rise.status;
+    final going = visible
+        ? status != AnimationStatus.forward && status != AnimationStatus.completed
+        : status != AnimationStatus.reverse && status != AnimationStatus.dismissed;
+    if (!going) return;
+    visible ? _rise.forward() : _rise.reverse();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final sessionId = widget.sessionId;
+    final activity = ref.watch(chatProvider(sessionId).select(runActivityOf));
+    final pulse = ref.watch(runPulseProvider(sessionId));
+    return ListenableBuilder(
+      listenable: pulse,
+      builder: (context, _) {
+        final compacting = pulse.compactingSince;
+        final shown = compacting != null ? compactionActivity(ref.read(chatProvider(sessionId)), compacting) : activity;
+        if (shown != null) {
+          _last = shown;
+          // 等你时最慢的一档(0),不停下。
+          _lastLevel = shown.waiting || shown.kind == ActivityKind.stopping ? 0 : pulse.level;
+        }
+        _drive(shown != null);
+        final strip = _last;
+        if (strip == null) return const SizedBox(width: double.infinity);
+        // The chat page's pet stands on the strip: one mascot a screen, so
+        // the whale tail steps aside while it does.
+        final perches = PetPerchScope.maybeOf(context);
+        return AnimatedBuilder(
+          animation: _height,
+          builder: (context, child) => Align(alignment: Alignment.topCenter, heightFactor: _height.value, child: child),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 6),
+            child: PetPerch(
+              kind: PerchKind.strip,
+              active: shown != null,
+              child: ValueListenableBuilder<PerchKind?>(
+                valueListenable: perches?.occupied ?? _noPet,
+                builder: (context, occupied, _) => ActivityStrip(
+                  activity: strip,
+                  speedLevel: _lastLevel,
+                  tokensPerSecond: () => pulse.tokensPerSecond,
+                  onTap: shown == null ? null : widget.onTap,
+                  todoProgress: widget.todoProgress,
+                  whale: occupied != PerchKind.strip,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// Outside a pet stage nothing ever stands on the strip.
+final _noPet = ValueNotifier<PerchKind?>(null);
+
+class ActivityStrip extends StatefulWidget {
+  const ActivityStrip({
+    super.key,
+    required this.activity,
+    this.speedLevel = 1,
+    this.tokensPerSecond,
+    this.onTap,
+    this.whaleColor,
+    this.todoProgress = true,
+    this.whale = true,
+  });
+
+  final RunActivity activity;
+
+  /// 鲸尾档位:0 等你,1–4 见 [SpeedGauge](见 [WhaleTail])。
+  final int speedLevel;
+
+  /// 长按时读一次当前估算速度。
+  final double Function()? tokensPerSecond;
+  final VoidCallback? onTap;
+
+  /// 鲸尾颜色;缺省是 DeepSeek 蓝(深色模式提亮),等你时是警示色。
+  final Color? whaleColor;
+
+  /// 右端的待办进度;聊天页上方有待办条时关掉,免得说两遍。
+  final bool todoProgress;
+
+  /// 左端的鲸尾。宠物站在胶囊上时收起(位置一起收掉,左右内边距相等)。
+  final bool whale;
+
+  /// 左端鲸尾 + 6 的间距:有尾巴时整行要让出的宽度。
+  static const whaleWidth = 31.0;
+
+  /// 右侧待办进度前的细线与它的两边留白。
+  static const todoSeparator = 20.5;
+
+  /// 长按后统计显示多久。
+  static const statsFor = Duration(seconds: 4);
+
+  @override
+  State<ActivityStrip> createState() => _ActivityStripState();
+}
+
+class _ActivityStripState extends State<ActivityStrip> {
+  Timer? _statsTimer;
+
+  @override
+  void dispose() {
+    _statsTimer?.cancel();
+    super.dispose();
+  }
+
+  void _showStats() {
+    HapticFeedback.selectionClick();
+    _statsTimer?.cancel();
+    _statsTimer = Timer(ActivityStrip.statsFor, () {
+      if (mounted) setState(() => _statsTimer = null);
+    });
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final dsh = DshColors.of(context);
+    final a = widget.activity;
+    final whale = widget.whaleColor ?? (a.waiting ? dsh.warning : whaleColorFor(theme.brightness));
+    // No sprite sheets in this fork (WhaleSprites.shipped): no tail and no room
+    // kept for it, so both ends of the pill stay 14 in.
+    final showWhale = widget.whale && WhaleSprites.shipped;
+
+    return Semantics(
+      button: widget.onTap != null,
+      label: '${a.title} ${a.detail}',
+      onTapHint: l10n.chatViewTurnTrace,
+      onTap: widget.onTap,
+      onLongPress: _showStats,
+      excludeSemantics: true,
+      child: GlassSurface(
+        tier: GlassTier.chrome,
+        stadium: true,
+        onTap: widget.onTap,
+        onLongPress: _showStats,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 36),
+          child: TweenAnimationBuilder<double>(
+            tween: Tween(end: showWhale ? 1 : 0),
+            duration: AppMotion.of(context, AppMotion.standard),
+            curve: AppMotion.std,
+            builder: (context, t, _) => Padding(
+              // 9 + whale: the tail's own air makes up the difference; without
+              // it both ends are 14.
+              padding: EdgeInsets.fromLTRB(14 - 5 * t, 6, 14, 6),
+              // The pill is one line, and the todo segment on its right is
+              // decoration next to the step itself: when the two don't fit
+              // (a 320-wide window, or 1.6× text) the todo keeps its count and
+              // its bar and drops the word, instead of squeezing the step line
+              // down to the clock.
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final todo = widget.todoProgress && a.todoTotal > 0;
+                  return Row(
+                    children: [
+                      if (t > 0)
+                        ClipRect(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            widthFactor: t,
+                            child: Opacity(
+                              opacity: t,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  WhaleTail(level: widget.speedLevel, color: whale, height: 20),
+                                  const SizedBox(width: 6),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      Expanded(
+                        child: LiveElapsed(
+                          since: a.turnStart ?? a.since,
+                          skew: a.skew,
+                          builder: (context, elapsed) => _Line(
+                            activity: a,
+                            elapsed: elapsed,
+                            stats: _statsTimer == null ? null : _stats(a, widget.tokensPerSecond?.call() ?? 0),
+                          ),
+                        ),
+                      ),
+                      if (todo) ...[
+                        Container(
+                          width: 0.5,
+                          height: 14,
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          color: theme.colorScheme.outlineVariant,
+                        ),
+                        TodoProgress(
+                          done: a.todoDone,
+                          total: a.todoTotal,
+                          showLabel: _todoLabelFits(context, constraints.maxWidth, a, t),
+                        ),
+                      ],
+                    ],
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Whether the todo segment keeps its full 「进度 3/5」 label in [width]: the
+  /// label, the bar, the hairline and the whale may take no more than the pill
+  /// can spare — the verb, the gap and the turn clock are what the step line
+  /// needs, and they are measured at this text size (the styles are _Line's).
+  /// At 1.0–1.3× the label fits on a phone; at 1.6× in a 320-wide window it
+  /// does not, and the count alone says the same next to the bar.
+  bool _todoLabelFits(BuildContext context, double width, RunActivity a, double t) {
+    final theme = Theme.of(context);
+    final smallStyle = AppType.tabular(theme.textTheme.labelSmall!.copyWith(fontSize: 12));
+    final step =
+        _textWidth(context, a.title, theme.textTheme.labelMedium) +
+        6 /* verb → detail */ +
+        8 /* detail → clock */ +
+        _textWidth(context, '00:00', smallStyle);
+    final label = _textWidth(context, context.l10n.chatProgress(a.todoDone, a.todoTotal), smallStyle);
+    final room =
+        width -
+        (t > 0 ? ActivityStrip.whaleWidth : 0) -
+        ActivityStrip.todoSeparator -
+        label -
+        7 /* label → bar */ -
+        TodoProgress.barWidthDefault;
+    return room >= step;
+  }
+
+  static double _textWidth(BuildContext context, String text, TextStyle? style) {
+    final painter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      textScaler: MediaQuery.textScalerOf(context),
+      maxLines: 1,
+      textDirection: Directionality.of(context),
+    )..layout();
+    final width = painter.width;
+    painter.dispose();
+    return width;
+  }
+
+  /// 长按的那几秒:这一步多久了 + 估算的出字速度。
+  static String _stats(RunActivity a, double tps) {
+    final since = a.since;
+    final step = since == null ? null : formatClock(LiveElapsed.elapsedSince(since, a.skew));
+    final speed = tps >= 1 ? appL10n.chatTokensPerSecond(tps.round()) : appL10n.chatNoTokensStreaming;
+    return [if (step != null) appL10n.chatCurrentStep(step), speed].join(' · ');
+  }
+}
+
+/// 标题 + 第二段(工具目标 / 自述 / 文案 / 统计)+ 本轮用时。
+class _Line extends StatelessWidget {
+  const _Line({required this.activity, required this.elapsed, this.stats});
+
+  final RunActivity activity;
+  final Duration? elapsed;
+  final String? stats;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final dsh = DshColors.of(context);
+    final a = activity;
+
+    // Three tiers: what (title, onSurface 600) › on what (detail, secondary)
+    // › colour (narration secondary, fun copy and the clock tertiary).
+    final flavor = stats != null ? null : activityFlavor(a, runClock());
+    final secondary = colors.onSurfaceVariant;
+    final body = theme.textTheme.bodySmall?.copyWith(height: 1.3);
+    final spans = <TextSpan>[
+      if (stats != null)
+        TextSpan(
+          text: stats,
+          style: body?.copyWith(color: secondary),
+        )
+      else ...[
+        if (a.detail.isNotEmpty)
+          TextSpan(
+            text: a.detail,
+            style: a.detailIsCode
+                ? AppType.mono(size: 12, color: secondary, height: 1.3)
+                : body?.copyWith(color: secondary),
+          ),
+        if (flavor != null)
+          TextSpan(
+            text: a.detail.isNotEmpty ? ' · ${flavor.text}' : flavor.text,
+            style: body?.copyWith(
+              color: flavor.source == FlavorSource.narration && a.detail.isEmpty ? secondary : dsh.textTertiary,
+            ),
+          ),
+      ],
+    ];
+    final second = spans.map((s) => s.text).join();
+
+    final titleStyle = theme.textTheme.labelMedium?.copyWith(
+      color: a.waiting ? dsh.warning : colors.onSurface,
+      height: 1.3,
+    );
+    final clockStyle = AppType.tabular(
+      theme.textTheme.labelSmall!.copyWith(fontSize: 12, color: a.waiting ? dsh.warning : dsh.textTertiary),
+    );
+
+    return Row(
+      children: [
+        Expanded(
+          child: AnimatedSwitcher(
+            duration: AppMotion.of(context, AppMotion.quick),
+            layoutBuilder: (current, previous) =>
+                Stack(alignment: Alignment.centerLeft, children: [...previous, ?current]),
+            child: LayoutBuilder(
+              key: ValueKey('${a.title}\u0000$second'),
+              builder: (context, constraints) {
+                // The detail ellipsizes; the verb does not, so it is the one
+                // that can push the row past the pill (a long Russian verb at
+                // 1.6× text). Cap it to leave the detail a few characters —
+                // never more than a fifth of the line, or a short verb on a
+                // narrow pill would be the one cut. When both fit, nothing
+                // changes.
+                final reserve = math.min(_detailMin, constraints.maxWidth * 0.2);
+                final titleRoom = second.isEmpty ? constraints.maxWidth : math.max(0.0, constraints.maxWidth - reserve);
+                return Row(
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: titleRoom),
+                      child: Text(
+                        a.title,
+                        style: titleStyle,
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    if (second.isNotEmpty) ...[
+                      const SizedBox(width: 6),
+                      Flexible(
+                        child: Text.rich(
+                          TextSpan(children: spans),
+                          maxLines: 1,
+                          softWrap: false,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ],
+                );
+              },
+            ),
+          ),
+        ),
+        if (elapsed != null) ...[const SizedBox(width: 8), Text(formatClock(elapsed!), style: clockStyle)],
+      ],
+    );
+  }
+
+  /// The room the detail keeps when the verb would otherwise take the line.
+  static const _detailMin = 48.0;
+}
+
+/// `进度 3/5` + 一根 3dp 细条。
+class TodoProgress extends StatelessWidget {
+  const TodoProgress({
+    super.key,
+    required this.done,
+    required this.total,
+    this.barWidth = barWidthDefault,
+    this.showLabel = true,
+  });
+
+  /// The bar's width; the pill measures it to decide whether the label fits
+  /// next to the step line.
+  static const barWidthDefault = 30.0;
+
+  final int done;
+  final int total;
+  final double barWidth;
+  final bool showLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final dsh = DshColors.of(context);
+    final fraction = total == 0 ? 0.0 : (done / total).clamp(0.0, 1.0);
+    return Semantics(
+      label: l10n.chatTodoProgress(done, total),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            showLabel ? l10n.chatProgress(done, total) : '$done/$total',
+            style: AppType.tabular(theme.textTheme.labelSmall!.copyWith(fontSize: 12, color: dsh.textTertiary)),
+          ),
+          const SizedBox(width: 7),
+          Container(
+            width: barWidth,
+            height: 3,
+            alignment: Alignment.centerLeft,
+            decoration: ShapeDecoration(color: colors.onSurface.withValues(alpha: 0.10), shape: const StadiumBorder()),
+            child: FractionallySizedBox(
+              widthFactor: fraction,
+              child: DecoratedBox(
+                decoration: ShapeDecoration(
+                  color: fraction >= 1 ? dsh.success : colors.primary,
+                  shape: const StadiumBorder(),
+                ),
+                child: const SizedBox(height: 3),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
