@@ -43,9 +43,9 @@ The project is unofficial and not connected to DeepSeek. Narwhal is a fork of [c
 | :---: | :---: | :---: |
 | <img src="docs/screenshots/home-ru.png" width="240" alt="Narwhal home screen: chat list, current host, engine state"><br><sub>Home (Russian UI): chats, hosts, engine state.</sub> | <img src="docs/screenshots/chat-ru.png" width="240" alt="Chat with the local DSH engine: model reply and collapsed tool steps"><br><sub>Chat with the local engine: steps fold into one line.</sub> | <img src="docs/screenshots/settings-ru.png" width="240" alt="Narwhal settings: settings search and groups"><br><sub>Settings (Russian UI): search and groups.</sub> |
 
-| About | Foldable | Icon |
+| About | Drawer | Icon |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/about-ru.png" width="240" alt="About screen: version, licenses and the upstream update check"><br><sub>About: version, licenses, upstream update check.</sub> | <img src="docs/screenshots/fold-ru.png" width="240" alt="Narwhal on a foldable phone or tablet: persistent sidebar and a wide chat"><br><sub>Foldable and tablet: persistent sidebar.</sub> | <img src="docs/screenshots/icon.png" width="120" alt="Narwhal icon"><br><sub>Narwhal icon: adaptive and monochrome.</sub> |
+| <img src="docs/screenshots/about-ru.png" width="240" alt="About screen: version, licenses and the upstream update check"><br><sub>About: version, licenses, upstream update check.</sub> | <img src="docs/screenshots/drawer-ru.png" width="240" alt="Narwhal drawer: mark, wordmark and the chat list"><br><sub>Drawer: mark, wordmark, chats.</sub> | <img src="docs/screenshots/icon.png" width="120" alt="Narwhal icon"><br><sub>Narwhal icon: adaptive and monochrome.</sub> |
 
 ## How it works
 

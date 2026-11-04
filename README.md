@@ -43,9 +43,9 @@ Narwhal — Android-оболочка для DeepSeek Harness: Flutter-интер
 | :---: | :---: | :---: |
 | <img src="docs/screenshots/home-ru.png" width="240" alt="Главный экран Narwhal: список чатов, текущий хост и состояние движка"><br><sub>Главная: чаты, хосты, состояние движка.</sub> | <img src="docs/screenshots/chat-ru.png" width="240" alt="Чат с локальным движком DSH: ответ модели и свёрнутые шаги инструментов"><br><sub>Чат с локальным движком: шаги сворачиваются в строку.</sub> | <img src="docs/screenshots/settings-ru.png" width="240" alt="Настройки Narwhal: поиск по настройкам и разделы"><br><sub>Настройки: поиск и разделы.</sub> |
 
-| О приложении | Складной экран | Иконка |
+| О приложении | Ящик | Иконка |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/about-ru.png" width="240" alt="Экран «О приложении»: версия, лицензии и проверка обновлений оригинала"><br><sub>О приложении: версия, лицензии, проверка обновлений оригинала.</sub> | <img src="docs/screenshots/fold-ru.png" width="240" alt="Narwhal на складном телефоне или планшете: постоянная боковая панель и широкий чат"><br><sub>Складной экран и планшет: постоянная боковая панель.</sub> | <img src="docs/screenshots/icon.png" width="120" alt="Иконка Narwhal"><br><sub>Иконка Narwhal: адаптивная и monochrome.</sub> |
+| <img src="docs/screenshots/about-ru.png" width="240" alt="Экран «О приложении»: версия, лицензии и проверка обновлений оригинала"><br><sub>О приложении: версия, лицензии, проверка обновлений оригинала.</sub> | <img src="docs/screenshots/drawer-ru.png" width="240" alt="Ящик Narwhal: знак, название и список чатов"><br><sub>Ящик: знак, название, чаты.</sub> | <img src="docs/screenshots/icon.png" width="120" alt="Иконка Narwhal"><br><sub>Иконка Narwhal: адаптивная и monochrome.</sub> |
 
 ## Как это работает
 
