@@ -18210,6 +18210,73 @@ class L10nRu extends L10n {
   String get selfUpdatesNoAnswer => 'Не удалось проверить обновления Narwhal. Попробуйте позже.';
 
   @override
+  String get selfUpdatesInstall => 'Обновить';
+
+  @override
+  String get selfUpdatesReleasePage => 'Страница релиза';
+
+  @override
+  String selfUpdatesAvailableSize(String version, String size) {
+    return 'Доступна $version · $size';
+  }
+
+  @override
+  String get selfUpdateSheetTitle => 'Обновление Narwhal';
+
+  @override
+  String get selfUpdateStepDownload => 'Скачает пакет Narwhal с GitHub';
+
+  @override
+  String get selfUpdateStepPermission => 'Android спросит разрешение на установку из Narwhal';
+
+  @override
+  String get selfUpdateStepRestart => 'После установки Narwhal перезапустится; данные и настройки сохранятся';
+
+  @override
+  String get selfUpdateDownloadAndInstall => 'Скачать и установить';
+
+  @override
+  String get selfUpdateInstallerOpened => 'Установщик открыт — подтвердите установку';
+
+  @override
+  String get selfUpdateInstallerOpenedNote =>
+      'Подтвердите установку в системном окне. Narwhal закроется и откроется снова.';
+
+  @override
+  String get selfUpdateFailedTitle => 'Не удалось обновить';
+
+  @override
+  String get selfUpdateNoSpace =>
+      'Не хватает места, чтобы скачать и установить эту версию. Освободите место и повторите.';
+
+  @override
+  String selfUpdateTooLarge(String size) {
+    return 'Пакет больше $size — скачайте его со страницы релиза.';
+  }
+
+  @override
+  String get selfUpdateChecksumFailed =>
+      'Контрольная сумма пакета не совпала, файл удалён. Повторите или скачайте со страницы релиза.';
+
+  @override
+  String get selfUpdateNetworkFailed => 'Не удалось скачать пакет. Проверьте соединение и повторите.';
+
+  @override
+  String get selfUpdatePermissionRequired =>
+      'Android пока не разрешает Narwhal устанавливать приложения. Включите это в настройках и повторите.';
+
+  @override
+  String get selfUpdatePermissionTitle => 'Нужно разрешение Android';
+
+  @override
+  String get selfUpdateSettingsFailed =>
+      'Не удалось открыть системные настройки. Откройте вручную: Настройки → Приложения → Narwhal → Установка неизвестных приложений.';
+
+  @override
+  String get selfUpdateInstallFailed =>
+      'Системный установщик не открылся. Повторите или скачайте пакет со страницы релиза.';
+
+  @override
   String get usageStatsTitle => 'Отправлять анонимную статистику';
 
   @override

@@ -16396,6 +16396,67 @@ class L10nZh extends L10n {
   String get selfUpdatesNoAnswer => '无法检查 Narwhal 更新，请稍后再试。';
 
   @override
+  String get selfUpdatesInstall => '更新';
+
+  @override
+  String get selfUpdatesReleasePage => '发布页';
+
+  @override
+  String selfUpdatesAvailableSize(String version, String size) {
+    return '有新版本 $version · $size';
+  }
+
+  @override
+  String get selfUpdateSheetTitle => '更新 Narwhal';
+
+  @override
+  String get selfUpdateStepDownload => '从 GitHub 下载 Narwhal 安装包';
+
+  @override
+  String get selfUpdateStepPermission => 'Android 会询问是否允许 Narwhal 安装应用';
+
+  @override
+  String get selfUpdateStepRestart => '安装完成后 Narwhal 会重启，数据和设置保留';
+
+  @override
+  String get selfUpdateDownloadAndInstall => '下载并安装';
+
+  @override
+  String get selfUpdateInstallerOpened => '安装器已打开，请确认安装';
+
+  @override
+  String get selfUpdateInstallerOpenedNote => '在系统窗口中确认安装；Narwhal 会自行关闭并重新打开。';
+
+  @override
+  String get selfUpdateFailedTitle => '更新未完成';
+
+  @override
+  String get selfUpdateNoSpace => '空间不足，无法下载并安装这个版本。请清理后重试。';
+
+  @override
+  String selfUpdateTooLarge(String size) {
+    return '安装包大于 $size，请从发布页下载。';
+  }
+
+  @override
+  String get selfUpdateChecksumFailed => '安装包校验失败，已丢弃。请重试或从发布页下载。';
+
+  @override
+  String get selfUpdateNetworkFailed => '下载失败。检查网络后重试。';
+
+  @override
+  String get selfUpdatePermissionRequired => 'Android 目前不允许 Narwhal 安装应用。在系统设置里打开后重试。';
+
+  @override
+  String get selfUpdatePermissionTitle => '需要 Android 授权';
+
+  @override
+  String get selfUpdateSettingsFailed => '无法打开系统设置。请手动打开：设置 → 应用 → Narwhal → 安装未知应用。';
+
+  @override
+  String get selfUpdateInstallFailed => '系统安装器没有打开。请重试，或从发布页下载安装包。';
+
+  @override
   String get usageStatsTitle => '发送匿名使用统计';
 
   @override

@@ -10337,6 +10337,42 @@
   "selfUpdatesCheck": "检查",
   "selfUpdatesRetry": "重试",
   "selfUpdatesNoAnswer": "无法检查 Narwhal 更新，请稍后再试。",
+  "selfUpdatesInstall": "更新",
+  "selfUpdatesReleasePage": "发布页",
+  "selfUpdatesAvailableSize": "有新版本 {version} · {size}",
+  "@selfUpdatesAvailableSize": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      },
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdateSheetTitle": "更新 Narwhal",
+  "selfUpdateStepDownload": "从 GitHub 下载 Narwhal 安装包",
+  "selfUpdateStepPermission": "Android 会询问是否允许 Narwhal 安装应用",
+  "selfUpdateStepRestart": "安装完成后 Narwhal 会重启，数据和设置保留",
+  "selfUpdateDownloadAndInstall": "下载并安装",
+  "selfUpdateInstallerOpened": "安装器已打开，请确认安装",
+  "selfUpdateInstallerOpenedNote": "在系统窗口中确认安装；Narwhal 会自行关闭并重新打开。",
+  "selfUpdateFailedTitle": "更新未完成",
+  "selfUpdateNoSpace": "空间不足，无法下载并安装这个版本。请清理后重试。",
+  "selfUpdateTooLarge": "安装包大于 {size}，请从发布页下载。",
+  "@selfUpdateTooLarge": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "selfUpdateChecksumFailed": "安装包校验失败，已丢弃。请重试或从发布页下载。",
+  "selfUpdateNetworkFailed": "下载失败。检查网络后重试。",
+  "selfUpdatePermissionRequired": "Android 目前不允许 Narwhal 安装应用。在系统设置里打开后重试。",
+  "selfUpdatePermissionTitle": "需要 Android 授权",
+  "selfUpdateSettingsFailed": "无法打开系统设置。请手动打开：设置 → 应用 → Narwhal → 安装未知应用。",
+  "selfUpdateInstallFailed": "系统安装器没有打开。请重试，或从发布页下载安装包。",
   "usageStatsTitle": "发送匿名使用统计",
   "usageStatsSection": "改进 DSH Go",
   "usageStatsFooter": "只含使用次数、版本和手机品牌，不含对话、文件和账号。",

@@ -37,6 +37,13 @@
 - Поэтому fork-сборки собираются с `DSH_SELF_UPDATE=false`: встроенный апдейтер оригинала в них выключен, вместо него работает отчёт. Собственный канал обновлений Narwhal этим механизмом не затрагивается.
 - Сетевой запрос один, анонимный, с лимитом GitHub 60 запросов в час на IP. Схема — в [README.md](../../README.md#проверка-обновлений-оригинала).
 
+### Обновления Narwhal
+
+- Своя строка в «О приложении» запрашивает `api.github.com/repos/rukazax/narwhal/releases/latest` не чаще раза в неделю и только пока приложение открыто.
+- Найденный релиз — это версия, размер APK и две кнопки: «Обновить» и «Страница релиза».
+- «Обновить» сначала показывает, что произойдёт. После подтверждения APK скачивается в кэш, сверяется с SHA-256 из поля `digest` (несовпадение — отказ и удаление файла) и передаётся системному установщику через FileProvider `content://` с `ACTION_VIEW`. Разрешение «установка неизвестных приложений» приложение само не включает: оно открывает системную страницу для Narwhal.
+- Автоматическая недельная проверка ничего не скачивает: она только помечает доступную версию. Установка всегда начинается с нажатия и подтверждения.
+
 ## Приватность
 
 - **Трекеров нет.** В зависимостях приложения нет рекламных и аналитических SDK; сеть — движок, выбранный провайдер моделей и проверка релизов.
@@ -92,6 +99,13 @@ Port `3080` is bound to loopback only: the engine is not reachable from outside 
 - The result is a row in About and a link to the release page. No APK is downloaded or installed: upstream is signed with another key, so installing it over this build could not work anyway.
 - Fork builds therefore use `DSH_SELF_UPDATE=false`: the original's in-app updater is off and the report replaces it. Narwhal's own update channel is not part of this mechanism.
 - One anonymous network request, subject to GitHub's limit of 60 requests per hour per IP. Diagram: [README.en.md](../../README.en.md#upstream-update-check).
+
+### Narwhal updates
+
+- The fork's own row in About requests `api.github.com/repos/rukazax/narwhal/releases/latest` at most once a week, and only while the app is open.
+- A release found this way is a version, the APK's size and two keys: "Update" and "Release page".
+- "Update" first says what will happen. After the confirmation the APK is downloaded into the cache, checked against the `digest` field's SHA-256 (a mismatch is refused and the file deleted) and handed to the system installer through a FileProvider `content://` URI with `ACTION_VIEW`. The app never turns "install unknown apps" on itself: it opens the system page for Narwhal.
+- The weekly automatic check downloads nothing: it only marks the available version. Installing always starts with a tap and a confirmation.
 
 ## Privacy
 

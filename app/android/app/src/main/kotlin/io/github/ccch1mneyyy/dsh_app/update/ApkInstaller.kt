@@ -11,6 +11,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import androidx.core.content.FileProvider
 import java.io.File
 import java.security.MessageDigest
 
@@ -62,6 +63,48 @@ class ApkInstaller(private val context: Context) {
         }
         return false
     }
+
+    /**
+     * Opens the package in the system's own installer; false when it couldn't.
+     *
+     * The original updater's plain-bool fallback (lib/update/installer.dart,
+     * `openWithSystem`): some OEM builds stop a PackageInstaller session before the
+     * person is asked, while opening the file goes through.
+     */
+    fun openWithSystem(apk: File, launcher: Context?): Boolean =
+        launchInstall(apk, launcher, newTask = launcher == null)
+
+    /**
+     * Typed hand-off for this app's own updates (`installApk` on `dsh/update`,
+     * lib/update/apk_installer.dart): an `ACTION_VIEW` on a FileProvider
+     * `content://` URI — a `file://` one has been refused since Android 7 — with
+     * the system's "install this update?" dialog as the only thing that starts it.
+     *
+     * `{status: "started"|"permissionRequired"|"failed", reason: …}`: nothing is
+     * started unless "install unknown apps" is on for this app.
+     */
+    fun startInstall(apk: File?, launcher: Context?): Map<String, Any?> {
+        val file = apk?.takeIf { it.isFile }
+        val decision = ApkInstallDecision.decide(canInstall = canRequestInstalls(), filePresent = file != null)
+        return when (decision.status) {
+            ApkInstallDecision.Status.PERMISSION_REQUIRED -> installStatus("permissionRequired")
+            ApkInstallDecision.Status.FAILED -> installStatus("failed", decision.reason ?: ApkInstallDecision.ERROR)
+            ApkInstallDecision.Status.STARTED -> when {
+                file == null -> installStatus("failed", ApkInstallDecision.NO_FILE)
+                launchInstall(file, launcher, newTask = true) -> installStatus("started")
+                else -> installStatus("failed", ApkInstallDecision.NO_HANDLER)
+            }
+        }
+    }
+
+    /** Opens [apk]'s content URI in whatever installs packages; false when nothing does. */
+    private fun launchInstall(apk: File, launcher: Context?, newTask: Boolean): Boolean = runCatching {
+        val uri = FileProvider.getUriForFile(context, "${context.packageName}.files", apk)
+        var flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        if (newTask) flags = flags or Intent.FLAG_ACTIVITY_NEW_TASK
+        val intent = Intent(Intent.ACTION_VIEW).setDataAndType(uri, APK_MIME).addFlags(flags)
+        if (launcher != null) launcher.startActivity(intent) else context.startActivity(intent)
+    }.isSuccess
 
     /** Package, version and signer of [apk] compared with the installed app. Slow: verifies the APK. */
     fun inspect(apk: File): Map<String, Any?> {
@@ -204,6 +247,11 @@ class ApkInstaller(private val context: Context) {
         MessageDigest.getInstance("SHA-256").digest(signature.toByteArray()).joinToString("") { "%02x".format(it) }
 
     companion object {
+        private const val APK_MIME = "application/vnd.android.package-archive"
+
+        /** `installApk`'s answer (lib/update/apk_installer.dart): typed, unlike [result]. */
+        private fun installStatus(status: String, reason: String? = null) = mapOf("status" to status, "reason" to reason)
+
         fun versionCodeOf(info: PackageInfo): Long =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 info.longVersionCode

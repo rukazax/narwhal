@@ -39,9 +39,8 @@ final upstreamReleasesPage = Uri.parse('https://github.com/$upstreamRepo/release
 const upstreamBaseVersion = String.fromEnvironment('UPSTREAM_BASE_VERSION', defaultValue: '1.0.9');
 
 /// This fork's own repository: its releases are what the Narwhal row in About
-/// reports (lib/update/self_release.dart). Like the upstream one, they are
-/// never downloaded or installed here — the app only says what is out and
-/// opens the release page.
+/// reports (lib/update/self_release.dart), and the APK one of them carries is
+/// what that row can install (lib/update/apk_installer.dart).
 const selfRepo = 'rukazax/narwhal';
 
 /// `releases/latest` of the fork's REST API.
@@ -49,6 +48,12 @@ final selfLatestApi = Uri.parse('https://api.github.com/repos/$selfRepo/releases
 
 /// The fork's latest release page, for "open the release".
 final selfReleasesPage = Uri.parse('https://github.com/$selfRepo/releases/latest');
+
+/// A file attached to the fork's release tagged [tag] (the API's
+/// `browser_download_url`, built when the answer didn't carry one). Public: no
+/// token ever goes with it.
+Uri selfReleaseAssetUrl(String tag, String name) =>
+    Uri.parse('https://github.com/$selfRepo/releases/download/${Uri.encodeComponent(tag)}/${Uri.encodeComponent(name)}');
 
 /// Whether this build installs its own updates. A fork signed with another key
 /// sets `--dart-define=DSH_SELF_UPDATE=false`: offering the original's APK

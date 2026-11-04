@@ -39,7 +39,11 @@
     <!-- App 外悬浮窗 (pet/PetOverlay.kt): the floating pet over other apps, off until the person turns it on. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    <!-- In-app update: installs the downloaded APK through a PackageInstaller session (update/). -->
+    <!-- In-app updates: the downloaded APK is installed by the system installer.
+         The original updater writes a PackageInstaller session (update/ApkInstaller.install);
+         the Narwhal row hands the file over as a content:// URI (update/ApkInstaller.startInstall).
+         Normal, install-time permission on API 26+: the system still shows its own per-app
+         "install unknown apps" switch, which this app never turns on by itself. -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!-- libadb-android declares no targetSdk, so the merger implies READ_PHONE_STATE ("读取手机状态");

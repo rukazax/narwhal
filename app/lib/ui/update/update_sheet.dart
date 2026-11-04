@@ -212,7 +212,7 @@ class UpdateSheet extends ConsumerWidget {
     final scheme = theme.colorScheme;
     if (update.asset == null) {
       final abi = update.flavor?.name;
-      return _Notice(
+      return SheetNotice(
         icon: AppIcons.info,
         background: colors.infoContainer,
         foreground: colors.onInfoContainer,
@@ -226,7 +226,7 @@ class UpdateSheet extends ConsumerWidget {
         final amount = update.total == null
             ? formatUpdateSize(update.received)
             : '${formatUpdateSize(update.received)} / ${formatUpdateSize(update.total!)}';
-        return _Progress(
+        return SheetProgress(
           title: progress == null ? l10n.updateDownloading : l10n.updateDownloadingPercent((progress * 100).floor()),
           trailing: amount,
           value: progress,
@@ -236,15 +236,15 @@ class UpdateSheet extends ConsumerWidget {
           ].join(' · '),
         );
       case UpdateTaskPhase.verifying:
-        return _Progress(title: l10n.updateVerifyingPackage, note: l10n.updateVerifyingPackageNote);
+        return SheetProgress(title: l10n.updateVerifyingPackage, note: l10n.updateVerifyingPackageNote);
       case UpdateTaskPhase.installing:
-        return _Progress(title: l10n.updateInstalling, note: l10n.updateConfirmInstallNote);
+        return SheetProgress(title: l10n.updateInstalling, note: l10n.updateConfirmInstallNote);
       case UpdateTaskPhase.ready:
         final unfinished = _installUnfinished.contains(update.problem);
         final (title, text) = unfinished
             ? describeUpdateProblem(update.problem!)
             : (l10n.updatePackageDownloaded, l10n.updateReadyToInstall);
-        return _Notice(
+        return SheetNotice(
           icon: unfinished ? AppIcons.info : AppIcons.completed,
           background: unfinished ? scheme.surfaceContainerHighest : colors.successContainer,
           foreground: unfinished ? scheme.onSurfaceVariant : colors.onSuccessContainer,
@@ -256,7 +256,7 @@ class UpdateSheet extends ConsumerWidget {
         final (title, text) = unavailable
             ? describeUpdateProblem(UpdateProblem.permissionUnavailable)
             : (l10n.updateAllowInstall, l10n.updateAllowInstallMessage);
-        return _Notice(
+        return SheetNotice(
           icon: AppIcons.permissions,
           background: colors.warningContainer,
           foreground: colors.onWarningContainer,
@@ -268,7 +268,7 @@ class UpdateSheet extends ConsumerWidget {
           update.problem ?? UpdateProblem.installFailed,
           size: update.asset?.size,
         );
-        return _Notice(
+        return SheetNotice(
           icon: AppIcons.error,
           background: colors.dangerContainer,
           foreground: colors.onDangerContainer,
@@ -414,9 +414,11 @@ class UpdateSheet extends ConsumerWidget {
   }
 }
 
-/// Tinted box: icon, title, explanation.
-class _Notice extends StatelessWidget {
-  const _Notice({
+/// Tinted box: icon, title, explanation. Shared with the Narwhal update sheet
+/// (self_release_sheet.dart).
+class SheetNotice extends StatelessWidget {
+  const SheetNotice({
+    super.key,
     required this.icon,
     required this.background,
     required this.foreground,
@@ -462,14 +464,17 @@ class _Notice extends StatelessWidget {
   }
 }
 
-/// Title, optional amount, a thin bar (indeterminate when [value] is null), note.
-class _Progress extends StatelessWidget {
-  const _Progress({required this.title, required this.note, this.trailing, this.value});
+/// Title, optional amount, a thin bar (indeterminate when [value] is null),
+/// note. Shared with the Narwhal update sheet (self_release_sheet.dart).
+class SheetProgress extends StatelessWidget {
+  const SheetProgress({super.key, required this.title, this.note, this.trailing, this.value});
 
   final String title;
   final String? trailing;
   final double? value;
-  final String note;
+
+  /// A line under the bar; omitted when there is nothing to add.
+  final String? note;
 
   @override
   Widget build(BuildContext context) {
@@ -490,8 +495,10 @@ class _Progress extends StatelessWidget {
           borderRadius: AppShape.radiusXs,
           child: LinearProgressIndicator(value: value, minHeight: 4),
         ),
-        const SizedBox(height: 8),
-        Text(note, style: theme.textTheme.bodySmall?.copyWith(color: colors.textTertiary)),
+        if (note case final note?) ...[
+          const SizedBox(height: 8),
+          Text(note, style: theme.textTheme.bodySmall?.copyWith(color: colors.textTertiary)),
+        ],
       ],
     );
   }

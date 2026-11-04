@@ -1,9 +1,11 @@
 // This fork's own releases (github.com/rukazax/narwhal).
 //
-// Like the original's releases (lib/update/upstream.dart), these are only
-// *reported*: the row in About says what the latest release is and opens its
-// page in the browser. Nothing here downloads or installs an APK — no package
-// is fetched, so the system is never asked to allow installs from this app.
+// The row in About says what the latest release is and opens its page in the
+// browser; when it is newer than the running build, the row can also install it
+// from inside the app (lib/update/apk_installer.dart, ui/update/self_release_sheet.dart).
+// That install is always the person's: a tap on 「Обновить」 and a confirmation.
+// Nothing below downloads anything — this file only reports, and the weekly
+// check below never starts a download.
 //
 // When the check runs: at most once a week, and on a moment of its own. A
 // launch that finds the last answer older than [SelfReleaseChecker.interval]
@@ -28,9 +30,10 @@ import 'update_http.dart';
 import 'version.dart';
 
 /// A file attached to a release: the APKs it carries, with what GitHub says
-/// about them. Nothing downloads them; the row only tells what is out.
+/// about them. The row only tells what is out; downloading one is a separate,
+/// person-initiated step (lib/update/apk_installer.dart).
 class SelfReleaseAsset {
-  const SelfReleaseAsset({required this.name, this.size, this.sha256});
+  const SelfReleaseAsset({required this.name, this.size, this.sha256, this.url});
 
   final String name;
 
@@ -40,7 +43,12 @@ class SelfReleaseAsset {
   /// Lowercase hex; null when the asset carries no digest.
   final String? sha256;
 
-  Map<String, Object?> toJson() => {'name': name, 'size': ?size, 'sha256': ?sha256};
+  /// Where GitHub serves it (`browser_download_url`). Null when the answer
+  /// didn't carry one (or an old cache entry): the release's tag and the name
+  /// still make a URL (selfReleaseAssetUrl).
+  final Uri? url;
+
+  Map<String, Object?> toJson() => {'name': name, 'size': ?size, 'sha256': ?sha256, 'url': ?url?.toString()};
 
   /// An `assets` entry; null for anything that isn't an APK with a usable name.
   static SelfReleaseAsset? tryParse(Object? json) {
@@ -52,6 +60,8 @@ class SelfReleaseAsset {
       size: (json['size'] as num?)?.toInt(),
       // `digest` is GitHub's field, `sha256` what toJson writes for the cache.
       sha256: normalizeSha256(json['digest'] ?? json['sha256']),
+      // `browser_download_url` is GitHub's field, `url` what toJson writes.
+      url: _httpUrl(json['browser_download_url'] ?? json['url']),
     );
   }
 }
@@ -140,6 +150,16 @@ class SelfRelease {
   /// The tag as the row shows it (`1.0.0-narwhal`).
   String get label => tag.isNotEmpty && (tag[0] == 'v' || tag[0] == 'V') ? tag.substring(1) : tag;
 
+  /// The package this build can install: the release's first APK, or null when
+  /// it carries none (a release of notes only). This fork publishes one APK per
+  /// release; should one ever carry several, GitHub lists them in upload order
+  /// and the first is used.
+  SelfReleaseAsset? get apk => assets.firstOrNull;
+
+  /// Where [asset] is downloaded from: its own URL, or the canonical one built
+  /// from [tag] and its name when the answer didn't carry one.
+  Uri assetUrl(SelfReleaseAsset asset) => asset.url ?? selfReleaseAssetUrl(tag, asset.name);
+
   /// Whether this release is newer than the running [installed] build.
   bool isNewerThan(SelfReleaseVersion installed) => version.isNewerThan(installed);
 }
@@ -156,7 +176,7 @@ SelfRelease parseSelfRelease(Object? json) {
   return SelfRelease(
     version: version,
     tag: tag,
-    pageUrl: _page(json['html_url']),
+    pageUrl: _httpUrl(json['html_url']),
     publishedAt: DateTime.tryParse(json['published_at'] as String? ?? '')?.toUtc(),
     assets: [
       for (final asset in (json['assets'] as List?)?.whereType<Map>() ?? const <Map>[])
@@ -165,8 +185,9 @@ SelfRelease parseSelfRelease(Object? json) {
   );
 }
 
-/// An absolute `http(s)` URL, or null: an empty or relative one is no page.
-Uri? _page(Object? raw) {
+/// An absolute `http(s)` URL, or null: an empty or relative one is no page and
+/// no download.
+Uri? _httpUrl(Object? raw) {
   final url = raw is String ? Uri.tryParse(raw.trim()) : null;
   return url != null && url.hasScheme && url.host.isNotEmpty ? url : null;
 }
@@ -333,7 +354,7 @@ class SelfReleaseChecker {
     return SelfRelease(
       version: version,
       tag: tag,
-      pageUrl: _page(prefs.getString(pageKey)),
+      pageUrl: _httpUrl(prefs.getString(pageKey)),
       publishedAt: publishedAt == null ? null : DateTime.fromMillisecondsSinceEpoch(publishedAt, isUtc: true),
       assets: _decodeAssets(prefs.getString(assetsKey)),
     );

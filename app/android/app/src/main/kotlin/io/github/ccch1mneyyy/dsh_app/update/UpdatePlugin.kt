@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
-import androidx.core.content.FileProvider
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -78,24 +77,14 @@ class UpdatePlugin : FlutterPlugin, ActivityAware, MethodChannel.MethodCallHandl
             }
             "openWithSystem" -> {
                 val apk = apkArgument(call, result) ?: return
-                result.success(openWithSystem(apk))
+                result.success(installer.openWithSystem(apk, activity))
             }
+            // The app's own update (lib/update/apk_installer.dart): typed answer,
+            // `{status: started|permissionRequired|failed, reason}`.
+            "installApk" -> result.success(installer.startInstall(call.argument<String>("path")?.let(::File), activity))
             else -> result.notImplemented()
         }
     }
-
-    /**
-     * The package in the system's own installer: some OEM builds stop the session install before
-     * the person is asked (it reads as cancelled), while opening the file goes through.
-     */
-    private fun openWithSystem(apk: File): Boolean = runCatching {
-        val uri = FileProvider.getUriForFile(appContext, "${appContext.packageName}.files", apk)
-        val intent = Intent(Intent.ACTION_VIEW)
-            .setDataAndType(uri, "application/vnd.android.package-archive")
-            .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        val host = activity
-        if (host != null) host.startActivity(intent) else appContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
-    }.isSuccess
 
     private fun apkArgument(call: MethodCall, result: MethodChannel.Result): File? {
         val path = call.argument<String>("path")

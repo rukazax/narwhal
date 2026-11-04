@@ -29991,6 +29991,120 @@ abstract class L10n {
   /// **'无法检查 Narwhal 更新，请稍后再试。'**
   String get selfUpdatesNoAnswer;
 
+  /// No description provided for @selfUpdatesInstall.
+  ///
+  /// In zh, this message translates to:
+  /// **'更新'**
+  String get selfUpdatesInstall;
+
+  /// No description provided for @selfUpdatesReleasePage.
+  ///
+  /// In zh, this message translates to:
+  /// **'发布页'**
+  String get selfUpdatesReleasePage;
+
+  /// No description provided for @selfUpdatesAvailableSize.
+  ///
+  /// In zh, this message translates to:
+  /// **'有新版本 {version} · {size}'**
+  String selfUpdatesAvailableSize(String version, String size);
+
+  /// No description provided for @selfUpdateSheetTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'更新 Narwhal'**
+  String get selfUpdateSheetTitle;
+
+  /// No description provided for @selfUpdateStepDownload.
+  ///
+  /// In zh, this message translates to:
+  /// **'从 GitHub 下载 Narwhal 安装包'**
+  String get selfUpdateStepDownload;
+
+  /// No description provided for @selfUpdateStepPermission.
+  ///
+  /// In zh, this message translates to:
+  /// **'Android 会询问是否允许 Narwhal 安装应用'**
+  String get selfUpdateStepPermission;
+
+  /// No description provided for @selfUpdateStepRestart.
+  ///
+  /// In zh, this message translates to:
+  /// **'安装完成后 Narwhal 会重启，数据和设置保留'**
+  String get selfUpdateStepRestart;
+
+  /// No description provided for @selfUpdateDownloadAndInstall.
+  ///
+  /// In zh, this message translates to:
+  /// **'下载并安装'**
+  String get selfUpdateDownloadAndInstall;
+
+  /// No description provided for @selfUpdateInstallerOpened.
+  ///
+  /// In zh, this message translates to:
+  /// **'安装器已打开，请确认安装'**
+  String get selfUpdateInstallerOpened;
+
+  /// No description provided for @selfUpdateInstallerOpenedNote.
+  ///
+  /// In zh, this message translates to:
+  /// **'在系统窗口中确认安装；Narwhal 会自行关闭并重新打开。'**
+  String get selfUpdateInstallerOpenedNote;
+
+  /// No description provided for @selfUpdateFailedTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'更新未完成'**
+  String get selfUpdateFailedTitle;
+
+  /// No description provided for @selfUpdateNoSpace.
+  ///
+  /// In zh, this message translates to:
+  /// **'空间不足，无法下载并安装这个版本。请清理后重试。'**
+  String get selfUpdateNoSpace;
+
+  /// No description provided for @selfUpdateTooLarge.
+  ///
+  /// In zh, this message translates to:
+  /// **'安装包大于 {size}，请从发布页下载。'**
+  String selfUpdateTooLarge(String size);
+
+  /// No description provided for @selfUpdateChecksumFailed.
+  ///
+  /// In zh, this message translates to:
+  /// **'安装包校验失败，已丢弃。请重试或从发布页下载。'**
+  String get selfUpdateChecksumFailed;
+
+  /// No description provided for @selfUpdateNetworkFailed.
+  ///
+  /// In zh, this message translates to:
+  /// **'下载失败。检查网络后重试。'**
+  String get selfUpdateNetworkFailed;
+
+  /// No description provided for @selfUpdatePermissionRequired.
+  ///
+  /// In zh, this message translates to:
+  /// **'Android 目前不允许 Narwhal 安装应用。在系统设置里打开后重试。'**
+  String get selfUpdatePermissionRequired;
+
+  /// No description provided for @selfUpdatePermissionTitle.
+  ///
+  /// In zh, this message translates to:
+  /// **'需要 Android 授权'**
+  String get selfUpdatePermissionTitle;
+
+  /// No description provided for @selfUpdateSettingsFailed.
+  ///
+  /// In zh, this message translates to:
+  /// **'无法打开系统设置。请手动打开：设置 → 应用 → Narwhal → 安装未知应用。'**
+  String get selfUpdateSettingsFailed;
+
+  /// No description provided for @selfUpdateInstallFailed.
+  ///
+  /// In zh, this message translates to:
+  /// **'系统安装器没有打开。请重试，或从发布页下载安装包。'**
+  String get selfUpdateInstallFailed;
+
   /// No description provided for @usageStatsTitle.
   ///
   /// In zh, this message translates to:

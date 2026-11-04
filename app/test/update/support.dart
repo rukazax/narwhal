@@ -42,8 +42,9 @@ UpdateHttpResponse textResponse(String body, {int status = 200, Map<String, Stri
 }
 
 /// Serves [bytes] honouring `Range: bytes=N-`. [dropAfter] cuts the stream
-/// with an error after that many bytes of this response.
-Route fileRoute(List<int> bytes, {int? dropAfter, bool ranges = true, void Function(int? start)? onRequest}) {
+/// with an error after that many bytes of this response; [chunk] is how much
+/// one yielded piece carries (4 bytes by default, so a cut lands mid-file).
+Route fileRoute(List<int> bytes, {int? dropAfter, bool ranges = true, int chunk = 4, void Function(int? start)? onRequest}) {
   return (url, headers) {
     final range = RegExp(r'bytes=(\d+)-').firstMatch(headers['range'] ?? '');
     final start = ranges && range != null ? int.parse(range.group(1)!) : 0;
@@ -53,7 +54,6 @@ Route fileRoute(List<int> bytes, {int? dropAfter, bool ranges = true, void Funct
     }
     final slice = bytes.sublist(start);
     Stream<List<int>> body() async* {
-      const chunk = 4;
       for (var i = 0; i < slice.length; i += chunk) {
         if (dropAfter != null && i >= dropAfter) throw const SocketException('connection reset');
         yield slice.sublist(i, i + chunk > slice.length ? slice.length : i + chunk);

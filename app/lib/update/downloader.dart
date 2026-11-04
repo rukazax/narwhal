@@ -81,8 +81,9 @@ class CancelToken {
 enum _Step { complete, cancelled, interrupted, unreachable, rejected, storage }
 
 /// Downloads one file into [directory], resuming `<name>.part` with HTTP
-/// ranges, falling through the URLs in order, and only hands it over once
-/// its SHA-256 matches.
+/// ranges, falling through the URLs in order, and only hands it over once its
+/// SHA-256 matches [sha256]; a null [sha256] means the source published no
+/// digest, so there is nothing to check against.
 class ApkDownloader {
   ApkDownloader({
     required this.http,
@@ -110,7 +111,7 @@ class ApkDownloader {
 
   Future<DownloadOutcome> download({
     required String fileName,
-    required String sha256,
+    required String? sha256,
     required List<DownloadUrl> urls,
     int? expectedSize,
     void Function(DownloadProgress progress)? onProgress,
@@ -124,8 +125,12 @@ class ApkDownloader {
       target = File('${directory.path}/$fileName');
       part = File('${target.path}.part');
       if (await target.exists()) {
-        onVerifying?.call();
-        if (await hasher(target) == sha256) return DownloadDone(target, null);
+        // Without a digest a file that is already here can't be vouched for:
+        // fetch it again rather than install something unverified.
+        if (sha256 != null) {
+          onVerifying?.call();
+          if (await hasher(target) == sha256) return DownloadDone(target, null);
+        }
         await target.delete();
       }
     } on FileSystemException {
@@ -143,6 +148,8 @@ class ApkDownloader {
         if (step == _Step.complete) {
           try {
             await part.rename(target.path);
+            // A source that published no digest: nothing to compare against.
+            if (sha256 == null) return DownloadDone(target, url);
             onVerifying?.call();
             if (await hasher(target) == sha256) return DownloadDone(target, url);
             // Corrupt or tampered: start over from the next source.
