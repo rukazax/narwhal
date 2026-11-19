@@ -1,18 +1,37 @@
+<div align="center">
+  <img src="assets/banner.svg" width="100%" alt="Narwhal — DeepSeek Harness mobile client for Android"/>
+</div>
+
 # 🐋 Narwhal — DeepSeek Harness в кармане
 
-<p align="center"><img src="docs/screenshots/icon.png" width="96" alt="Иконка приложения Narwhal"></p>
+**RU** · [English](#english)
 
-**Неофициальный Android-клиент DeepSeek Harness: движок DSH работает прямо на телефоне, а с удалённым хостом — на вашем компьютере или сервере.**
+<div align="center">
 
-<p align="center"><b>Русский</b> · <a href="README.en.md">English</a></p>
+[![автор](https://img.shields.io/badge/автор-rukazax-4b6bfb?style=flat-square)](https://github.com/rukazax)
+[![Android 8.0+](https://img.shields.io/badge/Android-8.0%2B-1f3a6e?style=flat-square&logo=android&logoColor=white)](#установка)
+[![Flutter 3.47](https://img.shields.io/badge/Flutter-3.47-4b6bfb?style=flat-square&logo=flutter&logoColor=white)](#сборка-из-исходников)
+[![RU / EN](https://img.shields.io/badge/RU%20%2F%20EN-интерфейс-8a2be2?style=flat-square)](#возможности)
+[![release](https://img.shields.io/badge/release-latest-15243f?style=flat-square&logo=github&logoColor=white)](https://github.com/rukazax/narwhal/releases)
+[![Лицензия AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-1f3a6e?style=flat-square)](LICENSE)
 
-<p align="center">
-  <a href="LICENSE"><img alt="Лицензия AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-4D6BFE?style=flat-square&labelColor=1B1F2A"></a>
-  <a href="#установка"><img alt="Android 8.0+" src="https://img.shields.io/badge/Android-8.0%2B-4D6BFE?style=flat-square&logo=android&logoColor=white&labelColor=1B1F2A"></a>
-  <a href="#сборка-из-исходников"><img alt="Flutter 3.47" src="https://img.shields.io/badge/Flutter-3.47-4D6BFE?style=flat-square&logo=flutter&logoColor=white&labelColor=1B1F2A"></a>
-  <a href="#возможности"><img alt="Интерфейс: RU / EN" src="https://img.shields.io/badge/RU%20%2F%20EN-interface-4D6BFE?style=flat-square&labelColor=1B1F2A"></a>
-  <a href="https://github.com/rukazax/narwhal/releases"><img alt="Релизы" src="https://img.shields.io/badge/release-latest-4D6BFE?style=flat-square&logo=github&logoColor=white&labelColor=1B1F2A"></a>
-</p>
+</div>
+
+> **Неофициальный Android-клиент DeepSeek Harness: движок DSH работает прямо на телефоне, а с удалённым хостом — на вашем компьютере или сервере.** Без root и Termux, интерфейс — русский и английский.
+
+| Раздел | О чём |
+| --- | --- |
+| 📖 [Что это](#что-это) | Слои проекта, форк dsh-Go и границы доверия |
+| ✨ [Возможности](#возможности) | Движок на телефоне, чат, удалённые хосты, управление телефоном |
+| 📸 [Скриншоты](#скриншоты) | Главный экран, чат, настройки, иконка |
+| ⚙️ [Как это работает](#как-это-работает) | Архитектура, PRoot, проверка обновлений оригинала |
+| 📲 [Установка](#установка) | APK и первый запуск |
+| 🛠 [Сборка из исходников](#сборка-из-исходников) | Тулчейн и команды сборки |
+| 🧪 [Тесты](#тесты) | Анализ и тесты пакетов |
+| 🔒 [Приватность](#приватность) | Трекеры, анонимная статистика, журналы |
+| ⚖️ [Лицензия и благодарности](#лицензия-и-благодарности) | AGPL-3.0, MIT-компоненты, товарные знаки |
+
+---
 
 ## Что это
 
@@ -166,3 +185,162 @@ node --test runtime/tests/*.test.mjs
 Сборка и поддержка — [rukazax](https://github.com/rukazax) (Константин Александрович Ерёмин, Москва). Ошибки и предложения — в [Issues](https://github.com/rukazax/narwhal/issues); уязвимости — приватно, по [SECURITY.md](SECURITY.md).
 
 <sub>Сборка: <b>RUKAZAX</b> · Narwhal неофициальный, используйте на свой риск.</sub>
+
+## English
+
+### What it is
+
+Narwhal is an Android shell for DeepSeek Harness: a Flutter interface plus its own Linux runtime. The runtime unpacks into the app's private folder and runs the DSH engine under PRoot — no root and no Termux. The same interface can be pointed at a remote host: then the phone stays the screen, and everything is computed on your computer or server.
+
+This is an unofficial project, not affiliated with DeepSeek. Narwhal is a fork of [ccch1mneyyy/dsh-Go](https://github.com/ccch1mneyyy/dsh-Go) (commit `28d43f89`); the engine is the open [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness). The code of this repository is AGPL-3.0. Layers and trust boundaries are described in [ARCHITECTURE.md](docs/narwhal/ARCHITECTURE.md).
+
+### Features
+
+**Russian is a full third language of the interface.** Shell strings live in separate ARB files, Android system strings — in `values-ru`; English is never substituted for the translation. The language switches next to System, Chinese and English and covers the interface, notifications and the floating overlay.
+
+| Feature | What it gives |
+| --- | --- |
+| 🐋 **Engine on the phone** | Full DSH in an Ubuntu environment under PRoot: chats, tools, files and working folders — without a server, root or Termux. |
+| 🧠 **Chat with the engine** | Models and providers, thinking, tool calls, confirmations and questions; chat export and share cards. |
+| 🔌 **Remote hosts** | The same interface against DSH on a computer or server: SSH or DSH Remote with encryption and LAN/P2P → TURN → Relay routes. |
+| 📱 **Phone control** | The engine reads the screen, taps and types for your task — with confirmations, a stop button and a floating panel. |
+| 🎨 **Themes and icons** | Six colors and your own wallpapers, four icon packs, three styles of functional icons, your own splash screen. |
+| 🔒 **Privacy** | No third-party trackers; anonymous statistics are shown before the first send and turn off with a single toggle. |
+| 🧩 **Plugins and community** | Plugin store with native cards and panels, an SDK and examples, a community page. |
+| ⚡ **Adaptive layout** | Layouts for foldables and tablets: a side panel, centered content, the keyboard does not break the screen. |
+
+> **Pets.** The mechanics, sizes, “quiet mode” and the floating pet exist in the build, but there are **no mascot packs**: the list keeps only “Don't show”. The original's brand art is not part of the fork — see [ASSETS.md](ASSETS.md).
+
+### Screenshots
+
+| Home | Chat | Settings |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/home-ru.png" width="240" alt="Narwhal home screen: chat list, current host and engine state"><br><sub>Home: chats, hosts, engine state.</sub> | <img src="docs/screenshots/chat-ru.png" width="240" alt="Chat with the local DSH engine: a model reply and collapsed tool steps"><br><sub>Chat with the local engine: steps collapse into one line.</sub> | <img src="docs/screenshots/settings-ru.png" width="240" alt="Narwhal settings: search and sections"><br><sub>Settings: search and sections.</sub> |
+
+| About | Drawer | Icon |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/about-ru.png" width="240" alt="About screen: version, licenses and upstream update check"><br><sub>About: version, licenses, upstream update check.</sub> | <img src="docs/screenshots/drawer-ru.png" width="240" alt="Narwhal drawer: sign, name and chat list"><br><sub>Drawer: sign, name, chats.</sub> | <img src="docs/screenshots/icon.png" width="120" alt="Narwhal icon"><br><sub>Narwhal icon: adaptive and monochrome.</sub> |
+
+### How it works
+
+```mermaid
+flowchart LR
+  subgraph Phone["Phone · Android 8.0+"]
+    direction TB
+    UI["Flutter UI<br/>ru · en · zh"]
+    Native["Kotlin layer<br/>notifications · overlay · accessibility"]
+    Client["dsh_client<br/>HTTP + SSE"]
+    UI --> Client
+    UI --> Native
+  end
+
+  subgraph Local["PRoot · Ubuntu 24.04, no root"]
+    direction TB
+    Bridge["dsh-go bridge<br/>/dsh-go/v1/*"]
+    Engine["DSH engine<br/>dsh web · 127.0.0.1:3080"]
+    Bridge --> Engine
+  end
+
+  Client -->|"token → cookie"| Engine
+  Native --> Bridge
+  Engine -->|"requests to models"| Provider["DeepSeek API<br/>or your own provider"]
+
+  Client -.->|"remote mode"| Remote["DSH on a computer or server<br/>SSH · DSH Remote"]
+```
+
+- **UI ↔ engine.** The Flutter shell talks to the engine over HTTP and SSE via `packages/dsh_client`. The engine prints the run token to stdout, the app immediately swaps it for a cookie and never carries the token in URLs afterwards.
+- **Runtime.** The archive unpacks into the app's private folder on first launch, integrity is checked before start, and `dsh web` listens only on `127.0.0.1:3080`.
+- **PRoot.** The Ubuntu environment and Node.js run in user-space: the Android kernel is not rooted, and root inside the rootfs does not leak outside.
+- **Native layer.** Kotlin holds the foreground service, notifications, the overlay and the accessibility service; the `/dsh-go/v1/*` bridge hands native plugins their cards and panels.
+- **Remote mode.** Instead of the local engine the client connects over SSH or DSH Remote; the interface and the interaction model are the same.
+
+#### Upstream update check
+
+```mermaid
+flowchart TD
+  Settings["About → check for updates"] --> Request["GET api.github.com/repos/ccch1mneyyy/dsh-Go/releases/latest"]
+  Request --> Compare{"Is the tag newer than the build's base version?"}
+  Compare -->|"no"| Current["Line: the build is up to date"]
+  Compare -->|"yes"| Report["Line: upstream version X is available"]
+  Report --> Page["Open the release page in a browser"]
+  Page --> Stop["The APK is not downloaded and not installed"]
+```
+
+- The build remembers the upstream version it is based on (currently `1.0.9`) and asks GitHub for the latest release of `ccch1mneyyy/dsh-Go`.
+- If the tag is newer, “About” shows the line “Upstream version X is available” and a link to the release page. Nothing is downloaded or installed: the signatures differ, so installing over this build is impossible anyway.
+- The check only reports a new upstream version. It does not change the installed app and does not launch an installer.
+
+### Installation
+
+Android 8.0 (API 26) or newer. Ready-made APKs are on the [releases page](https://github.com/rukazax/narwhal/releases); for an ordinary 64-bit phone you need the **arm64** package, x64 is for the emulator only. The app is not published on Google Play: this is a sideload build.
+
+1. Download the APK to the phone and allow installation from this source when the system asks.
+2. On first launch choose where DSH runs: **on this phone** or **on a remote host**.
+3. For local mode install the runtime. It unpacks on first launch and takes about **1 GB**; unpacking takes a while.
+4. Configure the model and the provider key and start chatting.
+
+If you only connect to a computer or server, you do not need the runtime on the phone. Phone control works only with the local engine and requires accessibility and notification permissions.
+
+### Building from source
+
+The build targets Linux x86_64; on Windows it is convenient to run it in WSL2. You need Bash, Git, curl, tar, unzip, xz, Python 3, zstd and the usual GNU tools. Tool versions are pinned in `tooling/setup-toolchain.sh` and CI: **Flutter 3.47.7**, Dart `^3.13.5`, **JDK 17**, **Android SDK 36** and the NDK (installed by the script).
+
+```bash
+git clone https://github.com/rukazax/narwhal.git
+cd narwhal
+
+bash tooling/setup-toolchain.sh
+source tooling/env.sh
+flutter --version
+java -version
+
+bash runtime/build-runtime.sh arm64-v8a
+bash tooling/build-apk.sh -f arm64
+```
+
+The finished APK is `app/build/app/outputs/flutter-apk/app-arm64-release.apk`. For the emulator, first build the `x86_64` runtime, then `bash tooling/build-apk.sh -f x64`. `tooling/build-apk.sh` sets `versionCode` from the build time by itself; `app/pubspec.yaml` only keeps the version, its `+1` is a stub.
+
+Without `app/android/key.properties` a release build is signed with the debug key: such an APK installs on a test device, but not over a build with a different key. Keys and `key.properties` are not committed to the repository.
+
+To make the build behave as a fork, not as the original, it is given the base version and auto-update of someone else's APK is disabled:
+
+```bash
+bash tooling/build-apk.sh -f arm64 -- \
+  --dart-define=DSH_SELF_UPDATE=false \
+  --dart-define=UPSTREAM_BASE_VERSION=1.0.9
+```
+
+### Tests
+
+```bash
+(cd app && flutter pub get && flutter analyze && flutter test)
+(cd packages/dsh_client && dart pub get && dart analyze && dart test)
+(cd packages/dsh_remote && dart pub get && dart analyze && dart test)
+node --test runtime/tests/*.test.mjs
+```
+
+Golden tests are platform-sensitive: update and check them in Linux (WSL), not on Windows — fonts and rasterization diverge there. CI runs the same commands on `ubuntu-24.04`; green CI does not replace testing on a real phone, especially for PRoot, direct launch and phone control.
+
+### Privacy
+
+- **No third-party trackers.** The app has no ad or analytics SDKs; the network is the engine, the chosen model provider and the release check.
+- **Anonymous statistics.** On by default; the first launch discloses what data is sent, and the toggle can be switched off right away. It sends the app and Android versions, the architecture, the phone manufacturer (not the model), the language, the way the engine was started and daily action counters — no accounts, keys, chats, files or host addresses. A random ID changes every 90 days and is deleted together with the counters when switched off.
+- **Chat logs — separate.** The “Send chat logs to DeepSeek” toggle is shown only where the host supports it and is not tied to anonymous statistics.
+- **Engine telemetry.** OpenTelemetry in the engine works only for feedback: review events, no conversation text.
+- **Local and by link.** The web interface on `127.0.0.1` accepts only requests from the app itself. Sharing links are encrypted end-to-end, but the key lives in the link: whoever gets the link reads the content. SSH keys and passwords stay on the phone.
+
+### License and acknowledgements
+
+The code of this repository is [AGPL-3.0](LICENSE); `sdk/` and `examples/` are **MIT**. The [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) engine is MIT, © DeepSeek. Narwhal is a modified version of [DSH Go](https://github.com/ccch1mneyyy/dsh-Go) (AGPL-3.0), original commit `28d43f89`; what exactly was changed is recorded in [NOTICE](NOTICE).
+
+The original's mascots and brand art (Deepy, the “whale girl”, tail animations, README images) are **not** part of the fork; the list is in [ASSETS.md](ASSETS.md). Third-party components and their licenses are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+**Trademarks.** “DeepSeek” and the DeepSeek logo belong to DeepSeek. Narwhal is an unofficial project, not affiliated with DeepSeek and does not represent it. The Narwhal name and graphics belong to this fork, not to upstream.
+
+Build and maintenance — [rukazax](https://github.com/rukazax) (Konstantin Aleksandrovich Eryomin, Moscow). Bugs and suggestions — in [Issues](https://github.com/rukazax/narwhal/issues); vulnerabilities — privately, via [SECURITY.md](SECURITY.md).
+
+<sub>Build: <b>RUKAZAX</b> · Narwhal is unofficial, use at your own risk.</sub>
+
+---
+
+#android #flutter #deepseek #deepseek-harness #narwhal #agpl-3.0 #mobile-client #prroot #sideload #ru-en
